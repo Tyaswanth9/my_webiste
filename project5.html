@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Patient Data Analysis Project</title>
+
+<style>
+/* ========================= */
+/* GLOBAL STYLE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #eeeeee;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: #d62828;
+}
+
+h1 {
+  color: #d62828;
+}
+
+h2, h3 {
+  color: black;
+}
+
+/* ========================= */
+/* NAVBAR */
+nav {
+  position: sticky;
+  top: 0;
+  background: #d62828;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+nav .back-icon {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+nav .nav-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+nav .nav-links a {
+  color: white;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav .nav-links a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ========================= */
+/* PAGE TITLE */
+.page-title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.page-title h1 {
+  font-size: 28px;
+  color: #d62828;
+  font-weight: bold;
+}
+
+/* ========================= */
+/* CONTAINER */
+.container {
+  padding: 50px 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+
+/* ========================= */
+/* SECTIONS */
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+section p, section ul, section ol {
+  margin-bottom: 15px;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+/* ========================= */
+/* DASHBOARD IMAGE */
+.dashboard-image {
+  display: block;
+  max-width: 80%;
+  margin: 20px auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-image:hover {
+  transform: scale(1.05);
+}
+
+/* ========================= */
+/* FOOTER */
+footer {
+  background: #d62828;
+  color: white;
+  text-align: center;
+  padding: 25px 10%;
+  margin-top: 40px;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+@media (max-width:1024px){
+  .page-title h1 { font-size: 24px; }
+}
+
+@media (max-width:768px){
+  nav {
+    flex-direction: row;
+    gap: 10px;
+  }
+  nav .nav-links {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .page-title h1 { font-size: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="back-icon">&#8962;</a>
+  <div class="nav-links">
+    <a href="#powerbi">Power BI Dashboard Features</a>
+    <a href="#whatidid">What I Did</a>
+    <a href="#whatilearned">What I Learned</a>
+     <a href="https://github.com/Tyaswanth9/Hospital-Patient-Data-Analysis-Project.git">Git hub</a>
+  </div>
+</nav>
+
+<!-- ========================= -->
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h1>Hospital Patient Data Analysis Project</h1>
+</div>
+
+<!-- ========================= -->
+<!-- BODY -->
+<div class="container">
+
+<section id="overview">
+  <h2>Overview</h2>
+  <p>This project analyzes Emergency Room (ER) data to track patient flow, service quality, and operational performance. I combined multiple data sources into a single data model and created interactive Power BI dashboards showing daily, monthly, and consolidated views.</p>
+  <p>Key insights include:</p>
+  <ul>
+    <li>Daily patient visits and wait times</li>
+    <li>Patient satisfaction trends</li>
+    <li>Department referrals</li>
+    <li>Patient demographics and admission status</li>
+  </ul>
+  <p>These dashboards help hospital staff quickly understand trends, identify issues, and make better operational decisions.</p>
+</section>
+
+<section id="business">
+  <h2>Business Problem</h2>
+  <p>ERs often face challenges like long wait times, overcrowding, limited resources, and low patient satisfaction. Without clear data, it’s hard to know when to allocate staff, which departments have high referrals, or why satisfaction drops.</p>
+  <p>This project addresses these problems by providing dashboards that visualize trends, wait times, referrals, satisfaction, and patient details—helping hospitals improve care and efficiency.</p>
+</section>
+
+<section id="datasources">
+  <h2>Data Source Information</h2>
+  <ul>
+    <li>patient_data.csv</li>
+    <li>Patient_safisfaction_score.csv</li>
+    <li>patient_department referral.csv</li>
+    <li>patient_waiting.csv</li>
+    <li>patient_racet.csv</li>
+    <li>patient_admmission status.csv</li>
+  </ul>
+</section>
+
+<section id="datacleaning">
+  <h2>Data Cleaning Process</h2>
+  <ul>
+    <li>Imported all six files into Power Query</li>
+    <li>Created new columns from existing data, e.g., Admission Status</li>
+    <li>Split Patient Name into First Name and Last Name</li>
+    <li>Separated Admission DateTime into Date and Time (24-hour format)</li>
+    <li>Built data model using a common column to connect tables</li>
+    <li>Checked and fixed duplicates, missing values, and inconsistencies</li>
+  </ul>
+  <p>Data Modeling:</p>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Hospital-Patient-Data-Analysis-Project/refs/heads/myself/data%20modeling.png" class="dashboard-image" alt="Hospital Data Model">
+</section>
+
+<section id="tools">
+  <h2>Tools and Technologies Used</h2>
+  <ul>
+    <li>Power BI</li>
+  </ul>
+</section>
+
+<section id="keyinsights">
+  <h2>Key Insights Included</h2>
+  <ul>
+    <li>No of patients</li>
+    <li>Average waiting time</li>
+    <li>Average patient saticfation score</li>
+    <li>NO of patinet Reffered</li>
+  </ul>
+</section>
+
+<section id="powerbi">
+  <h2>Power BI Dashboard Features</h2>
+  <ul>
+    <li>Clean, colorful visualizations</li>
+    <li>Interactive reports with filters and slicers</li>
+    <li>Documentation explaining design and data sources</li>
+    <li>Sample datasets used in reports</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Hospital-Patient-Data-Analysis-Project/refs/heads/myself/power%20bi%20dashboard_1.png" class="dashboard-image" alt="Hospital Power BI Dashboard">
+
+<img src="https://raw.githubusercontent.com/Tyaswanth9/Hospital-Patient-Data-Analysis-Project/refs/heads/myself/power%20bi%20dashboard_2.png" class="dashboard-image" alt="Hospital Power BI Dashboard">
+
+<img src="https://raw.githubusercontent.com/Tyaswanth9/Hospital-Patient-Data-Analysis-Project/refs/heads/myself/power%20bi%20dashboard_3.png" class="dashboard-image" alt="Hospital Power BI Dashboard">
+
+</section>
+
+<section id="whatidid">
+  <h2>What I Did</h2>
+  <ul>
+    <li>Combined data from six files into a single data model</li>
+    <li>Built calendar tables using the CALENDARAUTO() DAX function</li>
+    <li>Used DAX formulas to calculate KPIs and measures</li>
+    <li>Designed visual charts and dashboards</li>
+    <li>Added filters and slicers for improved interaction</li>
+    <li>Used page navigation buttons to easily move from one page to another</li>
+  </ul>
+</section>
+
+<section id="whatilearned">
+  <h2>What I Learned</h2>
+  <ul>
+    <li>Improved my ability to combine multiple data sources into a single, well-structured data model</li>
+    <li>Enhanced my understanding of creating calendar tables using CALENDARAUTO()</li>
+    <li>Strengthened my DAX skills by writing formulas to calculate KPIs and measures</li>
+    <li>Developed better skills in designing clean, interactive, and user-friendly Power BI dashboards</li>
+    <li>Improved my knowledge of using slicers, filters, and page navigation to create a smooth user experience</li>
+  </ul>
+</section>
+	<a href="https://github.com/Tyaswanth9/Hospital-Patient-Data-Analysis-Project.git"> View Full Project on github</a>
+
+</div> <!-- END CONTAINER -->
+
+<footer>
+  @ 2026 Data Analyst Portfolio 
+</footer>
+
+</body>
+</html>

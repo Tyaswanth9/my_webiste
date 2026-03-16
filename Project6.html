@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NIRF College Ranking Dashboard Project</title>
+
+<style>
+/* ========================= */
+/* GLOBAL STYLE */
+/* ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #eeeeee;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: #d62828;
+}
+
+h1 {
+  color: #d62828;
+}
+
+h2, h3 {
+  color: black; /* Section heading color changed */
+}
+
+/* ========================= */
+/* MODERN STICKY NAVBAR */
+/* ========================= */
+nav {
+  position: sticky;
+  top: 0;
+  background: #d62828;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+nav .back-icon {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+nav .nav-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+nav .nav-links a {
+  color: white;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav .nav-links a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ========================= */
+/* CENTERED HEADING BELOW NAVBAR */
+.page-title {
+  text-align: center;
+  margin: 20px 0; /* spacing below navbar */
+}
+
+.page-title h1 {
+  font-size: 28px;
+  color: #d62828; /* red theme */
+  font-weight: bold;
+}
+
+/* ========================= */
+/* CONTAINER */
+.container {
+  padding: 50px 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+
+/* ========================= */
+/* SECTIONS */
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+section p, section ul, section ol {
+  margin-bottom: 15px;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+/* ========================= */
+/* DASHBOARD IMAGE */
+.dashboard-image {
+  display: block;
+  max-width: 80%;
+  margin: 20px auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-image:hover {
+  transform: scale(1.05);
+}
+
+/* ========================= */
+/* FOOTER */
+footer {
+  background: #d62828;
+  color: white;
+  text-align: center;
+  padding: 25px 10%;
+  margin-top: 40px;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+@media (max-width:1024px){
+  .page-title h1 { font-size: 24px; }
+}
+
+@media (max-width:768px){
+  nav {
+    flex-direction: row;
+    gap: 10px;
+  }
+  nav .nav-links {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .page-title h1 { font-size: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- MODERN STICKY NAVBAR -->
+<nav>
+  <!-- Back arrow top-left -->
+  <a href="index.html" class="back-icon">&#8962;</a>
+
+  <!-- Tool sections -->
+  <div class="nav-links">
+    <a href="#excel">Excel</a>
+    <a href="#powerbi">Power BI</a>
+    <a href="#tableau">Tableau</a>
+    <a href="#sql">SQL</a>
+   <a href="https://github.com/Tyaswanth9/University-Ranking-Data-analsis-Project.git">Git hub</a>
+  </div>
+</nav>
+
+<!-- ========================= -->
+<!-- CENTERED PAGE HEADING -->
+<div class="page-title">
+  <h1>NIRF College Ranking Dashboard Project</h1>
+</div>
+
+<!-- ========================= -->
+<!-- BODY SECTION (UNCHANGED TEXT + WHAT I DID + WHAT I LEARNED) -->
+<div class="container">
+
+<section>
+  <h2>Overview</h2>
+  <p><strong>NIRF</strong> stands for <strong>National Institutional Ranking Framework</strong>, developed by the <strong>Indian Government</strong> to rank colleges and universities in India.It was launched in <strong>2015</strong> to improve transparency and assess institutional performance.</p>
+  <h3>Ranking Parameters :</h3>
+  <ul>
+    <li>Teaching, Learning and Resources</li>
+    <li>Research and Professional Practices</li>
+    <li>Graduation Outcomes</li>
+    <li>Outreach and Inclusivity</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Business Problem</h2>
+  <p>To analyze NIRF data and build dashboards that help understand:</p>
+  <ul>
+    <li>Institutional performance</li>
+    <li>Average scores and rankings</li>
+    <li>Insights by state and grade</li>
+    <li>Data-driven decision-making</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Data Sources</h2>
+  <ul>
+    <li>institute_details.csv</li>
+    <li>institute_location.csv</li>
+    <li>institute_ranking.csv</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Data Cleaning Process</h2>
+  <ul>
+    <li>Imported all files into Power Query</li>
+    <li>Checked data quality and column types</li>
+    <li>Removed null and unwanted values</li>
+    <li>Used text functions to clean columns</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Data Modeling</h2>
+  <p>Connected the three files using <code>institute_id</code> and built a data model in Excel, Power BI, and Tableau</p>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/University-Ranking-Data-analsis-Project/refs/heads/myself/dm.png" class="dashboard-image" alt="Data Model Image">
+</section>
+
+<section>
+  <h2>Key Performance Indicators (KPIs)</h2>
+  <ul>
+    <li>Total number of institutions</li>
+    <li>Overall average score</li>
+    <li>Overall average rank</li>
+  </ul>
+</section>
+
+<!-- ========================= -->
+<!-- EXCEL SECTION -->
+<section id="excel">
+  <h2>Excel</h2>
+  <ul>
+    <li>Created pivot tables for analysis</li>
+    <li>Built pivot charts for insights</li>
+    <li>Designed a user-friendly dashboard</li>
+    <li>Created KPIs for performance tracking</li>
+    <li>Added slicers for dynamic filtering</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/University-Ranking-Data-analsis-Project/refs/heads/myself/dashboard_e.png" class="dashboard-image" alt="Excel Dashboard">
+  <h3>What I Did:</h3>
+  <ul>
+    <li>Imported 3 Excel files into Power Query</li>
+    <li>Connected them using data modeling</li>
+    <li>Created pivot tables and charts</li>
+    <li>Designed interactive dashboard with slicers</li>
+  </ul>
+  <h3>What I Learned:</h3>
+  <ul>
+    <li>Improved pivot table and chart skills</li>
+    <li>Gained confidence in data cleaning and analysis</li>
+    <li>Learned Excel visualization limitations</li>
+  </ul>
+</section>
+
+<!-- ========================= -->
+<!-- POWER BI SECTION -->
+<section id="powerbi">
+  <h2>Power BI</h2>
+  <ul>
+    <li>Interactive filters and slicers</li>
+    <li>Visual KPIs and charts</li>
+    <li>Enhanced visualization effects</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/University-Ranking-Data-analsis-Project/refs/heads/myself/dashboard_p.png" class="dashboard-image" alt="Power BI Dashboard">
+  <h3>What I Did:</h3>
+  <ul>
+    <li>Imported Excel data into Power Query</li>
+    <li>Cleaned and transformed the data</li>
+    <li>Built relationships using data modeling</li>
+    <li>Used DAX for KPIs and calculations</li>
+    <li>Created visuals for business insights</li>
+  </ul>
+  <h3>What I Learned:</h3>
+  <ul>
+    <li>Enhanced DAX and data modeling knowledge</li>
+    <li>Improved dashboard design skills</li>
+    <li>Developed stronger analytical thinking</li>
+  </ul>
+</section>
+
+<!-- ========================= -->
+<!-- TABLEAU SECTION -->
+<section id="tableau">
+  <h2>Tableau</h2>
+  <ul>
+    <li>Created visuals and KPIs</li>
+    <li>Used interactive filters for easy exploration</li>
+    <li>Designed clean and dynamic dashboards</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/University-Ranking-Data-analsis-Project/refs/heads/myself/dashboard_t.png" class="dashboard-image" alt="Tableau Dashboard">
+  <h3>What I Did:</h3>
+  <ul>
+    <li>Imported all cleaned Excel files</li>
+    <li>Connected them via data modeling</li>
+    <li>Created calculated fields</li>
+    <li>Designed visuals for key insights</li>
+  </ul>
+  <h3>What I Learned:</h3>
+  <ul>
+    <li>Improved LOD expressions</li>
+    <li>Enhanced Tableau data modeling</li>
+    <li>Advanced visualization techniques</li>
+  </ul>
+</section>
+
+<!-- ========================= -->
+<!-- SQL SECTION -->
+<section id="sql">
+  <h2>SQL</h2>
+  <ol>
+    <li>View Creation: CREATE VIEW university_ranking AS ...</li>
+    <li>KPI Tracking: SELECT COUNT(institute_id) AS "Total institutions", AVG(score) ...</li>
+    <li>Top 5 Ranked Institutions: SELECT rank_, name FROM university_ranking WHERE rank_ &lt; 6;</li>
+    <li>State-wise Average Score: SELECT state, ROUND(AVG(score), 2) ...</li>
+    <li>Grade-wise Institutions: SELECT CASE WHEN score &gt;= 90 THEN 'A+' ...</li>
+    <li>State-wise Institution Count: SELECT state, COUNT(institute_id) ...</li>
+  </ol>
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/University-Ranking-Data-analsis-Project/refs/heads/myself/view_image.png" class="dashboard-image" alt="SQL images">
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/University-Ranking-Data-analsis-Project/refs/heads/myself/kpi_image.png" class="dashboard-image" alt="SQL images">
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/University-Ranking-Data-analsis-Project/refs/heads/myself/c1_image.png" class="dashboard-image" alt="SQL images">
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/University-Ranking-Data-analsis-Project/refs/heads/myself/c2.png" class="dashboard-image" alt="SQL images">
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/University-Ranking-Data-analsis-Project/refs/heads/myself/c3.png" class="dashboard-image" alt="SQL images">
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/University-Ranking-Data-analsis-Project/refs/heads/myself/c4.png" class="dashboard-image" alt="SQL images">
+  <h3>What I Did:</h3>
+  <ul>
+    <li>Created views to simplify analysis</li>
+    <li>Performed aggregations and KPIs tracking</li>
+    <li>Queried top-ranked institutions</li>
+    <li>Analyzed state-wise and grade-wise data</li>
+  </ul>
+  <h3>What I Learned:</h3>
+  <ul>
+    <li>Improved SQL query writing skills</li>
+    <li>Learned to create views and track KPIs</li>
+    <li>Better understanding of joins and aggregations</li>
+  </ul>
+	<a href="https://github.com/Tyaswanth9/University-Ranking-Data-analsis-Project.git"> View Full Project on github</a>
+</section>
+
+</div> <!-- END CONTAINER -->
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<footer>
+  @2026 Data Analyst Portfolio 
+</footer>
+
+</body>
+</html>

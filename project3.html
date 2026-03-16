@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Analytics Data Analysis Project</title>
+
+<style>
+/* ========================= */
+/* GLOBAL STYLE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #eeeeee;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: #d62828;
+}
+
+h1 {
+  color: #d62828;
+}
+
+h2, h3 {
+  color: black;
+}
+
+/* ========================= */
+/* MODERN STICKY NAVBAR */
+nav {
+  position: sticky;
+  top: 0;
+  background: #d62828;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+nav .back-icon {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+nav .nav-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+nav .nav-links a {
+  color: white;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav .nav-links a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ========================= */
+/* PAGE TITLE */
+.page-title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.page-title h1 {
+  font-size: 28px;
+  color: #d62828;
+  font-weight: bold;
+}
+
+/* ========================= */
+/* CONTAINER */
+.container {
+  padding: 50px 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+
+/* ========================= */
+/* SECTIONS */
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+section p, section ul, section ol {
+  margin-bottom: 15px;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+/* ========================= */
+/* DASHBOARD IMAGE */
+.dashboard-image {
+  display: block;
+  max-width: 80%;
+  margin: 20px auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-image:hover {
+  transform: scale(1.05);
+}
+
+/* ========================= */
+/* FOOTER */
+footer {
+  background: #d62828;
+  color: white;
+  text-align: center;
+  padding: 25px 10%;
+  margin-top: 40px;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+@media (max-width:1024px){
+  .page-title h1 { font-size: 24px; }
+}
+
+@media (max-width:768px){
+  nav {
+    flex-direction: row;
+    gap: 10px;
+  }
+  nav .nav-links {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .page-title h1 { font-size: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="back-icon">&#8962;</a>
+  <div class="nav-links">
+  
+    <a href="#excel">Excel Dashboard</a>
+    <a href="#powerbi">Power BI Dashboard</a>
+    <a href="https://github.com/Tyaswanth9/HR-Analytics-data-analysis-project.git">Git hub</a>
+   
+  </div>
+</nav>
+
+<!-- ========================= -->
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h1>HR Analytics Data Analysis Project</h1>
+</div>
+
+<!-- ========================= -->
+<!-- BODY -->
+<div class="container">
+
+<section id="overview">
+  <h2>Overview</h2>
+  <p>HR attrition analysis is the process of studying employee data to understand how many people are leaving a company and why they are leaving. The goal is to find patterns and reasons behind employee exits and to help the company improve employee retention.</p>
+  <p>This analysis includes:</p>
+  <ul>
+    <li>Calculating the attrition rate</li>
+    <li>Checking if employees left voluntarily or were let go (involuntarily)</li>
+    <li>Studying attrition by department, age, salary, and other factors</li>
+  </ul>
+</section>
+
+<section id="business">
+  <h2>Business Problem</h2>
+  <p>This HR analytics project aims to understand the key factors influencing employee attrition. The analysis focuses on:</p>
+  <ul>
+    <li>Work experience</li>
+    <li>Promotion duration</li>
+    <li>Income levels</li>
+    <li>Departments</li>
+    <li>Job roles</li>
+    <li>Job satisfaction</li>
+  </ul>
+  <p>By examining these factors, the project seeks to identify patterns and trends related to why employees leave the company. The insights gained can help HR teams improve employee retention, enhance job satisfaction, and make better data-driven decisions.</p>
+</section>
+
+<section id="tools">
+  <h2>Tools & Technologies Used</h2>
+  <ul>
+    <li>Excel</li>
+    <li>Power BI</li>
+  </ul>
+</section>
+
+<section id="datasources">
+  <h2>Data Sources</h2>
+  <ul>
+    <li>hr_1</li>
+    <li>hr_2</li>
+  </ul>
+</section>
+
+<section id="datacleaning">
+  <h2>Data Cleaning Process</h2>
+  <ul>
+    <li>Imported both files into Power Query for initial data preparation</li>
+    <li>Checked for null values and removed any unwanted or incorrect data entries</li>
+    <li>Performed data cleaning to ensure the dataset was accurate and ready for analysis</li>
+    <li>Used the Data Model tab to build relationships between tables and prepare the data for further analysis</li>
+  </ul>
+</section>
+
+<section id="data modeling">
+  <h2>Data modeling</h2>
+<img src="https://raw.githubusercontent.com/Tyaswanth9/HR-Analytics-data-analysis-project/refs/heads/myself/data%20moddeling.png" class="dashboard-image" alt="HR Analytics Excel Dashboard">
+</section>
+
+
+<section id="kpis">
+  <h2>Key performance indicators (KPI's)</h2>
+  <ul>
+    <li>Total number of employees</li>
+    <li>Attrition rate (%)</li>
+    <li>Average monthly income</li>
+    <li>Average job satisfaction</li>
+    <li>Average hourly rate</li>
+    <li>Average salary of research scientists</li>
+  </ul>
+</section>
+
+<section id="excel">
+  <h2>Excel Dashboard Features</h2>
+  <ul>
+    <li>Easy page-to-page linking</li>
+    <li>KPIs calculated using Pivot Tables and formulas</li>
+    <li>Clear KPI's (although not dynamic yet)</li>
+    <li>Slicers to filter and view data quickly</li>
+    <li>User-friendly navigation buttons to switch between HR Analytics Dashboard, Employees wise analysis, Attrition rate wise analysis and Monthly income analysis dashboards</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/HR-Analytics-data-analysis-project/refs/heads/myself/sm.png" class="dashboard-image" alt="HR Analytics Excel Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/HR-Analytics-data-analysis-project/refs/heads/myself/sa.png" class="dashboard-image" alt="Attrition Rate Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/HR-Analytics-data-analysis-project/refs/heads/myself/si.png" class="dashboard-image" alt="Monthly Income Dashboard">
+</section>
+
+<section id="powerbi">
+  <h2>Power BI Dashboard Features</h2>
+  <ul>
+    <li>Page navigation using icons</li>
+    <li>Created interactive filters</li>
+    <li>Clickable icons to move between different dashboard pages</li>
+    <li>Interactive visuals built with cross-filtering, tooltips, and bookmarks</li>
+  </ul>
+ 
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/HR-Analytics-data-analysis-project/refs/heads/myself/sp1M.png" class="dashboard-image" alt="Employees Wise Analysis">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/HR-Analytics-data-analysis-project/refs/heads/myself/sP2E.png" class="dashboard-image" alt="Attrition Rate Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/HR-Analytics-data-analysis-project/refs/heads/myself/sP3A.png" class="dashboard-image" alt="Monthly Income Dashboard">
+<img src="https://raw.githubusercontent.com/Tyaswanth9/HR-Analytics-data-analysis-project/refs/heads/myself/s4.png" class="dashboard-image" alt="Monthly Income Dashboard">
+</section>
+
+<section id="whatidid">
+  <h2>What I Did</h2>
+  <ul>
+    <li>Imported two Excel files into Power Pivot</li>
+    <li>Connected the files using data modeling in Excel</li>
+    <li>Created pivot tables to analyze data</li>
+    <li>Turned pivot tables into meaningful charts and insights</li>
+    <li>Designed an interactive dashboard with page navigation links and slicers for filtering data</li>
+    <li>Made buttons to easily switch between dashboard page</li>
+    <li>Imported two Excel files into Power Query for Power BI</li>
+    <li>Imported and cleaned data from Excel</li>
+    <li>Connected two datasets using data modeling</li>
+    <li>Used DAX formulas to create key KPIs</li>
+    <li>Designed interactive visuals to generate meaningful business insights</li>
+    <li>Made image links to easily switch between dashboard page</li>
+  </ul>
+</section>
+
+<section id="whatilearned">
+  <h2>What I Learned</h2>
+  <ul>
+    <li>How to link one page to another in Excel</li>
+    <li>Improved pivot table creation skills</li>
+    <li>Enhanced data analysis and problem-solving abilities</li>
+    <li>Excel has limited chart types and options, which was a bit restrictive</li>
+    <li>How to link icons to page navigation in Power BI</li>
+    <li>Improved DAX and data modeling skills</li>
+    <li>Enhanced data visualization techniques</li>
+    <li>Sharpened analytical thinking and problem-solving abilities</li>
+  </ul>
+</section>
+	<a href="https://github.com/Tyaswanth9/HR-Analytics-data-analysis-project.git" > View Full Project on github</a>
+</div> <!-- END CONTAINER -->
+
+<footer>
+  @2026 Data Analyst Portfolio 
+</footer>
+
+</body>
+</html>

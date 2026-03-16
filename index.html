@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analyst Portfolio</title>
+
+<style>
+/* ========================= */
+/* GLOBAL STYLE */
+/* ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #eeeeee;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* ========================= */
+/* NAVBAR */
+/* ========================= */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #d62828;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 8%;
+  z-index: 1000;
+}
+
+.logo {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  border-bottom: 2px solid white;
+}
+
+/* ========================= */
+/* HERO SECTION */
+/* ========================= */
+#home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+#home h1 {
+  font-size: 45px;
+  margin-bottom: 10px;
+}
+
+#home h2 {
+  color: #d62828;
+  margin-bottom: 15px;
+}
+
+.hero-buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  background: #d62828;
+  color: white;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.btn:hover {
+  background: #a4161a;
+}
+
+/* ========================= */
+/* SECTION STYLE */
+/* ========================= */
+section {
+  padding: 90px 10%;
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 30px;
+  color: #d62828;
+}
+
+/* ========================= */
+/* PROFESSIONAL SUMMARY */
+/* ========================= */
+.summary-box {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+}
+
+/* ========================= */
+/* EXPERIENCE */
+/* ========================= */
+.exp-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.exp-card {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================= */
+/* SKILLS */
+/* ========================= */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background: white;
+  padding: 25px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+  border-bottom: 4px solid #d62828;
+}
+
+/* ========================= */
+/* PROJECT GRID & HOVER EFFECT */
+/* ========================= */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.project-card img {
+  width: 100%;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(214, 40, 40, 0.9);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  text-align: center;
+  padding: 15px;
+}
+
+.project-card:hover img {
+  transform: scale(1.1);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.click-text {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  background: white;
+  color: #d62828;
+  padding: 6px 12px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover .click-text {
+  opacity: 1;
+}
+
+/* ========================= */
+/* CONTACT */
+.contact-box {
+  text-align: center;
+  line-height: 2;
+}
+
+/* ========================= */
+/* FOOTER WITH ICONS CENTERED */
+footer {
+  background: #d62828;
+  color: white;
+  text-align: center;
+  padding: 25px 10%;
+  display: flex;
+  flex-direction: column; /* stack copyright + icons */
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center; /* center icons */
+  align-items: center;
+  gap: 50px; /* equal space between icons */
+}
+
+.footer-icon {
+  width: 40px;
+  height: 40px;
+  filter: invert(1);
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.footer-icon:hover {
+  transform: scale(1.2);
+  filter: invert(0.2) sepia(1) saturate(5) hue-rotate(340deg);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- NAVBAR -->
+<nav>
+<div class="logo">Data Analyst Protfolio</div>
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#summary">Summary</a>
+<a href="#experience">Experience</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+</div>
+</nav>
+
+<!-- ========================= -->
+<!-- HERO SECTION -->
+<section id="home">
+<h1>Yaswanth Naga Sai </h1>
+<h2>Data Analyst</h2>
+<p>SQL • Power BI • Excel • Tableau • Data Visualization</p>
+<div class="hero-buttons">
+</div>
+</section>
+
+<!-- ========================= -->
+<!-- PROFESSIONAL SUMMARY -->
+<section id="summary">
+<h2>Professional Summary</h2>
+<div class="summary-box">
+
+<p>Hello, </p>
+<p>and thank you for visiting view my profile.
+
+I am an aspiring Data Analyst with practical experience in tools like Excel, SQL, Power BI, and Tableau. I enjoy working with data—cleaning, analyzing, and creating dashboards that help turn information into clear insights.</p>
+
+<p>
+I have used pivot tables, DAX, and other functions to support data-driven decisions and solve real problems. I'm always eager to learn new skills and improve my understanding of data and analytics.
+</p>
+<p>
+I’m currently looking for an opportunity to grow as part of a supportive and data-focused team. I’m open to entry-level roles, internships, or any chance to contribute and learn in a real-world setting.
+</p>
+<p>
+I would truly appreciate any guidance, feedback, or opportunities you might be willing to share. Please feel free to connect—I'd be happy to hear from you.
+</p>
+</div>
+</section>
+
+<!-- ========================= -->
+<!-- EXPERIENCE -->
+<section id="experience">
+<h2>Experience</h2>
+<div class="exp-container">
+<div class="exp-card">
+<h3>Data Analytics Projects</h3>
+<ul>
+<li> Role: Data Analyst (intern) 
+<li> Experience: 9 months </li> 
+<li> Industries: Healthcare, Finance, Retail , E-commerce  </li>
+<li> Focus Areas:</li>
+<li> Data Visualization</li>
+<li> Business Intelligence</li>
+<li> Real world bussiness problem-solving</li>
+<li> dashboard creation 
+<li> report creation</li>
+</ul>
+</div>
+</section>
+
+<!-- ========================= -->
+<!-- SKILLS -->
+<section id="skills">
+<h2>Skills</h2>
+<div class="skills-grid">
+<div class="skill-card">SQL</div>
+<div class="skill-card">Power BI</div>
+<div class="skill-card">Tableau</div>
+<div class="skill-card">Excel</div>
+<div class="skill-card">Python</div>
+<div class="skill-card">Power Query</div>
+<div class="skill-card">Data Cleaning</div>
+<div class="skill-card">Data Modeling</div>
+<div class="skill-card">Python</div>
+<div class="skill-card">Data Storytelling</div>
+<div class="skill-card">Pandas & NumPy</div>
+<div class="skill-card">Statstics</div>
+<div class="skill-card">Ms-office suite</div>
+<div class="skill-card">KPI Development</div>
+<div class="skill-card">Dashboard creation</div>
+<div class="skill-card">Report Creation</div>
+
+</div>
+</section>
+
+<!-- ========================= -->
+<!-- PROJECTS -->
+<section id="projects">
+<h2>Projects</h2>
+<div class="projects-container">
+
+<!-- PROJECT 1 -->
+<a href="project1.html" class="project-card">
+<img src="https://raw.githubusercontent.com/Tyaswanth9/my-protfolio-website/refs/heads/myself/screenshots/cover%20imges/croudfunding_cover.png">
+</br>
+<ul>
+<p>Crowdfunding Data Analysis End-to-End Project</p></br>
+<p>Skills:Excel , Power BI , SQL , Tableau</p>
+</ul>
+
+
+<div class="project-overlay">
+<h3>Crowd Funding Analysis</h3>
+<p>Analyzed crowdfunding campaign data to generate insights</p>
+<span class="click-text">Click me to see all project details</span>
+</div>
+</a>
+
+
+
+<!-- PROJECT 2 -->
+<a href="project2.html" class="project-card">
+<img src="https://raw.githubusercontent.com/Tyaswanth9/my-protfolio-website/refs/heads/myself/screenshots/cover%20imges/Adventureworks_cover.png">
+
+</br>
+<ul>
+<p>Adventure Works Data Analysis End-to-End Project</p></br>
+<p>Skills:Excel , Power BI , SQL , Tableau</p>
+</ul>
+
+<div class="project-overlay">
+<h3>AdventureWorks Sales Dashboard</h3>
+<p>Power BI Sales Analysis</p>
+<span class="click-text">Click me to see all project details</span>
+</div>
+</a>
+
+<!-- PROJECT 3 -->
+
+<a href="project3.html" class="project-card">
+<img src="https://raw.githubusercontent.com/Tyaswanth9/my-protfolio-website/refs/heads/myself/screenshots/cover%20imges/HRAnalisis_logo.png">
+
+</br>
+<ul>
+<p>HR Analysis End-to-End project</p></br>
+<p>Skills:Excel , Power BI </p>
+</ul>
+
+<div class="project-overlay">
+<h3>Project 3</h3>
+<span class="click-text">Click me to see all project details</span>
+</div>
+</a>
+
+<!-- PROJECT 4 -->
+
+<a href="project4.html" class="project-card">
+<img src="https://raw.githubusercontent.com/Tyaswanth9/my-protfolio-website/refs/heads/myself/screenshots/cover%20imges/e-comerce_3.jpg" >
+
+</br>
+<ul>
+<p>E-Commerce data Analysis End-to-End project</p></br>
+<p>Skills:Excel , Power BI , SQL , Tableau</p>
+</ul>
+
+<div class="project-overlay">
+<h3>Project 4</h3>
+<span class="click-text">Click me to see all project details</span>
+</div>
+</a>
+
+<!-- PROJECT 5 -->
+
+<a href="project5.html" class="project-card">
+<img src="https://raw.githubusercontent.com/Tyaswanth9/my-protfolio-website/refs/heads/myself/screenshots/cover%20imges/hospital.jpg">
+
+</br>
+<ul>
+<p>Hospital-Patient Data Analysis End-to-End Project</p></br>
+<p>Skills: Power BI </p>
+</ul>
+
+<div class="project-overlay">
+<h3>Project 5</h3>
+<span class="click-text">Click me to see all project details</span>
+
+</div>
+</a>
+
+<!-- PROJECT 6 -->
+
+<a href="project6.html" class="project-card">
+<img src="https://raw.githubusercontent.com/Tyaswanth9/my-protfolio-website/refs/heads/myself/screenshots/cover%20imges/ranking-2.jpg">
+
+</br>
+<ul>
+<p>University Ranking End-to-End project</p></br>
+<p>Skills:Excel , Power BI , SQL , Tableau</p>
+</ul>
+
+<div class="project-overlay">
+<h3>Project 6</h3>
+<span class="click-text">Click me to see all project details</span>
+</div>
+</a>
+
+
+</div>
+</section>
+
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<footer>
+<div>© 2026 Yaswanth | Data Analyst Portfolio</div>
+<div class="footer-icons">
+<a href="https://github.com/Tyaswanth9/my-protfolio-git-hub.git" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" class="footer-icon" alt="GitHub"></a>
+
+<a href="https://www.linkedin.com/in/yaswanth-naga-sai-tadiboina-0a4749360?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" class="footer-icon" alt="LinkedIn"></a>
+
+</div>
+</footer>
+
+</body>
+</html>

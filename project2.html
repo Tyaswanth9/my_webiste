@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adventure Works Analysis Project</title>
+
+<style>
+/* ========================= */
+/* GLOBAL STYLE */
+/* ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #eeeeee;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: #d62828;
+}
+
+h1 {
+  color: #d62828;
+}
+
+h2, h3 {
+  color: black;
+}
+
+/* ========================= */
+/* MODERN STICKY NAVBAR */
+nav {
+  position: sticky;
+  top: 0;
+  background: #d62828;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+nav .back-icon {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+nav .nav-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+nav .nav-links a {
+  color: white;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav .nav-links a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ========================= */
+/* PAGE TITLE */
+.page-title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.page-title h1 {
+  font-size: 28px;
+  color: #d62828;
+  font-weight: bold;
+}
+
+/* ========================= */
+/* CONTAINER */
+.container {
+  padding: 50px 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+
+/* ========================= */
+/* SECTIONS */
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+section p, section ul, section ol {
+  margin-bottom: 15px;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+/* ========================= */
+/* DASHBOARD IMAGE */
+.dashboard-image {
+  display: block;
+  max-width: 80%;
+  margin: 20px auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-image:hover {
+  transform: scale(1.05);
+}
+
+/* ========================= */
+/* FOOTER */
+footer {
+  background: #d62828;
+  color: white;
+  text-align: center;
+  padding: 25px 10%;
+  margin-top: 40px;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+@media (max-width:1024px){
+  .page-title h1 { font-size: 24px; }
+}
+
+@media (max-width:768px){
+  nav {
+    flex-direction: row;
+    gap: 10px;
+  }
+  nav .nav-links {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .page-title h1 { font-size: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="back-icon">&#8962;</a>
+  <div class="nav-links">
+  
+    <a href="#excel">Excel</a>
+    <a href="#powerbi">Power BI</a>
+    <a href="#tableau">Tableau</a>
+    <a href="#sql">SQL</a>
+    <a href="https://github.com/Tyaswanth9/Adventureworks-Data-Analyst-Project.git">Git hub</a>
+  
+  </div>
+</nav>
+
+<!-- ========================= -->
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h1>Adventure Works Analysis Project</h1>
+</div>
+
+<!-- ========================= -->
+<!-- BODY -->
+<div class="container">
+
+<section id="overview">
+  <h2>Overview</h2>
+  <p>Adventure Works Cycles is a global bicycle manufacturer headquartered in Bothell, Washington. The company designs, builds, and sells high-quality metal and composite bicycles across North America, Europe, and Asia.</p>
+  <p>This project analyzes and visualizes key business metrics such as sales, profit, and production cost from 2010 to 2014 using real-world business data.</p>
+</section>
+
+<section id="tools">
+  <h2>Tools & Technologies Used</h2>
+  <ul>
+    <li>Excel (Power Query, Power Pivot, Pivot Tables)</li>
+    <li>Power BI</li>
+    <li>Tableau</li>
+    <li>SQL</li>
+  </ul>
+</section>
+
+<section id="datasources">
+  <h2>Data Sources</h2>
+  <ul>
+    <li>DimCustomer</li>
+    <li>DimDate</li>
+    <li>DimProductCategory</li>
+    <li>DimProductSubCategory</li>
+    <li>DimSalesTerritory</li>
+    <li>FactInternetSales</li>
+    <li>FactInternetSalesNew</li>
+    <li>DimProduct</li>
+  </ul>
+</section>
+
+<section id="datacleaning">
+  <h2>Data Cleaning Process</h2>
+  <ul>
+    <li>Imported all 8 files into Power Query</li>
+    <li>Appended FactInternetSales and FactInternetSalesNew into a unified table called Sales</li>
+    <li>Converted OrderDateKey to standard date format</li>
+    <li>Created a Calendar Table using Date & Time functions</li>
+  </ul>
+</section>
+
+<section id="objectives">
+  <h2>Project Objectives</h2>
+  <ul>
+    <li>Total Orders :60.40K</li>
+    <li>Total Sales Revenue : $29.36M</li>
+    <li>Total Production Cost : $17.28M</li>
+    <li>Total Tax Amount : $2.35M</li>
+    <li>Profit Margin : 41.51%</li>
+  </ul>
+</section>
+
+<section id="datacleaning">
+  <h2>Data Modeling</h2>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/data.png" class="dashboard-image" alt="data modeling">
+</section>
+
+<section id="excel">
+  <h2>Excel Dashboard Highlights</h2>
+  <ul>
+    <li>All files loaded via Power Query and linked in Power Pivot</li>
+    <li>KPIs calculated using Pivot Tables and formulas</li>
+    <li>Built slicers and filters for interactivity</li>
+    <li>Page navigation implemented to switch between Sales, Profit, and Production Cost dashboards</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/dashboardes.png" class="dashboard-image" alt="Sales Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/dashboardep.png" class="dashboard-image" alt="Profit Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/dashboardepro.png" class="dashboard-image" alt="Production Cost Dashboard">
+</section>
+
+<section id="powerbi">
+  <h2>Power BI Dashboard Highlights</h2>
+  <ul>
+    <li>Combined fact tables using Append in Power Query</li>
+    <li>Created Calendar table with CALENDARAUTO() and DATE functions in DAX</li>
+    <li>Developed KPIs and parametric dashboards using buttons and slicers</li>
+    <li>Interactive visuals built with cross-filtering, tooltips, and bookmarks</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/dashboardps.png" class="dashboard-image" alt="Power BI Sales Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/dashboardpp.png" class="dashboard-image" alt="Power BI Profit Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/dashboardpro.png" class="dashboard-image" alt="Power BI Production Cost Dashboard">
+</section>
+
+<section id="tableau">
+  <h2>Tableau Dashboard Highlights</h2>
+  <ul>
+    <li>Merged sales tables using Union</li>
+    <li>Calendar table created using calculated fields</li>
+    <li>KPs built using LOD expressions</li>
+    <li>Interactive dashboards with filters, parameters, and dashboard actions</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/dashboardts.png" class="dashboard-image" alt="Tableau Sales Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/dashboardTp.png" class="dashboard-image" alt="Tableau Profit Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/dashboardTpro.png" class="dashboard-image" alt="Tableau Production Cost Dashboard">
+</section>
+
+<section id="sql">
+  <h2>SQL Operations</h2>
+  <ul>
+    <li>Merged FactInternetSales and FactInternetSalesNew using UNION</li>
+    <li>Created calendar fields using YEAR(), MONTHNAME(), DAYNAME(), QUARTER(), etc.</li>
+    <li>Used LEFT JOIN to integrate fact and dimension tables</li>
+    <li>Calculated KPIs using UNION, SELECT, LEFT JOIN, CONCAT(), SUM(), ROUND(), GROUP BY, ORDER BY, YEAR(), MONTH(), DAY(), MONTHNAME(), DAYNAME(), QUARTER(), DAYOFWEEK(), DATE(), CASE statement etc.</li>
+  </ul>
+  <p>Sample Queries:</p>
+  <ul>
+    <li>Union of Fact Internet sales: <code>select * from fact_internet_sales_new union select * from factinternetsales;</code></li>
+    <li>Calculate date fields from OrderDateKey (calendar creation)</li>
+    <li>Total Sales, Production Cost, Profit, and Year-wise Profit calculation queries</li>
+  </ul>
+</section>
+
+ <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/s1.png" class="dashboard-image" alt="SQL image">
+</br>
+ <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/s2.png" class="dashboard-image" alt="SQL image">
+</br>
+ <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/tssql.png" class="dashboard-image" alt="SQL image">
+</br>
+ <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/s4.png" class="dashboard-image" alt="SQL image">
+</br>
+ <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/s5.png" class="dashboard-image" alt="SQL image">
+</br>
+ <img src="https://raw.githubusercontent.com/Tyaswanth9/Adventureworks-Data-Analyst-Project/refs/heads/myself/s6.png" class="dashboard-image" alt="SQL image">
+
+<section id="conclusion">
+  <h2>Conclusion</h2>
+  <ul>
+    <li>2013 was the top-performing year for sales, orders, and profit</li>
+    <li>June consistently recorded the highest sales across all years due to holiday seasons</li>
+    <li>Australia had the highest regional sales, while France and Canada had the lowest</li>
+    <li>A minimal gap between sales revenue and production cost each year indicates tight margin control</li>
+  </ul>
+</section>
+
+<section id="reflection">
+  <h2>Reflections</h2>
+  <ul>
+    <li>Power BI: Mastered working with parameters and measures, building interactive dashboards, DAX and calendar logic, Power Query</li>
+    <li>Excel: Mastered parameters and measures, pivot tables, charts, slicers, page navigators</li>
+    <li>Tableau: Mastered parameters and measures, LOD expressions, filters, interactive dashboards</li>
+    <li>SQL: Strengthened data transformation skills including joins, unions, and aggregations</li>
+  </ul>
+</section>
+	<a href="https://github.com/Tyaswanth9/Adventureworks-Data-Analyst-Project.git" > View Full Project on github</a>
+
+</div> <!-- END CONTAINER -->
+
+<footer>
+  @ 2026 Data Analyst Portfolio 
+</footer>
+
+</body>
+</html>
