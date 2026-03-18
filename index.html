@@ -270,6 +270,105 @@ footer {
 
 <body>
 
+  
+<!-- ====== LANDING PAGE SECTION ====== -->
+<div id="landing-page" style="position:fixed; inset:0; background: linear-gradient(135deg, #ff2a2a, #b30000); display:flex; justify-content:center; align-items:center; flex-direction:column; z-index:9999; overflow:hidden; cursor:none; text-align:center;">
+  
+  <div class="cursor" id="cursor" style="position:fixed; width:120px; height:120px; background:radial-gradient(circle, rgba(255,255,255,0.5), transparent); pointer-events:none; border-radius:50%; transform:translate(-50%, -50%); z-index:10000;"></div>
+  
+  <div id="overlay" style="position:fixed; inset:0; background:#000; opacity:0; pointer-events:none; backdrop-filter:blur(8px); z-index:10001; transition:opacity 1s ease;"></div>
+  
+  <h1 id="landing-text" style="font-family:'League Spartan', sans-serif; font-size:3rem; line-height:1.5; letter-spacing:2px; color:#fff; position:relative; z-index:10002;"></h1>
+
+</div>
+
+<script>
+// ====== LETTER ANIMATION ======
+const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
+const container = document.getElementById("landing-text");
+let index = 0;
+lines.forEach(line => {
+  const div = document.createElement("div");
+  line.split("").forEach(char => {
+    const span = document.createElement("span");
+    span.innerText = char;
+    span.style.display = "inline-block";
+    span.style.opacity = 0;
+    span.style.transform = "translateY(50px)";
+    span.style.color = "#fff";
+    span.style.textShadow = "0 0 2px #fff, 0 0 6px #ff4d4d, 0 0 12px #ff1a1a, 0 0 20px #ff1a1a";
+    span.style.animation = "rise 0.7s forwards";
+    span.style.animationDelay = (index * 0.1) + "s";
+    div.appendChild(span);
+    index++;
+  });
+  container.appendChild(div);
+});
+
+// ====== KEYFRAME FOR LETTERS ======
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 3px #fff, 0 0 10px #ff4d4d, 0 0 20px #ff1a1a, 0 0 30px #ff0000;
+  }
+}
+.firework {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: explode 1s ease-out forwards;
+}
+@keyframes explode {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1.5) translate(var(--dx), var(--dy)); opacity: 0; }
+}`;
+document.head.appendChild(style);
+
+// ====== FIREWORKS ======
+function createFirework() {
+  const count = 15 + Math.floor(Math.random() * 10);
+  const x = Math.random() * window.innerWidth;
+  const y = Math.random() * window.innerHeight * 0.5;
+  for(let i=0; i<count; i++){
+    const fw = document.createElement("div");
+    fw.className = "firework";
+    fw.style.left = x + "px";
+    fw.style.top = y + "px";
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = 50 + Math.random()*50;
+    fw.style.setProperty('--dx', distance * Math.cos(angle) + 'px');
+    fw.style.setProperty('--dy', distance * Math.sin(angle) + 'px');
+    document.body.appendChild(fw);
+    setTimeout(() => fw.remove(), 1000);
+  }
+}
+const fireworkInterval = setInterval(createFirework, 400);
+
+// ====== MOUSE FOLLOW GLOW ======
+const cursor = document.getElementById("cursor");
+document.addEventListener("mousemove", e => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+});
+
+// ====== REDIRECT TO INDEX AFTER 3 SECONDS ======
+setTimeout(() => {
+  clearInterval(fireworkInterval);
+  const overlay = document.getElementById("overlay");
+  overlay.style.opacity = 1;
+  setTimeout(() => {
+    document.getElementById("landing-page").style.display = "none"; // hide landing page
+  }, 800);
+}, 3000);
+</script>
+
+
 <!-- ========================= -->
 <!-- NAVBAR -->
 <nav>
