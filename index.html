@@ -593,6 +593,7 @@ I would truly appreciate any guidance, feedback, or opportunities you might be w
 
 
 
+
 <!-- ====== ENDING PAGE ON EXIT ====== -->
 <script>
 window.addEventListener("beforeunload", e => {
@@ -600,10 +601,12 @@ window.addEventListener("beforeunload", e => {
   const text = document.getElementById("landing-text");
   const overlay = document.getElementById("overlay");
 
+  // Show landing page
   landing.style.display = "flex";
   overlay.style.opacity = 0;
   text.innerHTML = "";
 
+  // Set ending text
   ["THANK YOU","FOR","VISITING"].forEach((line,i)=>{
     const div = document.createElement("div");
     line.split("").forEach((c,j)=>{
@@ -615,12 +618,15 @@ window.addEventListener("beforeunload", e => {
     text.appendChild(div);
   });
 
-  setTimeout(()=>overlay.style.opacity=1,3000);
+  // Fade overlay after 2 seconds
+  setTimeout(()=>overlay.style.opacity=1, 2000);
 
-  e.preventDefault();
-  e.returnValue=""; // Required for Chrome
+  // Let browser continue closing after 2 seconds
+  const start = Date.now();
+  while(Date.now()-start < 2000){} // simple 2s delay
 });
 </script>
+
 
 
 </body>
