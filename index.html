@@ -390,8 +390,7 @@ setTimeout(() => {
 <h2>Data Analyst</h2>
 <p>SQL • Power BI • Excel • Tableau • Data Visualization</p>
 <div class="hero-buttons">
-  <!-- NEW LINK TO LANDING PAGE -->
-  <a href="landing.html" class="btn">Landing Intro</a>
+
 </div>
 </section>
 
@@ -591,6 +590,46 @@ I would truly appreciate any guidance, feedback, or opportunities you might be w
 
 </div>
 </footer>
+
+
+
+<!-- ====== ENDING PAGE TRIGGER ====== -->
+<script>
+function showEndingPage() {
+  // Grab existing landing page elements
+  const landing = document.getElementById("landing-page");
+  const textContainer = document.getElementById("landing-text");
+  const overlay = document.getElementById("overlay");
+
+  // Show landing container and reset overlay
+  landing.style.display = "flex";
+  overlay.style.opacity = 0;
+
+  // Clear previous text
+  textContainer.innerHTML = "";
+
+  // New ending text lines
+  const lines = ["THANK YOU", "FOR", "VISITING"];
+  let index = 0;
+  lines.forEach(line => {
+    const div = document.createElement("div");
+    line.split("").forEach(char => {
+      const span = document.createElement("span");
+      span.innerText = char;
+      span.style.animationDelay = (index * 0.1) + "s"; // stagger animation
+      div.appendChild(span);
+      index++;
+    });
+    textContainer.appendChild(div);
+  });
+
+  // Fade overlay after 3 seconds
+  setTimeout(() => overlay.style.opacity = 1, 3000);
+}
+
+// Example: trigger ending page manually
+// showEndingPage();
+</script>
 
 </body>
 </html>
