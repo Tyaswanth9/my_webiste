@@ -592,11 +592,15 @@ I would truly appreciate any guidance, feedback, or opportunities you might be w
 </footer>
 
 
-
-
 <!-- ====== ENDING PAGE ON EXIT ====== -->
 <script>
 window.addEventListener("beforeunload", e => {
+  // Show confirmation dialog
+  e.preventDefault();
+  e.returnValue = ""; // Standard way to trigger the "Leave site?" popup
+});
+
+window.addEventListener("unload", () => {
   const landing = document.getElementById("landing-page");
   const text = document.getElementById("landing-text");
   const overlay = document.getElementById("overlay");
@@ -606,7 +610,7 @@ window.addEventListener("beforeunload", e => {
   overlay.style.opacity = 0;
   text.innerHTML = "";
 
-  // Set ending text
+  // Ending text
   ["THANK YOU","FOR","VISITING"].forEach((line,i)=>{
     const div = document.createElement("div");
     line.split("").forEach((c,j)=>{
@@ -620,12 +624,12 @@ window.addEventListener("beforeunload", e => {
 
   // Fade overlay after 2 seconds
   setTimeout(()=>overlay.style.opacity=1, 2000);
-
-  // Let browser continue closing after 2 seconds
-  const start = Date.now();
-  while(Date.now()-start < 2000){} // simple 2s delay
 });
 </script>
+
+
+
+
 
 
 
