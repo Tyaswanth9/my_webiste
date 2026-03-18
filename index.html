@@ -591,47 +591,5 @@ I would truly appreciate any guidance, feedback, or opportunities you might be w
 </div>
 </footer>
 
-
-<!-- ====== ENDING PAGE ON EXIT ====== -->
-<script>
-window.addEventListener("beforeunload", e => {
-  // Show confirmation dialog
-  e.preventDefault();
-  e.returnValue = ""; // Standard way to trigger the "Leave site?" popup
-});
-
-window.addEventListener("unload", () => {
-  const landing = document.getElementById("landing-page");
-  const text = document.getElementById("landing-text");
-  const overlay = document.getElementById("overlay");
-
-  // Show landing page
-  landing.style.display = "flex";
-  overlay.style.opacity = 0;
-  text.innerHTML = "";
-
-  // Ending text
-  ["THANK YOU","FOR","VISITING"].forEach((line,i)=>{
-    const div = document.createElement("div");
-    line.split("").forEach((c,j)=>{
-      const span = document.createElement("span");
-      span.innerText = c;
-      span.style.animationDelay = ((i*line.length+j)*0.1)+"s";
-      div.appendChild(span);
-    });
-    text.appendChild(div);
-  });
-
-  // Fade overlay after 2 seconds
-  setTimeout(()=>overlay.style.opacity=1, 2000);
-});
-</script>
-
-
-
-
-
-
-
 </body>
 </html>
