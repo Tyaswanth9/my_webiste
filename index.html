@@ -282,7 +282,7 @@ section h2 {
     display: flex;
   }
 
-  }
+  
 /* ========================= */
 /* FOOTER WITH ICONS CENTERED */
 footer {
@@ -422,7 +422,7 @@ const navLinks = document.querySelector(".nav-links");
 
 menuToggle.onclick = () => {
   navLinks.classList.toggle("active");
-};
+});
 
 </script>
 
@@ -432,7 +432,7 @@ menuToggle.onclick = () => {
 <nav>
   <!-- menu toogle -->
 <div class="menu-toggle" id="menuToggle">☰</div>
-<div class="nav-links">
+<div class="nav-links" id="navLinks"></div>
 <!-- <a href="#home">Home</a> -->
 <!-- <a href="#summary">Summary</a> -->
 <a href="#experience">Experience</a>
