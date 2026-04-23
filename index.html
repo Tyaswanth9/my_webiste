@@ -252,7 +252,37 @@ section h2 {
   text-align: center;
   line-height: 2;
 }
+/* HAMBURGER BUTTON */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+}
 
+/* MOBILE NAV */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #d62828;
+    flex-direction: column;
+    display: none;
+    padding: 20px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  }
 /* ========================= */
 /* FOOTER WITH ICONS CENTERED */
 footer {
@@ -385,13 +415,23 @@ setTimeout(() => {
     document.getElementById("landing-page").style.display = "none"; // hide landing page
   }, 800);
 }, 3000);
+
+ // ===== menu toogle ===
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.querySelector(".nav-links");
+
+menuToggle.onclick = () => {
+  navLinks.classList.toggle("active");
+};
+
 </script>
 
 
 <!-- ========================= -->
 <!-- NAVBAR -->
 <nav>
-<div class="logo">Data Analyst Protfolio</div>
+  <!-- menu toogle -->
+<div class="menu-toggle" id="menuToggle">☰</div>
 <div class="nav-links">
 <!-- <a href="#home">Home</a> -->
 <!-- <a href="#summary">Summary</a> -->
