@@ -94,9 +94,9 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; /* FIX CENTER */
+  text-align: center;  /* FIX CENTER */
   gap: 10px;
-  text-align: center;
   padding: 20px;
 }
 
@@ -113,6 +113,14 @@ nav {
 /* ========================= */
 section {
   padding: 90px 8%;
+}
+
+/* 🔥 FIX: CENTER SECTION TITLES */
+section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 30px;
+  color: var(--primary);
 }
 
 /* ========================= */
@@ -134,14 +142,15 @@ section {
 }
 
 /* ========================= */
-/* SKILLS (FIXED) */
+/* SKILLS (PROFESSIONAL FIX) */
 /* ========================= */
 
-/* Desktop → 2 per row */
+/* AUTO RESPONSIVE GRID (BEST PRACTICE) */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 15px;
+  justify-content: center; /* CENTER GRID */
 }
 
 .skill-card {
@@ -155,20 +164,6 @@ section {
 .skill-card:hover {
   transform: translateY(-5px);
   border-bottom: 3px solid var(--primary);
-}
-
-/* Tablet → still 2 (no conflict) */
-@media (max-width: 1024px) {
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Mobile → 1 per row */
-@media (max-width: 768px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ========================= */
@@ -255,11 +250,10 @@ footer {
   font-size: 3rem;
   letter-spacing: 2px;
   color: #ffffff;
-  z-index: 10002;
 }
 
 /* ========================= */
-/* MOBILE GENERAL FIX */
+/* MOBILE FIX */
 /* ========================= */
 @media (max-width: 768px) {
 
