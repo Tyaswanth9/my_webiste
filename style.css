@@ -138,19 +138,40 @@ section {
 /* ========================= */
 /* SKILLS */
 /* ========================= */
+/* ========================= */
+/* SKILLS GRID (FINAL) */
+/* ========================= */
+
+/* Desktop → 2 items per row */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
 
+/* Skill Card (same style, just clean) */
 .skill-card {
   background: var(--card);
   padding: 20px;
   text-align: center;
   border-radius: 8px;
+  transition: 0.3s;
 }
 
+/* Hover effect */
+.skill-card:hover {
+  transform: translateY(-5px);
+  border-bottom: 3px solid var(--primary);
+}
+
+/* ========================= */
+/* MOBILE → 1 per row */
+/* ========================= */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
 /* ========================= */
 /* PROJECTS */
 /* ========================= */
