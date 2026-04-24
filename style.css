@@ -593,7 +593,8 @@ img {
 
 
 
-
+/*-------comment project
+------end---------------*/
 
 
 /* ========================= */
@@ -601,6 +602,7 @@ img {
 /* ========================= */
 
 /* Container */
+/*-------comment project
 .projects-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -608,6 +610,7 @@ img {
 }
 
 /* Card */
+/*-------comment project
 .project-card {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(12px);
@@ -618,14 +621,16 @@ img {
   transition: all 0.3s ease;
   cursor: pointer;
 }
-
+------end---------------*/
 /* Hover effect */
+/*-------comment project
 .project-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
 }
 
 /* Image */
+/*-------comment project
 .project-card img {
   width: 100%;
   height: 180px;
@@ -633,11 +638,13 @@ img {
 }
 
 /* Content */
+/*-------comment project
 .project-content {
   padding: 15px;
 }
 
 /* Title */
+/*-------comment project
 .project-content h3 {
   margin-bottom: 10px;
   color: var(--primary);
@@ -645,6 +652,7 @@ img {
 }
 
 /* Description */
+/*-------comment project
 .project-content p {
   font-size: 14px;
   line-height: 1.5;
@@ -652,6 +660,7 @@ img {
 }
 
 /* Skills */
+/*-------comment project
 .project-skills {
   display: flex;
   flex-wrap: wrap;
@@ -669,8 +678,10 @@ img {
 /* ========================= */
 /* DARK MODE SUPPORT */
 /* ========================= */
+/*-------comment project
 @media (prefers-color-scheme: dark) {
   .project-card {
     background: rgba(30, 30, 30, 0.6);
   }
 }
+---------------------*/
