@@ -3,40 +3,55 @@
 /* ========================= */
 
 /* ========================= */
+/* DEVICE DETECTION */
+/* ========================= */
+const isMobile = window.innerWidth <= 768;
+
+/* ========================= */
+/* GET ELEMENTS SAFELY */
+/* ========================= */
+const container = document.getElementById("landing-text");
+const cursor = document.getElementById("cursor");
+const overlay = document.getElementById("overlay");
+const landingPage = document.getElementById("landing-page");
+
+/* ========================= */
 /* LETTER ANIMATION */
 /* ========================= */
-const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
-const container = document.getElementById("landing-text");
+if (container) {
+  const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
+  let index = 0;
 
-let index = 0;
+  lines.forEach(line => {
+    const div = document.createElement("div");
 
-lines.forEach(line => {
-  const div = document.createElement("div");
+    line.split("").forEach(char => {
+      const span = document.createElement("span");
 
-  line.split("").forEach(char => {
-    const span = document.createElement("span");
+      span.innerText = char;
+      span.style.display = "inline-block";
+      span.style.opacity = 0;
+      span.style.transform = "translateY(50px)";
+      span.style.color = "#fff";
 
-    span.innerText = char;
-    span.style.display = "inline-block";
-    span.style.opacity = 0;
-    span.style.transform = "translateY(50px)";
-    span.style.color = "#fff";
+      span.style.textShadow =
+        "0 0 2px #fff, 0 0 6px #ff4d4d, 0 0 12px #ff1a1a, 0 0 20px #ff1a1a";
 
-    span.style.textShadow =
-      "0 0 2px #fff, 0 0 6px #ff4d4d, 0 0 12px #ff1a1a, 0 0 20px #ff1a1a";
+      span.style.animation = "rise 0.7s forwards";
 
-    span.style.animation = "rise 0.7s forwards";
-    span.style.animationDelay = (index * 0.1) + "s";
+      /* Faster animation on mobile */
+      span.style.animationDelay = (index * (isMobile ? 0.05 : 0.1)) + "s";
 
-    div.appendChild(span);
-    index++;
+      div.appendChild(span);
+      index++;
+    });
+
+    container.appendChild(div);
   });
-
-  container.appendChild(div);
-});
+}
 
 /* ========================= */
-/* DYNAMIC KEYFRAMES + FIREWORK STYLE */
+/* KEYFRAMES + FIREWORK STYLE */
 /* ========================= */
 const style = document.createElement("style");
 
@@ -80,7 +95,9 @@ document.head.appendChild(style);
 /* FIREWORK EFFECT */
 /* ========================= */
 function createFirework() {
-  const count = 15 + Math.floor(Math.random() * 10);
+
+  /* Reduce particles on mobile */
+  const count = isMobile ? 8 : 15 + Math.floor(Math.random() * 10);
 
   const x = Math.random() * window.innerWidth;
   const y = Math.random() * window.innerHeight * 0.5;
@@ -106,33 +123,40 @@ function createFirework() {
   }
 }
 
-/* Start Fireworks */
-const fireworkInterval = setInterval(createFirework, 400);
+/* Start Fireworks (slower on mobile) */
+const fireworkInterval = setInterval(
+  createFirework,
+  isMobile ? 800 : 400
+);
 
 /* ========================= */
-/* CURSOR GLOW FOLLOW */
+/* CURSOR GLOW (DESKTOP ONLY) */
 /* ========================= */
-const cursor = document.getElementById("cursor");
-
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-});
+if (!isMobile && cursor) {
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+}
 
 /* ========================= */
 /* LANDING PAGE EXIT */
 /* ========================= */
 setTimeout(() => {
+
   /* Stop fireworks */
   clearInterval(fireworkInterval);
 
   /* Fade overlay */
-  const overlay = document.getElementById("overlay");
-  overlay.style.opacity = 1;
+  if (overlay) {
+    overlay.style.opacity = 1;
+  }
 
   /* Hide landing page */
   setTimeout(() => {
-    document.getElementById("landing-page").style.display = "none";
-  }, 800);
+    if (landingPage) {
+      landingPage.style.display = "none";
+    }
+  }, isMobile ? 500 : 800);
 
-}, 3000);
+}, isMobile ? 2000 : 3000);
