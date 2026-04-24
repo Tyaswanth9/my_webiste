@@ -94,8 +94,8 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* FIX CENTER */
-  text-align: center;  /* FIX CENTER */
+  align-items: center;
+  text-align: center;
   gap: 10px;
   padding: 20px;
 }
@@ -115,7 +115,7 @@ section {
   padding: 90px 8%;
 }
 
-/* 🔥 FIX: CENTER SECTION TITLES */
+/* ✅ FIXED CENTER HEADING */
 section h2 {
   text-align: center;
   margin-bottom: 40px;
@@ -130,6 +130,7 @@ section h2 {
   background: var(--card);
   padding: 25px;
   border-radius: 8px;
+  line-height: 1.6;
 }
 
 /* ========================= */
@@ -142,23 +143,22 @@ section h2 {
 }
 
 /* ========================= */
-/* SKILLS (PROFESSIONAL FIX) */
+/* SKILLS (FINAL FIXED) */
 /* ========================= */
-
-/* AUTO RESPONSIVE GRID (BEST PRACTICE) */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 15px;
-  justify-content: center; /* CENTER GRID */
+  gap: 20px;
+  justify-content: center;
 }
 
 .skill-card {
   background: var(--card);
-  padding: 20px;
+  padding: 22px;
   text-align: center;
   border-radius: 8px;
   transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 .skill-card:hover {
