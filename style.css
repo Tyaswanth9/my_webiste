@@ -105,17 +105,24 @@ nav {
 }
 
 #profile image
-/* PROFILE IMAGE (CIRCLE - SMALL / MEDIUM) */
-/* PROFILE IMAGE - SMALL + ROUND */
+/* CENTER WRAPPER */
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 20px;   /* below section spacing */
+}
+
+/* EXTRA SMALL ROUND IMAGE */
 .profile-img {
-  width: 100px;        /* small size */
-  height: 100px;       /* equal = perfect circle */
+  width: 70px;        /* very small icon size */
+  height: 70px;       /* keep equal for circle */
 
-  border-radius: 50%;  /* circle shape */
-  object-fit: cover;   /* no stretching */
+  border-radius: 50%; /* perfect circle */
+  object-fit: cover;
 
-  display: block;
-  margin: 50px auto;   /* center horizontally */
+  border: 2px solid #d62828;
 }
 #home h2 {
   color: var(--primary);
