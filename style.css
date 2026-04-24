@@ -120,8 +120,8 @@ nav {
 
 /* Profile Image */
 .profile-img {
-  width: 140px;        /* medium size */
-  height: 140px;       /* equal for perfect circle */
+  width: 250px;        /* medium size */
+  height: 250px;       /* equal for perfect circle */
 
   border-radius: 50%;  /* makes image round */
   object-fit: cover;   /* prevents distortion */
