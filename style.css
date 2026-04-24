@@ -27,9 +27,7 @@
   box-sizing: border-box;
 }
 
-/* ========================= */
-/* PREVENT HORIZONTAL SCROLL */
-/* ========================= */
+/* Prevent horizontal scroll */
 html,
 body {
   overflow-x: hidden;
@@ -67,7 +65,7 @@ nav {
   align-items: center;
   padding: 12px 6%;
   z-index: 1000;
-  flex-wrap: wrap; /* responsive fix */
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -136,20 +134,16 @@ section {
 }
 
 /* ========================= */
-/* SKILLS */
-/* ========================= */
-/* ========================= */
-/* SKILLS GRID (FINAL) */
+/* SKILLS (FIXED) */
 /* ========================= */
 
-/* Desktop → 2 items per row */
+/* Desktop → 2 per row */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
 
-/* Skill Card (same style, just clean) */
 .skill-card {
   background: var(--card);
   padding: 20px;
@@ -158,20 +152,25 @@ section {
   transition: 0.3s;
 }
 
-/* Hover effect */
 .skill-card:hover {
   transform: translateY(-5px);
   border-bottom: 3px solid var(--primary);
 }
 
-/* ========================= */
-/* MOBILE → 1 per row */
-/* ========================= */
+/* Tablet → still 2 (no conflict) */
+@media (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile → 1 per row */
 @media (max-width: 768px) {
   .skills-grid {
     grid-template-columns: 1fr;
   }
 }
+
 /* ========================= */
 /* PROJECTS */
 /* ========================= */
@@ -230,7 +229,6 @@ footer {
   text-align: center;
 }
 
-/* Cursor Glow */
 #cursor {
   position: fixed;
   width: 120px;
@@ -242,7 +240,6 @@ footer {
   z-index: 10000;
 }
 
-/* Overlay */
 #overlay {
   position: fixed;
   inset: 0;
@@ -254,7 +251,6 @@ footer {
   transition: opacity 1s ease;
 }
 
-/* Landing Text */
 #landing-text {
   font-size: 3rem;
   letter-spacing: 2px;
@@ -263,7 +259,7 @@ footer {
 }
 
 /* ========================= */
-/* MOBILE FIX */
+/* MOBILE GENERAL FIX */
 /* ========================= */
 @media (max-width: 768px) {
 
@@ -288,40 +284,22 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .footer-icons {
     grid-template-columns: 1fr;
   }
 
-  /* 🔥 LANDING PAGE FIX */
+  /* Landing Fix */
   #landing-page {
-    cursor: default; /* show cursor on mobile */
+    cursor: default;
     padding: 20px;
   }
 
   #landing-text {
-    font-size: 1.8rem; /* smaller text */
+    font-size: 1.8rem;
     line-height: 1.4;
   }
 
   #cursor {
-    display: none; /* disable glow cursor */
-  }
-}
-
-/* ========================= */
-/* TABLET */
-/* ========================= */
-@media (max-width: 1024px) {
-
-  .projects-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(3, 1fr);
+    display: none;
   }
 }
