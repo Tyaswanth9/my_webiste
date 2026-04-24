@@ -108,25 +108,39 @@ nav {
 /* ========================= */
 /* PROFILE IMAGE */
 /* ========================= */
+/* ========================= */
+/* PROFILE IMAGE (SOCIAL STYLE) */
+/* ========================= */
 .profile-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%; /* make it round */
+  width: 170px;
+  height: 170px;
+
+  border-radius: 50%;
   object-fit: cover;
+
   display: block;
-  margin: 15px auto; /* center align */
-  border: 4px solid var(--primary); /* nice border */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin: 40px auto; /* top + bottom spacing increased */
+
+  border: 5px solid var(--primary);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Mobile adjust */
+/* Hover effect (modern UI feel) */
+.profile-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+/* Mobile responsive */
 @media (max-width: 768px) {
   .profile-img {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
+    margin: 30px auto;
   }
 }
-
 #home h2 {
   color: var(--primary);
 }
