@@ -1,14 +1,26 @@
 /* ========================= */
-/* THEME */
+/* THEME VARIABLES */
 /* ========================= */
 :root {
   --bg: #eeeeee;
   --text: #000;
-  --card: #fff;
+  --card: #ffffff;
   --primary: #d62828;
 }
 
-/* GLOBAL */
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #ffffff;
+    --card: #1e1e1e;
+    --primary: #ff4d4d;
+  }
+}
+
+/* ========================= */
+/* GLOBAL RESET */
+/* ========================= */
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +34,9 @@ body {
   scroll-behavior: smooth;
 }
 
+/* ========================= */
 /* NAVBAR */
+/* ========================= */
 nav {
   position: fixed;
   top: 0;
@@ -30,12 +44,14 @@ nav {
   background: var(--primary);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 15px 8%;
   z-index: 1000;
 }
 
 .logo {
-  color: white;
+  color: #ffffff;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -45,15 +61,298 @@ nav {
 }
 
 .nav-links a {
-  color: white;
+  color: #ffffff;
   text-decoration: none;
+  font-weight: 500;
 }
 
-/* HERO */
+.nav-links a:hover {
+  border-bottom: 2px solid #ffffff;
+}
+
+/* ========================= */
+/* HERO SECTION */
+/* ========================= */
 #home {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 20px;
+}
+
+#home h1 {
+  font-size: 45px;
+}
+
+#home h2 {
+  color: var(--primary);
+}
+
+.hero-buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  background: var(--primary);
+  color: #ffffff;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 5px;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: #a4161a;
+}
+
+/* ========================= */
+/* SECTION COMMON STYLE */
+/* ========================= */
+section {
+  padding: 90px 10%;
+}
+
+section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 30px;
+  color: var(--primary);
+}
+
+/* ========================= */
+/* PROFESSIONAL SUMMARY */
+/* ========================= */
+.summary-box {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+}
+
+/* ========================= */
+/* EXPERIENCE */
+/* ========================= */
+.exp-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.exp-card {
+  background: var(--card);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================= */
+/* SKILLS */
+/* ========================= */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background: var(--card);
+  padding: 25px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+  border-bottom: 4px solid var(--primary);
+}
+
+/* ========================= */
+/* PROJECTS */
+/* ========================= */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.project-card img {
+  width: 100%;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(214, 40, 40, 0.9);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  text-align: center;
+  padding: 15px;
+}
+
+.project-card:hover img {
+  transform: scale(1.1);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.click-text {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  background: #ffffff;
+  color: var(--primary);
+  padding: 6px 12px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover .click-text {
+  opacity: 1;
+}
+
+/* ========================= */
+/* CONTACT */
+/* ========================= */
+.contact-box {
+  text-align: center;
+  line-height: 2;
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+footer {
+  background: var(--primary);
+  color: #ffffff;
+  text-align: center;
+  padding: 25px 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.footer-icon {
+  width: 40px;
+  height: 40px;
+  filter: invert(1);
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.footer-icon:hover {
+  transform: scale(1.2);
+  filter: invert(0.2) sepia(1) saturate(5) hue-rotate(340deg);
+}
+
+/* ========================= */
+/* LANDING PAGE */
+/* ========================= */
+#landing-page {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff2a2a, #b30000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  overflow: hidden;
+  cursor: none;
+  text-align: center;
+}
+
+#cursor {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(255,255,255,0.5), transparent);
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  z-index: 10001;
+  transition: opacity 1s ease;
+}
+
+#landing-text {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+  z-index: 10002;
+}
+
+/* ========================= */
+/* ANIMATIONS */
+/* ========================= */
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 3px #fff,
+                 0 0 10px #ff4d4d,
+                 0 0 20px #ff1a1a,
+                 0 0 30px #ff0000;
+  }
+}
+
+.firework {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) translate(var(--dx), var(--dy));
+    opacity: 0;
+  }
 }
