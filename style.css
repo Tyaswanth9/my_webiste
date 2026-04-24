@@ -8,6 +8,7 @@
   --primary: #d62828;
 }
 
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #121212;
@@ -26,11 +27,17 @@
   box-sizing: border-box;
 }
 
-/* 🔥 IMPORTANT FIX (SCROLL ISSUE) */
-html, body {
+/* ========================= */
+/* PREVENT HORIZONTAL SCROLL */
+/* ========================= */
+html,
+body {
   overflow-x: hidden;
 }
 
+/* ========================= */
+/* BODY */
+/* ========================= */
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: var(--bg);
@@ -60,7 +67,7 @@ nav {
   align-items: center;
   padding: 12px 6%;
   z-index: 1000;
-  flex-wrap: wrap; /* FIX */
+  flex-wrap: wrap; /* responsive fix */
 }
 
 .logo {
@@ -72,7 +79,7 @@ nav {
 .nav-links {
   display: flex;
   gap: 18px;
-  flex-wrap: wrap; /* FIX */
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -82,7 +89,7 @@ nav {
 }
 
 /* ========================= */
-/* HERO */
+/* HERO SECTION */
 /* ========================= */
 #home {
   height: 100vh;
@@ -186,6 +193,55 @@ footer {
 }
 
 /* ========================= */
+/* LANDING PAGE */
+/* ========================= */
+#landing-page {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff2a2a, #b30000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  overflow: hidden;
+  cursor: none;
+  text-align: center;
+}
+
+/* Cursor Glow */
+#cursor {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(255,255,255,0.5), transparent);
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+/* Overlay */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  z-index: 10001;
+  transition: opacity 1s ease;
+}
+
+/* Landing Text */
+#landing-text {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+  z-index: 10002;
+}
+
+/* ========================= */
 /* MOBILE FIX */
 /* ========================= */
 @media (max-width: 768px) {
@@ -217,6 +273,21 @@ footer {
 
   .footer-icons {
     grid-template-columns: 1fr;
+  }
+
+  /* 🔥 LANDING PAGE FIX */
+  #landing-page {
+    cursor: default; /* show cursor on mobile */
+    padding: 20px;
+  }
+
+  #landing-text {
+    font-size: 1.8rem; /* smaller text */
+    line-height: 1.4;
+  }
+
+  #cursor {
+    display: none; /* disable glow cursor */
   }
 }
 
