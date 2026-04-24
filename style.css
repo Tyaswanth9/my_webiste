@@ -115,7 +115,7 @@ nav {
   justify-content: center;
   align-items: center;
 
-  margin-top: 35px; /* top spacing */
+  margin-top: 59px; /* top spacing */
 }
 
 /* Profile Image */
@@ -123,7 +123,7 @@ nav {
   width: 280px;        /* medium size */
   height: 280px;       /* equal for perfect circle */
 
-  border-radius: 55%;  /* makes image round */
+  border-radius: 50%;  /* makes image round */
   object-fit: cover;   /* prevents distortion */
 
   border: 3px solid #d62828;
