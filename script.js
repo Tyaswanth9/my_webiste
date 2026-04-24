@@ -1,14 +1,10 @@
 /* ========================= */
-/* LANDING PAGE SCRIPT */
-/* ========================= */
-
-/* ========================= */
 /* DEVICE DETECTION */
 /* ========================= */
 const isMobile = window.innerWidth <= 768;
 
 /* ========================= */
-/* GET ELEMENTS SAFELY */
+/* GET ELEMENTS */
 /* ========================= */
 const container = document.getElementById("landing-text");
 const cursor = document.getElementById("cursor");
@@ -38,8 +34,6 @@ if (container) {
         "0 0 2px #fff, 0 0 6px #ff4d4d, 0 0 12px #ff1a1a, 0 0 20px #ff1a1a";
 
       span.style.animation = "rise 0.7s forwards";
-
-      /* Faster animation on mobile */
       span.style.animationDelay = (index * (isMobile ? 0.05 : 0.1)) + "s";
 
       div.appendChild(span);
@@ -51,7 +45,7 @@ if (container) {
 }
 
 /* ========================= */
-/* KEYFRAMES + FIREWORK STYLE */
+/* ADD KEYFRAMES */
 /* ========================= */
 const style = document.createElement("style");
 
@@ -92,11 +86,9 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 /* ========================= */
-/* FIREWORK EFFECT */
+/* FIREWORK FUNCTION */
 /* ========================= */
 function createFirework() {
-
-  /* Reduce particles on mobile */
   const count = isMobile ? 8 : 15 + Math.floor(Math.random() * 10);
 
   const x = Math.random() * window.innerWidth;
@@ -117,42 +109,35 @@ function createFirework() {
 
     document.body.appendChild(fw);
 
-    setTimeout(() => {
-      fw.remove();
-    }, 1000);
+    setTimeout(() => fw.remove(), 1000);
   }
 }
 
-/* Start Fireworks (slower on mobile) */
+/* START FIREWORK */
 const fireworkInterval = setInterval(
   createFirework,
   isMobile ? 800 : 400
 );
 
 /* ========================= */
-/* CURSOR GLOW (DESKTOP ONLY) */
+/* CURSOR GLOW */
 /* ========================= */
 if (!isMobile && cursor) {
-  document.addEventListener("mousemove", (e) => {
+  document.addEventListener("mousemove", e => {
     cursor.style.left = e.clientX + "px";
     cursor.style.top = e.clientY + "px";
   });
 }
 
 /* ========================= */
-/* LANDING PAGE EXIT */
+/* LANDING EXIT */
 /* ========================= */
 setTimeout(() => {
 
-  /* Stop fireworks */
   clearInterval(fireworkInterval);
 
-  /* Fade overlay */
-  if (overlay) {
-    overlay.style.opacity = 1;
-  }
+  if (overlay) overlay.style.opacity = 1;
 
-  /* Hide landing page */
   setTimeout(() => {
     if (landingPage) {
       landingPage.style.display = "none";
@@ -160,3 +145,25 @@ setTimeout(() => {
   }, isMobile ? 500 : 800);
 
 }, isMobile ? 2000 : 3000);
+
+/* ========================= */
+/* PROJECT CLICK LOADER */
+/* ========================= */
+document.querySelectorAll(".project-card").forEach(card => {
+
+  card.addEventListener("click", function(e) {
+
+    e.preventDefault();
+
+    const link = this.getAttribute("href");
+    const loader = document.getElementById("page-loader");
+
+    if (loader) loader.classList.add("active");
+
+    setTimeout(() => {
+      window.location.href = link;
+    }, 1300);
+
+  });
+
+});
