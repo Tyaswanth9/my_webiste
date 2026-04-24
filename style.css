@@ -247,33 +247,51 @@ section h2 {
 /* FOOTER */
 /* ========================= */
 footer {
-  background: var(--primary);
+  background: #d62828;
   color: #ffffff;
   text-align: center;
   padding: 25px 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
 
+/* Grid Layout: 2 columns */
 .footer-icons {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 20px 40px; /* row gap | column gap */
   justify-content: center;
-  align-items: center;
-  gap: 50px;
 }
 
-.footer-icon {
-  width: 40px;
-  height: 40px;
+/* Each item */
+.footer-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+  transition: transform 0.3s;
+}
+
+/* Small icon */
+.footer-item img {
+  width: 18px;
+  height: 18px;
   filter: invert(1);
   transition: transform 0.3s, filter 0.3s;
 }
 
-.footer-icon:hover {
+/* Hover effect */
+.footer-item:hover img {
   transform: scale(1.2);
   filter: invert(0.2) sepia(1) saturate(5) hue-rotate(340deg);
+}
+
+.footer-item:hover {
+  transform: translateY(-2px);
 }
 
 /* ========================= */
