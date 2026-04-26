@@ -167,8 +167,9 @@ document.querySelectorAll(".project-card").forEach(card => {
   });
 
 });
+
 /* =========================================
-   TYPEWRITER EFFECT (LOOP)
+   TYPEWRITER EFFECT (LOOP) (name and skills)
    ========================================= */
 
 // TEXT CONTENT
