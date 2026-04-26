@@ -253,34 +253,27 @@ const boxes = document.querySelectorAll(".stat-box");
 
 let hasAnimated = false;
 
-/* =========================================
-   INTERSECTION OBSERVER
-   ========================================= */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
 
-    /* RUN ONLY ONCE WHEN ENTER */
     if (entry.isIntersecting && !hasAnimated) {
 
       hasAnimated = true;
 
-      /* SHOW BOX ANIMATION (STAGGER EFFECT) */
       boxes.forEach((box, i) => {
         setTimeout(() => {
           box.classList.add("show");
         }, i * 150);
       });
 
-      /* START COUNTING */
       counters.forEach(counter => {
 
         const target = +counter.getAttribute("data-target");
-        const duration = +counter.getAttribute("data-speed"); // total steps
+        const duration = +counter.getAttribute("data-speed");
 
         let start = 0;
         const increment = target / duration;
 
-        /* SMOOTH COUNT USING requestAnimationFrame */
         const updateCount = () => {
           start += increment;
 
@@ -296,7 +289,6 @@ const observer = new IntersectionObserver((entries) => {
       });
     }
 
-    /* RESET WHEN LEAVING VIEW */
     if (!entry.isIntersecting) {
 
       hasAnimated = false;
@@ -315,9 +307,6 @@ const observer = new IntersectionObserver((entries) => {
   threshold: 0.5
 });
 
-/* =========================================
-   START OBSERVER
-   ========================================= */
 const statsSection = document.getElementById("stats");
 
 if (statsSection) {
