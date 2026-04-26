@@ -162,7 +162,7 @@ document.querySelectorAll(".project-card").forEach(card => {
 
     setTimeout(() => {
       window.location.href = link;
-    }, 1300);
+    }, 1001);
 
   });
 
