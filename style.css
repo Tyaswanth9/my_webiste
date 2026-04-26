@@ -492,7 +492,7 @@ footer {
 /* LANDING PAGE (PRO VERSION) */
 /* ========================= */
 /* ========================= */
-/* RESET */
+/* RESET (SAFE) */
 /* ========================= */
 *,
 *::before,
@@ -503,23 +503,15 @@ footer {
 }
 
 /* ========================= */
-/* BODY FIX */
-/* ========================= */
-html, body {
-  width: 100%;
-  height: 100%;
-}
-
-/* ========================= */
-/* LANDING PAGE */
+/* LANDING PAGE ONLY */
 /* ========================= */
 #landing-page {
   position: fixed;
   inset: 0;
 
   width: 100%;
-  height: 100dvh;      /* mobile safe */
-  min-height: 100vh;   /* fallback */
+  height: 100dvh;
+  min-height: 100vh;
 
   display: flex;
   justify-content: center;
@@ -540,9 +532,7 @@ html, body {
 #landing-text {
   font-size: clamp(2rem, 5vw, 3rem);
   color: #ffffff;
-
   letter-spacing: 2px;
-
   text-align: center;
 
   text-shadow:
@@ -550,6 +540,37 @@ html, body {
     0 0 10px #ff4d4d,
     0 0 20px #ff1a1a,
     0 0 30px #ff0000;
+}
+
+/* ========================= */
+/* CURSOR */
+/* ========================= */
+#cursor {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+/* ========================= */
+/* OVERLAY */
+/* ========================= */
+#overlay {
+  position: absolute; /* FIX: not fixed */
+  inset: 0;
+
+  background: #000;
+  opacity: 0;
+
+  backdrop-filter: blur(8px);
+
+  transition: opacity 1s ease;
+
+  z-index: 2;
 }
 
 /* ========================= */
@@ -568,10 +589,11 @@ html, body {
   z-index: 0;
 }
 
-/* keep content above bg */
-#landing-page * {
+/* ONLY target landing content */
+#landing-text,
+#cursor {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 /* ========================= */
@@ -592,8 +614,11 @@ html, body {
     line-height: 1.4;
     padding: 0 12px;
   }
-}
 
+  #cursor {
+    display: none;
+  }
+}
 
 /* Navbar */
   nav {
