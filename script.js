@@ -250,18 +250,18 @@ window.addEventListener("load", () => {
 /* =========================================
    COUNTER + SCROLL ANIMATION
    ========================================= */
+/* =========================================
+   COUNTER + SCROLL ANIMATION (LOOP FINAL)
+   ========================================= */
 
 const counters = document.querySelectorAll(".counter");
 const boxes = document.querySelectorAll(".stat-box");
 
-let started = false;
-
 /* INTERSECTION OBSERVER (TRIGGER ON SCROLL) */
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting && !started) {
 
-      started = true;
+    if (entry.isIntersecting) {
 
       // SHOW ANIMATION
       boxes.forEach((box, i) => {
@@ -286,16 +286,33 @@ const observer = new IntersectionObserver(entries => {
             counter.innerText = Math.ceil(count);
             setTimeout(update, 30);
           } else {
-
-            // FINAL FORMAT
             counter.innerText = target + "+";
+
+            // LOOP AFTER DELAY
+            setTimeout(() => {
+              count = 0;                 // reset value
+              counter.innerText = "0";   // reset UI
+              update();                 // restart
+            }, 2000); // pause time
           }
         };
 
         update();
       });
 
+    } else {
+
+      // RESET WHEN LEAVING VIEW
+      counters.forEach(counter => {
+        counter.innerText = "0";
+      });
+
+      boxes.forEach(box => {
+        box.classList.remove("show");
+      });
+
     }
+
   });
 }, { threshold: 0.5 });
 
