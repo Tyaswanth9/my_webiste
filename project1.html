@@ -1,200 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Project Slider</title>
+<title>Crowdfunding Data Analysis Dashboard Project</title>
 
 <style>
-/* ================= GLOBAL ================= */
+/* ========================= */
+/* GLOBAL STYLE */
+/* ========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  overflow: hidden;
-  background: #0f172a;
-  color: white;
-}
-
-/* ================= SLIDER WRAPPER ================= */
-.slider {
-  display: flex;
-  width: 600%;
-  height: 100vh;
-  transition: transform 0.8s ease-in-out;
-}
-
-/* ================= SLIDE ================= */
-.slide {
-  width: 100vw;
-  height: 100vh;
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-/* different backgrounds */
-.slide:nth-child(1){background: linear-gradient(135deg,#1e3c72,#2a5298);}
-.slide:nth-child(2){background: linear-gradient(135deg,#0f2027,#203a43);}
-.slide:nth-child(3){background: linear-gradient(135deg,#41295a,#2f0743);}
-.slide:nth-child(4){background: linear-gradient(135deg,#000428,#004e92);}
-.slide:nth-child(5){background: linear-gradient(135deg,#141e30,#243b55);}
-.slide:nth-child(6){background: linear-gradient(135deg,#1c1c1c,#434343);}
-
-/* ================= TEXT ================= */
-h1 {
-  font-size: 40px;
-  margin-bottom: 20px;
-}
-
-p {
-  max-width: 700px;
+  background: #eeeeee;
+  color: #333;
   line-height: 1.6;
-  opacity: 0.9;
 }
 
-/* ================= GITHUB BUTTON (HIGHLIGHTED) ================= */
-.github-btn {
-  margin-top: 25px;
-  padding: 14px 28px;
-  background: #ffcc00;
-  color: black;
-  font-weight: bold;
-  border-radius: 30px;
+a {
   text-decoration: none;
-  transition: 0.3s;
-  animation: pulse 1.5s infinite;
-  box-shadow: 0 0 20px #ffcc00;
+  color: #d62828;
 }
 
-.github-btn:hover {
-  transform: scale(1.1);
-  background: #ffd633;
+h1 {
+  color: #d62828;
 }
 
-/* pulse animation */
-@keyframes pulse {
-  0% { box-shadow: 0 0 10px #ffcc00; }
-  50% { box-shadow: 0 0 30px #ffcc00; }
-  100% { box-shadow: 0 0 10px #ffcc00; }
+h2, h3 {
+  color: black;
 }
 
-/* ================= NAV INFO ================= */
-.nav-hint {
-  position: fixed;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255,255,255,0.1);
-  padding: 10px 20px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  font-size: 14px;
+/* ========================= */
+/* MODERN STICKY NAVBAR */
+nav {
+  position: sticky;
+  top: 0;
+  background: #d62828;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* ================= RESPONSIVE ================= */
-@media(max-width:768px){
-  h1 { font-size: 28px; }
-  .slide { padding: 30px; }
+nav .back-icon {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+nav .nav-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+nav .nav-links a {
+  color: white;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav .nav-links a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ========================= */
+/* PAGE TITLE */
+.page-title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.page-title h1 {
+  font-size: 28px;
+  color: #d62828;
+  font-weight: bold;
+}
+
+/* ========================= */
+/* CONTAINER */
+.container {
+  padding: 50px 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+
+/* ========================= */
+/* SECTIONS */
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+section p, section ul, section ol {
+  margin-bottom: 15px;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+/* ========================= */
+/* DASHBOARD IMAGE */
+.dashboard-image {
+  display: block;
+  max-width: 80%;
+  margin: 20px auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-image:hover {
+  transform: scale(1.05);
+}
+
+/* ========================= */
+/* FOOTER */
+footer {
+  background: #d62828;
+  color: white;
+  text-align: center;
+  padding: 25px 10%;
+  margin-top: 40px;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+@media (max-width:1024px){
+  .page-title h1 { font-size: 24px; }
+}
+
+@media (max-width:768px){
+  nav {
+    flex-direction: row;
+    gap: 10px;
+  }
+  nav .nav-links {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .page-title h1 { font-size: 20px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="nav-hint">
-⬅️ ➡️ Arrow Keys | 🖱️ Swipe | Scroll to Navigate
+<!-- ========================= -->
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="back-icon">&#8962;</a>
+  <div class="nav-links">
+    <a href="#excel">Excel</a>
+    <a href="#powerbi">Power BI</a>
+    <a href="#tableau">Tableau</a>
+    <a href="#sql">SQL</a>
+    <a href="https://github.com/Tyaswanth9/Crowd-funding-project.git">Git hub</a>
+  </div>
+</nav>
+
+<!-- ========================= -->
+<!-- PAGE TITLE -->
+<div class="page-title">
+  <h1>Crowdfunding Data Analysis Project</h1>
 </div>
 
-<!-- SLIDER -->
-<div class="slider" id="slider">
+<!-- ========================= -->
+<!-- BODY -->
+<div class="container">
 
-  <div class="slide">
-    <h1>Crowdfunding Project</h1>
-    <p>End-to-end data analysis project using Excel, Power BI, Tableau & SQL.</p>
-    <a class="github-btn" href="https://github.com/Tyaswanth9/Crowd-funding-project" target="_blank">
-      🚀 View Full Project on GitHub
-    </a>
-  </div>
+<section id="overview">
+  <h2>Overview</h2>
+  <p>Crowdfunding is a way of raising money where many people contribute small amounts to support a project, idea, or business, usually done online.</p>
+  <h3>Types of Crowdfunding:</h3>
+  <ul>
+    <li>Reward-based: Backers receive rewards.</li>
+    <li>Equity-based: Backers get shares or equity.</li>
+    <li>Donation-based: No return expected.</li>
+    <li>Loan-based: Money is repaid with interest.</li>
+  </ul>
+</section>
 
-  <div class="slide">
-    <h1>Excel Dashboard</h1>
-    <p>Built KPIs, charts, and calendar table using formulas like SUM, COUNT, IF.</p>
-  </div>
+<section id="tools">
+  <h2>Tools Used</h2>
+  <ul>
+    <li>Microsoft Excel</li>
+    <li>Power BI</li>
+    <li>Tableau</li>
+    <li>MySQL</li>
+  </ul>
+</section>
 
-  <div class="slide">
-    <h1>Power BI Dashboard</h1>
-    <p>Used DAX, Power Query, and interactive visuals for deep insights.</p>
-  </div>
+<section>
+  <h2>Data & Cleaning Process</h2>
+  <p><strong>Data Sources:</strong> 4 Excel files: category, location, creator, project</p>
+  <p><strong>Data Cleaning Steps (Power Query):</strong></p>
+  <ul>
+    <li>Imported all files</li>
+    <li>Removed duplicates</li>
+    <li>Sorted and cleaned columns</li>
+    <li>Formatted dates and text properly</li>
+  </ul>
+</section>
 
-  <div class="slide">
-    <h1>Tableau Dashboard</h1>
-    <p>Built relationships, LOD expressions, and interactive dashboards.</p>
-  </div>
+<section>
+  <h2>Data Modeling</h2>
+  <p>Created relationships between datasets to prepare a data model for analysis.</p>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/modelingp.png" class="dashboard-image" alt="Crowdfunding Data Model">
+</section>
 
-  <div class="slide">
-    <h1>SQL Analysis</h1>
-    <p>Used GROUP BY, DATE functions, CASE, JOINs, and aggregations.</p>
-  </div>
+<section>
+  <h2>Key Insights</h2>
+  <ul>
+    <li>Total Projects: 366,000</li>
+    <li>Total Backers: 366,000</li>
+    <li>Total Amount Raised: $16,041M</li>
+    <li>Average Project Duration: 79 days</li>
+    <li>Projects by Outcome: 169</li>
+  </ul>
+</section>
 
-  <div class="slide">
-    <h1>Conclusion</h1>
-    <p>Strong understanding of data analysis lifecycle from raw data → insights.</p>
-  </div>
+<section id="excel">
+  <h2>Excel Dashboard</h2>
+  <ul>
+    <li>Created calendar table using date/time functions</li>
+    <li>Applied formulas like SUM, COUNT, AVERAGE, SUMIF, IF</li>
+    <li>Built KPIs and charts for analysis</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardE.png" class="dashboard-image" alt="Crowdfunding Excel Dashboard">
+</section>
 
-</div>
+<section id="powerbi">
+  <h2>Power BI Dashboard</h2>
+  <ul>
+    <li>Imported Excel files into Power BI using Power Query</li>
+    <li>Used DAX functions: COUNT, SUM, DIVIDE, etc.</li>
+    <li>Converted epoch dates to readable dates</li>
+    <li>Created calculated columns and custom KPIs</li>
+    <li>Designed interactive visuals and dashboards</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardp.png" class="dashboard-image" alt="Crowdfunding Power BI Dashboard">
+</section>
 
-<script>
-let slider = document.getElementById("slider");
-let index = 0;
-let totalSlides = document.querySelectorAll(".slide").length;
+<section id="tableau">
+  <h2>Tableau Dashboard</h2>
+  <ul>
+    <li>Converted CSV files to Excel</li>
+    <li>Imported all data into Tableau</li>
+    <li>Built relationships between data sources</li>
+    <li>Created measures using LOD expressions</li>
+    <li>Developed interactive dashboards</li>
+  </ul>
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardT.png" class="dashboard-image" alt="Crowdfunding Tableau Dashboard">
+</section>
 
-/* MOVE SLIDES */
-function showSlide(i){
-  if(i < 0) index = totalSlides - 1;
-  else if(i >= totalSlides) index = 0;
-  else index = i;
+<section id="sql">
+  <h2>SQL Analysis (MySQL)</h2>
+  <p>Functions Used: FROM_UNIXTIME(), DATE(), YEAR(), MONTHNAME(), QUARTER(), WEEKDAY(), DAYNAME(), CASE, CONCAT(), COUNT(), DISTINCT, SUM(), ROUND(), AVG(), DATEDIFF(), GROUP BY, ORDER BY, WHERE, subqueries</p>
+  <p>Sample Queries:</p>
+  <ul>
+    <li>Total number of projects: <code>SELECT COUNT(projectid) AS total_projects FROM projects;</code></li>
+    <li>Projects per year: <code>SELECT YEAR(FROM_UNIXTIME(created_at)) AS year, COUNT(*) AS total FROM projects GROUP BY year;</code></li>
+    <li>Projects per month: <code>SELECT MONTH(FROM_UNIXTIME(created_at)) AS month, COUNT(*) AS total FROM projects GROUP BY month;</code></li>
+    <li>Epoch dates converted to human-readable and calendar table creation included</li>
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1090).png" class="dashboard-image" alt="sql_image">
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1091).png" class="dashboard-image" alt="sql_image">
 
-  slider.style.transform = `translateX(-${index * 100}vw)`;
-}
+	<img src="https:https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1093).png" class="dashboard-image" alt="sql_image">
 
-/* KEYBOARD CONTROL (PPT STYLE) */
-document.addEventListener("keydown", (e) => {
-  if(e.key === "ArrowRight" || e.key === "ArrowDown"){
-    showSlide(index + 1);
-  }
-  if(e.key === "ArrowLeft" || e.key === "ArrowUp"){
-    showSlide(index - 1);
-  }
-});
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1094).png" class="dashboard-image" alt="sql_image">
 
-/* MOUSE WHEEL CONTROL */
-document.addEventListener("wheel", (e) => {
-  if(e.deltaY > 0) showSlide(index + 1);
-  else showSlide(index - 1);
-});
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1095).png" class="dashboard-image" alt="sql_image">
 
-/* TOUCH SWIPE */
-let startX = 0;
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1096).png" class="dashboard-image" alt="sql_image">
 
-document.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-});
+	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1097).png" class="dashboard-image" alt="sql_image">
 
-document.addEventListener("touchend", (e) => {
-  let endX = e.changedTouches[0].clientX;
+  </ul>
+</section>
 
-  if(startX > endX + 50) showSlide(index + 1);
-  if(startX < endX - 50) showSlide(index - 1);
-});
-</script>
+<section>
+  <h2>Conclusion</h2>
+  <ul>
+    <li>High percentage of projects were successful overall</li>
+    <li>2015 had the highest total amount raised</li>
+    <li>Average duration of projects reduced in 2015</li>
+    <li>Film & Video top successful category every year</li>
+    <li>Design was second-most successful</li>
+    <li>Failed projects slightly outnumbered successful ones in most years</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Reflection</h2>
+  <p>During this project, I improved my skills in:</p>
+  <ul>
+    <li>Excel: Formulas, dashboards, calendar tables</li>
+    <li>Power BI: DAX, Power Query, data modeling, interactive visuals</li>
+    <li>Tableau: LOD expressions, data connections, dashboards</li>
+    <li>MySQL: Querying, filtering, data aggregation</li>
+  </ul>
+  <p>This project helped me understand end-to-end data handling and dashboard creation.</p>
+</section>
+	<a href="https://github.com/Tyaswanth9/Crowd-funding-project.git" > View Full Project on github</a>
+</div> <!-- END CONTAINER -->
+
+<footer>
+  @2026 Data Analyst Portfolio 
+</footer>
 
 </body>
 </html>
