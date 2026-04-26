@@ -244,65 +244,67 @@ window.addEventListener("load", () => {
 /* =========================================
    COUNTER + SCROLL ANIMATION (RUN ON SCROLL) (this is project and expriance count between the summary and expriance section)
    ========================================= */
-/* =========================================
-   COUNTER + SCROLL ANIMATION (IMPROVED)
-   ========================================= */
-/* =========================================
-   COUNTER + SCROLL ANIMATION
-   ========================================= */
+
 /* =========================================
    COUNTER + SCROLL ANIMATION (LOOP FINAL)
+   ========================================= */
+/* =========================================
+   COUNTER + SCROLL ANIMATION (IMPROVED)
    ========================================= */
 
 const counters = document.querySelectorAll(".counter");
 const boxes = document.querySelectorAll(".stat-box");
 
-/* INTERSECTION OBSERVER (TRIGGER ON SCROLL) */
-const observer = new IntersectionObserver(entries => {
+let hasAnimated = false;
+
+/* =========================================
+   INTERSECTION OBSERVER
+   ========================================= */
+const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
 
-    if (entry.isIntersecting) {
+    /* RUN ONLY ONCE WHEN ENTER */
+    if (entry.isIntersecting && !hasAnimated) {
 
-      // SHOW ANIMATION
+      hasAnimated = true;
+
+      /* SHOW BOX ANIMATION (STAGGER EFFECT) */
       boxes.forEach((box, i) => {
         setTimeout(() => {
           box.classList.add("show");
-        }, i * 200);
+        }, i * 150);
       });
 
-      // START COUNTING
+      /* START COUNTING */
       counters.forEach(counter => {
 
         const target = +counter.getAttribute("data-target");
-        const speed = +counter.getAttribute("data-speed");
+        const duration = +counter.getAttribute("data-speed"); // total steps
 
-        let count = 0;
+        let start = 0;
+        const increment = target / duration;
 
-        const update = () => {
-          const increment = target / speed;
+        /* SMOOTH COUNT USING requestAnimationFrame */
+        const updateCount = () => {
+          start += increment;
 
-          if (count < target) {
-            count += increment;
-            counter.innerText = Math.ceil(count);
-            setTimeout(update, 30);
+          if (start < target) {
+            counter.innerText = Math.ceil(start);
+            requestAnimationFrame(updateCount);
           } else {
             counter.innerText = target + "+";
-
-            // LOOP AFTER DELAY
-            setTimeout(() => {
-              count = 0;                 // reset value
-              counter.innerText = "0";   // reset UI
-              update();                 // restart
-            }, 2000); // pause time
           }
         };
 
-        update();
+        updateCount();
       });
+    }
 
-    } else {
+    /* RESET WHEN LEAVING VIEW */
+    if (!entry.isIntersecting) {
 
-      // RESET WHEN LEAVING VIEW
+      hasAnimated = false;
+
       counters.forEach(counter => {
         counter.innerText = "0";
       });
@@ -310,11 +312,19 @@ const observer = new IntersectionObserver(entries => {
       boxes.forEach(box => {
         box.classList.remove("show");
       });
-
     }
 
   });
-}, { threshold: 0.5 });
+}, {
+  threshold: 0.5
+});
 
-/* OBSERVE SECTION */
-observer.observe(document.getElementById("stats"));
+/* =========================================
+   START OBSERVER
+   ========================================= */
+const statsSection = document.getElementById("stats");
+
+if (statsSection) {
+  observer.observe(statsSection);
+}
+
