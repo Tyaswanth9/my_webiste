@@ -124,6 +124,20 @@ nav {
   color: var(--primary);
 }
 
+/* =========================
+   TYPEWRITER CURSOR
+   ========================= */
+.typing-cursor::after {
+  content: "|";
+  margin-left: 5px;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
 
 /* =========================================================
    PROFILE IMAGE
