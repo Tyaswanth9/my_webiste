@@ -167,3 +167,72 @@ document.querySelectorAll(".project-card").forEach(card => {
   });
 
 });
+
+
+/* =========================================
+   TYPEWRITER EFFECT (LOOP) ( after name text)
+   ========================================= */
+
+// TEXT CONTENT
+const titleText = "Data Analyst";
+const skillsText = "SQL • Power BI • Excel • Tableau • Data Visualization";
+
+// TARGET ELEMENTS
+const titleElement = document.getElementById("typing-title");
+const skillsElement = document.getElementById("typing-skills");
+
+// SPEED CONTROL
+const totalDuration = 2500; // 2.5 seconds typing
+const pauseDuration = 4000; // 4 seconds pause
+
+// CALCULATE SPEED PER LETTER
+const titleSpeed = totalDuration / titleText.length;
+const skillsSpeed = totalDuration / skillsText.length;
+
+/* =========================================
+   TYPE FUNCTION  ( after name text)
+   ========================================= */
+function typeText(element, text, speed, callback) {
+  let index = 0;
+  element.innerHTML = "";
+
+  function type() {
+    if (index < text.length) {
+      element.innerHTML += text.charAt(index);
+      index++;
+      setTimeout(type, speed);
+    } else {
+      if (callback) callback();
+    }
+  }
+
+  type();
+}
+
+/* =========================================
+   LOOP FUNCTION   ( after name text)
+   ========================================= */
+function startTypingLoop() {
+  
+  // TYPE TITLE FIRST
+  typeText(titleElement, titleText, titleSpeed, () => {
+
+    // THEN TYPE SKILLS
+    typeText(skillsElement, skillsText, skillsSpeed, () => {
+
+      // WAIT 4 SECONDS
+      setTimeout(() => {
+
+        // RESTART LOOP
+        startTypingLoop();
+
+      }, pauseDuration);
+
+    });
+
+  });
+
+}
+
+// START ANIMATION
+startTypingLoop();
