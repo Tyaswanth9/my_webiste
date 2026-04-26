@@ -205,13 +205,11 @@ section h2 {
    ========================================================= */
 
 #stats {
-  background: var(--card);
+  background: var(--card, #f4f4f4);
   padding: 60px 10%;
 }
 
-/* =========================
-   GRID (DESKTOP)
-   ========================= */
+/* GRID */
 .stats-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -219,9 +217,7 @@ section h2 {
   gap: 25px;
 }
 
-/* =========================
-   BOX
-   ========================= */
+/* BOX */
 .stat-box {
   padding: 25px;
   border-radius: 12px;
@@ -242,17 +238,26 @@ section h2 {
   transform: translateY(0);
 }
 
+/* IMAGE (ONLY ADDITION) */
+.stat-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
 /* ICON */
 .stat-icon {
   font-size: 30px;
   margin-bottom: 12px;
-  color: var(--primary);
+  color: var(--primary, #333);
 }
 
 /* NUMBER */
 .stat-box h2 {
   font-size: 36px;
-  color: var(--primary);
+  color: var(--primary, #333);
 }
 
 /* TEXT */
@@ -267,6 +272,19 @@ section h2 {
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
+/* TABLET */
+@media (max-width: 900px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+}
 /* =========================
    TABLET (2 COLUMNS)
    ========================= */
