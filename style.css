@@ -670,4 +670,26 @@ footer {
   .footer-right {
     align-items: center;
   }
+
+/* =========================================================
+   MOBILE FIX (MIN 2 COLUMNS)
+   ========================================================= */
+@media (max-width: 768px) {
+
+  .footer-icons {
+    grid-template-columns: repeat(2, 1fr); /* 👈 2 columns */
+    gap: 20px;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    align-items: center; /* center all items */
+  }
+
+  .footer-icons a {
+    justify-content: center;
+  }
+
 }
