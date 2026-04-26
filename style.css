@@ -621,31 +621,56 @@ footer {
 }
 
 /* Navbar */
+/* ========================= */
+/* NAVBAR FIX: LOGO LEFT, LINKS RIGHT */
+/* ========================= */
+nav {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-direction: row;
+
+  width: 100%;
+  padding: 15px 40px;
+}
+
+/* LOGO LEFT */
+nav .logo {
+  font-size: 22px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* LINKS RIGHT */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* LINKS STYLE */
+.nav-links a {
+  text-decoration: none;
+  font-size: 16px;
+  color: inherit;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
   nav {
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
 
-  /* Hero Text */
-  #home h1 {
-    font-size: 30px;
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
   }
-
-  #home h2 {
-    font-size: 18px;
-  }
-
-  /* Profile Image */
-  .profile-img {
-    width: 140px;
-    height: 140px;
-  }
-
-  /* Projects */
-  .projects-container {
-    grid-template-columns: 1fr;
-  }
-
+}
   /* Footer */
   .footer-icons {
     grid-template-columns: 1fr;
