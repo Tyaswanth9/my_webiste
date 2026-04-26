@@ -247,68 +247,57 @@ window.addEventListener("load", () => {
 /* =========================================
    COUNTER + SCROLL ANIMATION (IMPROVED)
    ========================================= */
+/* =========================================
+   COUNTER + SCROLL ANIMATION
+   ========================================= */
 
 const counters = document.querySelectorAll(".counter");
 const boxes = document.querySelectorAll(".stat-box");
 
-let hasAnimated = false;
+let started = false;
 
-const observer = new IntersectionObserver((entries) => {
+/* INTERSECTION OBSERVER (TRIGGER ON SCROLL) */
+const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
+    if (entry.isIntersecting && !started) {
 
-    if (entry.isIntersecting && !hasAnimated) {
+      started = true;
 
-      hasAnimated = true;
-
+      // SHOW ANIMATION
       boxes.forEach((box, i) => {
         setTimeout(() => {
           box.classList.add("show");
-        }, i * 150);
+        }, i * 200);
       });
 
+      // START COUNTING
       counters.forEach(counter => {
 
         const target = +counter.getAttribute("data-target");
-        const duration = +counter.getAttribute("data-speed");
+        const speed = +counter.getAttribute("data-speed");
 
-        let start = 0;
-        const increment = target / duration;
+        let count = 0;
 
-        const updateCount = () => {
-          start += increment;
+        const update = () => {
+          const increment = target / speed;
 
-          if (start < target) {
-            counter.innerText = Math.ceil(start);
-            requestAnimationFrame(updateCount);
+          if (count < target) {
+            count += increment;
+            counter.innerText = Math.ceil(count);
+            setTimeout(update, 30);
           } else {
+
+            // FINAL FORMAT
             counter.innerText = target + "+";
           }
         };
 
-        updateCount();
+        update();
       });
+
     }
-
-    if (!entry.isIntersecting) {
-
-      hasAnimated = false;
-
-      counters.forEach(counter => {
-        counter.innerText = "0";
-      });
-
-      boxes.forEach(box => {
-        box.classList.remove("show");
-      });
-    }
-
   });
-}, {
-  threshold: 0.5
-});
+}, { threshold: 0.5 });
 
-const statsSection = document.getElementById("stats");
-
-if (statsSection) {
-  observer.observe(statsSection);
-}
+/* OBSERVE SECTION */
+observer.observe(document.getElementById("stats"));
