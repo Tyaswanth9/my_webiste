@@ -467,6 +467,9 @@ footer {
 /* =========================================================
    LANDING PAGE
    ========================================================= */
+/* ========================= */
+/* LANDING PAGE (PRO VERSION) */
+/* ========================= */
 #landing-page {
   position: fixed;
   inset: 0;
@@ -476,8 +479,152 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  text-align: center;
+
+  /* Smooth fade-in */
+  animation: landingFade 1s ease forwards;
+
+  /* Slight upward visual balance */
+  transform: translateY(-30px);
 
   z-index: 9999;
+}
+
+/* ========================= */
+/* TEXT ANIMATION */
+/* ========================= */
+#landing-text {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: #ffffff;
+
+  /* Glow effect */
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #ff4d4d,
+    0 0 20px #ff1a1a,
+    0 0 30px #ff0000;
+
+  /* Smooth appearance */
+  animation: textFadeUp 1.2s ease forwards;
+}
+
+/* ========================= */
+/* CURSOR GLOW (if used) */
+/* ========================= */
+#cursor {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+
+  background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+
+  pointer-events: none;
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 10000;
+}
+
+/* ========================= */
+/* OVERLAY FADE */
+/* ========================= */
+#overlay {
+  position: fixed;
+  inset: 0;
+
+  background: #000;
+  opacity: 0;
+
+  backdrop-filter: blur(8px);
+
+  transition: opacity 1s ease;
+
+  z-index: 10001;
+}
+
+/* ========================= */
+/* BACKGROUND ANIMATION */
+/* ========================= */
+#landing-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent),
+              radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1), transparent);
+
+  animation: bgMove 6s linear infinite;
+
+  z-index: 0;
+}
+
+/* Keep content above effect */
+#landing-page * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================= */
+/* KEYFRAMES */
+/* ========================= */
+
+/* Page Fade */
+@keyframes landingFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Text Slide + Fade */
+@keyframes textFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Background Movement */
+@keyframes bgMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-20px, -20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* ========================= */
+/* MOBILE OPTIMIZATION */
+/* ========================= */
+@media (max-width: 768px) {
+
+  #landing-text {
+    font-size: 1.8rem;
+    line-height: 1.4;
+  }
+
+  #cursor {
+    display: none; /* disable glow on mobile */
+  }
+
+  #landing-page {
+    transform: translateY(-10px);
+    padding: 20px;
+  }
 }
 
 
