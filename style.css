@@ -493,11 +493,12 @@ footer {
 /* ========================= */
 #landing-page {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
+
   width: 100%;
-  height: 100vh; /* better cross-device control */
-  
+  height: 100dvh; /* FIX: dynamic viewport height (mobile safe) */
+  min-height: 100vh; /* fallback */
+
   background: linear-gradient(135deg, #ff2a2a, #b30000);
 
   display: flex;
@@ -509,7 +510,8 @@ footer {
 
   animation: landingFade 1s ease forwards;
 
-  transform: translateY(-30px);
+  /* FIX: removed vertical shift */
+  transform: none;
 
   z-index: 9999;
   overflow: hidden;
@@ -519,7 +521,7 @@ footer {
 /* TEXT ANIMATION */
 /* ========================= */
 #landing-text {
-  font-size: 3rem;
+  font-size: clamp(1.8rem, 4vw, 3rem); /* FIX: responsive scaling */
   letter-spacing: 2px;
   color: #ffffff;
 
@@ -555,10 +557,7 @@ footer {
 /* ========================= */
 #overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
 
   background: #000;
   opacity: 0;
@@ -622,7 +621,6 @@ footer {
 @media (max-width: 768px) {
 
   #landing-text {
-    font-size: 1.8rem;
     line-height: 1.4;
   }
 
@@ -631,12 +629,12 @@ footer {
   }
 
   #landing-page {
-    transform: translateY(-10px);
     padding: 20px;
   }
 }
 
-  /* Navbar */
+
+/* Navbar */
   nav {
     flex-direction: column;
     gap: 8px;
