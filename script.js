@@ -236,3 +236,59 @@ function startTypingLoop() {
 
 // START ANIMATION
 startTypingLoop();
+
+
+/* =========================================
+   COUNTER + SCROLL ANIMATION  (counting projects and expriance in between the summary and expriance section)
+   ========================================= */
+
+const counters = document.querySelectorAll(".counter");
+const boxes = document.querySelectorAll(".stat-box");
+
+let started = false;
+
+/* INTERSECTION OBSERVER (TRIGGER ON SCROLL) */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !started) {
+
+      started = true;
+
+      // SHOW ANIMATION
+      boxes.forEach((box, i) => {
+        setTimeout(() => {
+          box.classList.add("show");
+        }, i * 200);
+      });
+
+      // START COUNTING
+      counters.forEach(counter => {
+
+        const target = +counter.getAttribute("data-target");
+        const speed = +counter.getAttribute("data-speed");
+
+        let count = 0;
+
+        const update = () => {
+          const increment = target / speed;
+
+          if (count < target) {
+            count += increment;
+            counter.innerText = Math.ceil(count);
+            setTimeout(update, 30);
+          } else {
+
+            // FINAL FORMAT
+            counter.innerText = target + "+";
+          }
+        };
+
+        update();
+      });
+
+    }
+  });
+}, { threshold: 0.5 });
+
+/* OBSERVE SECTION */
+observer.observe(document.getElementById("stats"));
