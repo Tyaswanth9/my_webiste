@@ -167,10 +167,8 @@ document.querySelectorAll(".project-card").forEach(card => {
   });
 
 });
-
-
 /* =========================================
-   TYPEWRITER EFFECT (LOOP) ( after name text)
+   TYPEWRITER EFFECT (LOOP)
    ========================================= */
 
 // TEXT CONTENT
@@ -182,15 +180,15 @@ const titleElement = document.getElementById("typing-title");
 const skillsElement = document.getElementById("typing-skills");
 
 // SPEED CONTROL
-const totalDuration = 2500; // 2.5 seconds typing
-const pauseDuration = 4000; // 4 seconds pause
+const totalDuration = 2500; // typing time
+const pauseDuration = 2500; // pause before restart
 
 // CALCULATE SPEED PER LETTER
 const titleSpeed = totalDuration / titleText.length;
 const skillsSpeed = totalDuration / skillsText.length;
 
 /* =========================================
-   TYPE FUNCTION  ( after name text)
+   TYPE FUNCTION
    ========================================= */
 function typeText(element, text, speed, callback) {
   let index = 0;
@@ -210,21 +208,22 @@ function typeText(element, text, speed, callback) {
 }
 
 /* =========================================
-   LOOP FUNCTION   ( after name text)
+   LOOP FUNCTION
    ========================================= */
 function startTypingLoop() {
-  
+
   // TYPE TITLE FIRST
   typeText(titleElement, titleText, titleSpeed, () => {
 
     // THEN TYPE SKILLS
     typeText(skillsElement, skillsText, skillsSpeed, () => {
 
-      // WAIT 4 SECONDS
+      // WAIT → CLEAR → RESTART
       setTimeout(() => {
+        titleElement.innerHTML = "";
+        skillsElement.innerHTML = "";
 
-        // RESTART LOOP
-        startTypingLoop();
+        startTypingLoop(); // 🔁 LOOP AGAIN
 
       }, pauseDuration);
 
@@ -234,31 +233,40 @@ function startTypingLoop() {
 
 }
 
-// START ANIMATION
-startTypingLoop();
-
+/* =========================================
+   START AFTER PAGE LOAD
+   ========================================= */
+window.addEventListener("load", () => {
+  startTypingLoop();
+});
 
 /* =========================================
-   COUNTER + SCROLL ANIMATION (LOOP) ( this is project count and expriance count between the summary and expirance section)
+   COUNTER + SCROLL ANIMATION (RUN ON SCROLL) (this is project and expriance count between the summary and expriance section)
    ========================================= */
 
 const counters = document.querySelectorAll(".counter");
 const boxes = document.querySelectorAll(".stat-box");
 
-/* INTERSECTION OBSERVER (TRIGGER ON SCROLL) */
+let hasAnimated = false; // control flag
+
+/* =========================================
+   INTERSECTION OBSERVER
+   ========================================= */
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
 
-    if (entry.isIntersecting) {
+    if (entry.isIntersecting && !hasAnimated) {
 
-      // SHOW ANIMATION
+      hasAnimated = true; // prevent repeat while visible
+
+      /* SHOW BOX ANIMATION */
       boxes.forEach((box, i) => {
         setTimeout(() => {
           box.classList.add("show");
         }, i * 200);
       });
 
-      // START COUNTING
+      /* START COUNTING */
       counters.forEach(counter => {
 
         const target = +counter.getAttribute("data-target");
@@ -274,23 +282,20 @@ const observer = new IntersectionObserver(entries => {
             counter.innerText = Math.ceil(count);
             setTimeout(update, 30);
           } else {
-            counter.innerText = target + "+";
-
-            // LOOP AFTER DELAY
-            setTimeout(() => {
-              count = 0;                 // reset value
-              counter.innerText = "0";   // reset UI
-              update();                 // restart
-            }, 2000); // pause time
+            counter.innerText = target + "+"; // final value
           }
         };
 
         update();
       });
 
-    } else {
+    }
 
-      // RESET WHEN LEAVING VIEW
+    /* RESET WHEN USER LEAVES SECTION */
+    if (!entry.isIntersecting) {
+
+      hasAnimated = false; // allow re-trigger
+
       counters.forEach(counter => {
         counter.innerText = "0";
       });
@@ -304,5 +309,7 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.5 });
 
-/* OBSERVE SECTION */
+/* =========================================
+   OBSERVE STATS SECTION
+   ========================================= */
 observer.observe(document.getElementById("stats"));
