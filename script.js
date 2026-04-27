@@ -2,49 +2,73 @@
    LANDING PAGE (FINAL WORKING VERSION)
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+/* =========================================================
+   LANDING PAGE SCRIPT (SEPARATE JS)
+   ========================================================= */
 
-  const isMobile = window.innerWidth <= 768;
+document.addEventListener("DOMContentLoaded", function () {
 
   const container = document.getElementById("landing-text");
   const cursor = document.getElementById("cursor");
   const overlay = document.getElementById("overlay");
   const landingPage = document.getElementById("landing-page");
 
-  if (!container) return;
+  const isMobile = window.innerWidth <= 768;
 
-  /* TEXT LINES */
+  /* TEXT */
   const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
 
-  let delay = 0;
+  let index = 0;
 
   lines.forEach(line => {
-
     const div = document.createElement("div");
 
     line.split("").forEach(char => {
-
       const span = document.createElement("span");
 
       span.innerText = char;
       span.style.display = "inline-block";
       span.style.opacity = 0;
       span.style.transform = "translateY(40px)";
-
       span.style.animation = "rise 0.6s forwards";
-      span.style.animationDelay = delay + "s";
-
-      delay += isMobile ? 0.04 : 0.07;
+      span.style.animationDelay = (index * (isMobile ? 0.05 : 0.08)) + "s";
 
       div.appendChild(span);
-
+      index++;
     });
 
     container.appendChild(div);
-
   });
 
-  /* CURSOR FOLLOW (DESKTOP ONLY) */
+  /* FIREWORK */
+  function createFirework() {
+    const count = isMobile ? 8 : 15;
+
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight * 0.5;
+
+    for (let i = 0; i < count; i++) {
+      const fw = document.createElement("div");
+
+      fw.className = "firework";
+      fw.style.left = x + "px";
+      fw.style.top = y + "px";
+
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = 50 + Math.random() * 50;
+
+      fw.style.setProperty("--dx", distance * Math.cos(angle) + "px");
+      fw.style.setProperty("--dy", distance * Math.sin(angle) + "px");
+
+      document.body.appendChild(fw);
+
+      setTimeout(() => fw.remove(), 1000);
+    }
+  }
+
+  const fireworkInterval = setInterval(createFirework, isMobile ? 800 : 400);
+
+  /* CURSOR */
   if (!isMobile && cursor) {
     document.addEventListener("mousemove", e => {
       cursor.style.left = e.clientX + "px";
@@ -52,17 +76,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* EXIT AFTER 1.8s (PRO TIMING) */
+  /* EXIT */
   setTimeout(() => {
 
-    if (overlay) overlay.style.opacity = 1;
+    clearInterval(fireworkInterval);
+
+    overlay.style.opacity = 1;
 
     setTimeout(() => {
-      if (landingPage) landingPage.style.display = "none";
-
-      /*  IMPORTANT: ENABLE SCROLL AGAIN */
+      landingPage.style.display = "none";
       document.body.style.overflow = "auto";
-
     }, 600);
 
   }, 1800);
