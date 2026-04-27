@@ -642,8 +642,7 @@ nav {
 nav .logo {
   font-size: 22px;
   font-weight: bold;
-  white-space: nowrap
-   color: ffffff;
+  white-space: nowrap;
 }
 
 /* LINKS RIGHT */
@@ -657,8 +656,6 @@ nav .logo {
 .nav-links a {
   text-decoration: none;
   font-size: 16px;
-  #color: #inherit
-   color: ffffff;
 }
 
 /* MOBILE FIX */
