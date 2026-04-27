@@ -1,118 +1,71 @@
-/* =========================================================
-   LANDING PAGE (FINAL WORKING VERSION)
-   ========================================================= */
+/* =========================================
+   LANDING PAGE TEXT ANIMATION (FIXED)
+   ========================================= */
 
-/* =========================================================
-   LANDING PAGE SCRIPT (SEPARATE JS)
-   ========================================================= */
+// GET ELEMENT
+const container = document.getElementById("landing-text");
 
-document.addEventListener("DOMContentLoaded", function () {
+/* CLEAR OLD CONTENT (IMPORTANT FIX) */
+container.innerHTML = "";
 
-  const container = document.getElementById("landing-text");
-  const cursor = document.getElementById("cursor");
-  const overlay = document.getElementById("overlay");
-  const landingPage = document.getElementById("landing-page");
+/* TEXT LINES */
+const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
 
-  const isMobile = window.innerWidth <= 768;
+let delayIndex = 0;
 
-  /* TEXT */
-  const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
+/* CREATE TEXT */
+lines.forEach(line => {
 
-  let index = 0;
+  const div = document.createElement("div");
 
-  lines.forEach(line => {
-    const div = document.createElement("div");
+  line.split("").forEach(char => {
 
-    line.split("").forEach(char => {
-      const span = document.createElement("span");
+    const span = document.createElement("span");
 
-      span.innerText = char;
-      span.style.display = "inline-block";
-      span.style.opacity = 0;
-      span.style.transform = "translateY(40px)";
-      span.style.animation = "rise 0.6s forwards";
-      span.style.animationDelay = (index * (isMobile ? 0.05 : 0.08)) + "s";
+    span.innerText = char;
 
-      div.appendChild(span);
-      index++;
-    });
+    span.style.display = "inline-block";
+    span.style.opacity = "0";
+    span.style.transform = "translateY(40px)";
+    span.style.color = "#ffffff";
 
-    container.appendChild(div);
+    span.style.textShadow =
+      "0 0 5px #fff, 0 0 10px #ff4d4d, 0 0 20px #ff1a1a";
+
+    /* ANIMATION */
+    span.style.animation = "rise 0.6s ease forwards";
+    span.style.animationDelay = (delayIndex * 0.08) + "s";
+
+    div.appendChild(span);
+
+    delayIndex++;
   });
 
-  /* FIREWORK */
-  function createFirework() {
-    const count = isMobile ? 8 : 15;
+  /* SPACE BETWEEN LINES */
+  div.style.marginBottom = "10px";
 
-    const x = Math.random() * window.innerWidth;
-    const y = Math.random() * window.innerHeight * 0.5;
-
-    for (let i = 0; i < count; i++) {
-      const fw = document.createElement("div");
-
-      fw.className = "firework";
-      fw.style.left = x + "px";
-      fw.style.top = y + "px";
-
-      const angle = Math.random() * 2 * Math.PI;
-      const distance = 50 + Math.random() * 50;
-
-      fw.style.setProperty("--dx", distance * Math.cos(angle) + "px");
-      fw.style.setProperty("--dy", distance * Math.sin(angle) + "px");
-
-      document.body.appendChild(fw);
-
-      setTimeout(() => fw.remove(), 1000);
-    }
-  }
-
-  const fireworkInterval = setInterval(createFirework, isMobile ? 800 : 400);
-
-  /* CURSOR */
-  if (!isMobile && cursor) {
-    document.addEventListener("mousemove", e => {
-      cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
-    });
-  }
-
-  /* EXIT */
-  setTimeout(() => {
-
-    clearInterval(fireworkInterval);
-
-    overlay.style.opacity = 1;
-
-    setTimeout(() => {
-      landingPage.style.display = "none";
-      document.body.style.overflow = "auto";
-    }, 600);
-
-  }, 1800);
-
+  container.appendChild(div);
 });
-  
-/* ========================= */
-/* PROJECT CLICK LOADER */
-/* ========================= */
-document.querySelectorAll(".project-card").forEach(card => {
 
-  card.addEventListener("click", function(e) {
+/* =========================================
+   ADD KEYFRAMES (IMPORTANT)
+   ========================================= */
+const style = document.createElement("style");
 
-    e.preventDefault();
+style.innerHTML = `
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+`;
 
-    const link = this.getAttribute("href");
-    const loader = document.getElementById("page-loader");
-
-    if (loader) loader.classList.add("active");
-
-    setTimeout(() => {
-      window.location.href = link;
-    }, 1001);
-
-  });
-
-});
+document.head.appendChild(style);
 
 /* =========================================
    TYPEWRITER EFFECT (LOOP) (name and skills)
