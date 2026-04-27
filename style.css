@@ -94,29 +94,9 @@ nav {
   color: #ffffff;
   text-decoration: none;
   transition: 0.3s ease;
-<!--- underline effect in nav--->
-   position: relative;
-  padding-bottom: 5px;
    
 }
-/* underline base */
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
 
-  width: 0%;
-  height: 2px;
-  background: #ffffff;
-
-  transition: width 0.3s ease;
-}
-
-/* hover animation */
-.nav-links a:hover::after {
-  width: 100%;
-}
 <!----- links hover effects---->
 .nav-links a:hover {
   opacity: 0.8;
