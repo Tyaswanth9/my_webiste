@@ -508,7 +508,6 @@ footer {
   .footer-icons a {
     justify-content: center;
   }
-
 /* =========================================================
    LANDING PAGE (FIXED)
    ========================================================= */
@@ -524,7 +523,10 @@ body.landing-active {
   inset: 0;
 
   width: 100vw;
+
+  /* FIX: better Windows + mobile viewport handling */
   height: 100vh;
+  height: 100dvh;
 
   display: flex;
   justify-content: center;
@@ -556,9 +558,12 @@ body.landing-active {
   position: fixed;
   width: 120px;
   height: 120px;
+
   background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
   border-radius: 50%;
+
   pointer-events: none;
+
   transform: translate(-50%, -50%);
   z-index: 10000;
 }
@@ -567,9 +572,14 @@ body.landing-active {
 #overlay {
   position: absolute;
   inset: 0;
+
   background: #000;
   opacity: 0;
+
   transition: opacity 0.6s ease;
+
+  /* FIX: prevents blocking clicks on desktop */
+  pointer-events: none;
 }
 
 /* LETTER ANIMATION */
@@ -585,14 +595,22 @@ body.landing-active {
   position: absolute;
   width: 4px;
   height: 4px;
+
   background: white;
   border-radius: 50%;
+
   animation: explode 1s ease-out forwards;
 }
 
 @keyframes explode {
-  0% { transform: scale(0); opacity: 1; }
-  100% { transform: scale(1.5) translate(var(--dx), var(--dy)); opacity: 0; }
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) translate(var(--dx), var(--dy));
+    opacity: 0;
+  }
 }
 
 /* =========================================================
