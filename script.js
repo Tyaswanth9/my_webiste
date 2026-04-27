@@ -1,151 +1,76 @@
-/* ========================= */
-/* DEVICE DETECTION */
-/* ========================= */
+/* =========================================================
+   LANDING PAGE 3D PARTICLES (RESPONSIVE)
+   ========================================================= */
+
+/* =========================
+   DEVICE DETECTION
+   ========================= */
 const isMobile = window.innerWidth <= 768;
+const isTablet = window.innerWidth <= 1024;
 
-/* ========================= */
-/* GET ELEMENTS */
-/* ========================= */
-const container = document.getElementById("landing-text");
-const cursor = document.getElementById("cursor");
-const overlay = document.getElementById("overlay");
-const landingPage = document.getElementById("landing-page");
+/* =========================
+   PERFORMANCE SETTINGS
+   ========================= */
+const particleCount = isMobile ? 8 : isTablet ? 14 : 24;
+const depthRange   = isMobile ? 80 : isTablet ? 150 : 260;
+const fireSpeed    = isMobile ? 700 : isTablet ? 500 : 350;
 
-/* ========================= */
-/* LETTER ANIMATION */
-/* ========================= */
-if (container) {
-  const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
-  let index = 0;
-
-  lines.forEach(line => {
-    const div = document.createElement("div");
-
-    line.split("").forEach(char => {
-      const span = document.createElement("span");
-
-      span.innerText = char;
-      span.style.display = "inline-block";
-      span.style.opacity = 0;
-      span.style.transform = "translateY(50px)";
-      span.style.color = "#fff";
-
-      span.style.textShadow =
-        "0 0 2px #fff, 0 0 6px #ff4d4d, 0 0 12px #ff1a1a, 0 0 20px #ff1a1a";
-
-      span.style.animation = "rise 0.7s forwards";
-      span.style.animationDelay = (index * (isMobile ? 0.05 : 0.1)) + "s";
-
-      div.appendChild(span);
-      index++;
-    });
-
-    container.appendChild(div);
-  });
-}
-
-/* ========================= */
-/* ADD KEYFRAMES */
-/* ========================= */
-const style = document.createElement("style");
-
-style.innerHTML = `
-@keyframes rise {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    text-shadow: 0 0 3px #fff,
-                 0 0 10px #ff4d4d,
-                 0 0 20px #ff1a1a,
-                 0 0 30px #ff0000;
-  }
-}
-
-.firework {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: white;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: explode 1s ease-out forwards;
-}
-
-@keyframes explode {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.5) translate(var(--dx), var(--dy));
-    opacity: 0;
-  }
-}
-`;
-
-document.head.appendChild(style);
-
-/* ========================= */
-/* FIREWORK FUNCTION */
-/* ========================= */
+/* =========================
+   FIREWORK FUNCTION
+   ========================= */
 function createFirework() {
-  const count = isMobile ? 8 : 15 + Math.floor(Math.random() * 10);
 
   const x = Math.random() * window.innerWidth;
-  const y = Math.random() * window.innerHeight * 0.5;
+  const y = Math.random() * window.innerHeight * 0.6;
 
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < particleCount; i++) {
+
     const fw = document.createElement("div");
-
     fw.className = "firework";
+
     fw.style.left = x + "px";
-    fw.style.top = y + "px";
+    fw.style.top  = y + "px";
 
+    /* ANGLE + DISTANCE */
     const angle = Math.random() * 2 * Math.PI;
-    const distance = 50 + Math.random() * 50;
+    const distance = 50 + Math.random() * 80;
 
-    fw.style.setProperty("--dx", distance * Math.cos(angle) + "px");
-    fw.style.setProperty("--dy", distance * Math.sin(angle) + "px");
+    const dx = distance * Math.cos(angle);
+    const dy = distance * Math.sin(angle);
+
+    fw.style.setProperty("--dx", dx + "px");
+    fw.style.setProperty("--dy", dy + "px");
+
+    /* 3D DEPTH */
+    const dz = (Math.random() * depthRange - depthRange / 2);
+    fw.style.setProperty("--dz", dz + "px");
 
     document.body.appendChild(fw);
 
-    setTimeout(() => fw.remove(), 1000);
+    /* REMOVE PARTICLE */
+    setTimeout(() => {
+      fw.remove();
+    }, 1000);
   }
 }
 
-/* START FIREWORK */
-const fireworkInterval = setInterval(
-  createFirework,
-  isMobile ? 800 : 400
-);
+/* =========================
+   START ANIMATION
+   ========================= */
+const fireworkInterval = setInterval(createFirework, fireSpeed);
 
-/* ========================= */
-/* CURSOR GLOW */
-/* ========================= */
+/* =========================
+   CURSOR EFFECT (DESKTOP)
+   ========================= */
+const cursor = document.getElementById("cursor");
+
 if (!isMobile && cursor) {
-  document.addEventListener("mousemove", e => {
+  document.addEventListener("mousemove", (e) => {
     cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
+    cursor.style.top  = e.clientY + "px";
   });
 }
-
-/* ========================= */
-/* LANDING EXIT */
-/* ========================= */
-setTimeout(() => {
-
-  clearInterval(fireworkInterval);
-
-  if (overlay) overlay.style.opacity = 1;
-
-  setTimeout(() => {
-    if (landingPage) {
-      landingPage.style.display = "none";
-    }
-  }, isMobile ? 500 : 800);
-
-}, isMobile ? 2000 : 3000);
-
+  
 /* ========================= */
 /* PROJECT CLICK LOADER */
 /* ========================= */
