@@ -647,7 +647,11 @@ footer {
 
   .footer-icons a {
     justify-content: center;
-     filter: brightness(0) saturate(100%) invert(1);
   }
+<!====== icon background color white=======>
+.footer-icons img {
+  background-color: #ffffff;   /* icon color = white */
+
+}
 
 }
