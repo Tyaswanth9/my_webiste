@@ -155,8 +155,8 @@ nav {
 
 /* Circular Profile Image */
 .profile-img {
-  width: 200px;
-  height: 200px;
+  width: 450px;
+  height: 450px;
 
   border-radius: 50%;   /* Perfect circle */
   object-fit: cover;    /* Prevent distortion */
