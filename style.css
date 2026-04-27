@@ -526,17 +526,32 @@ footer {
   padding: 0;
   box-sizing: border-box;
 }
+   /* =========================================================
+   LANDING PAGE (FINAL RESPONSIVE VERSION)
+   ========================================================= */
 
-/* ========================= */
-/* LANDING PAGE ONLY */
-/* ========================= */
+/* =========================
+   RESET (SAFE)
+   ========================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   LANDING PAGE
+   ========================= */
 #landing-page {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
 
   width: 100%;
-  height: 100dvh;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh; /* modern mobile fix */
 
   display: flex;
   justify-content: center;
@@ -549,11 +564,14 @@ footer {
 
   overflow: hidden;
   z-index: 9999;
+
+  /* smooth rendering */
+  will-change: transform, opacity;
 }
 
-/* ========================= */
-/* TEXT */
-/* ========================= */
+/* =========================
+   TEXT
+   ========================= */
 #landing-text {
   font-size: clamp(2rem, 5vw, 3rem);
   color: #ffffff;
@@ -565,84 +583,108 @@ footer {
     0 0 10px #ff4d4d,
     0 0 20px #ff1a1a,
     0 0 30px #ff0000;
+
+  z-index: 3;
 }
 
-/* ========================= */
-/* CURSOR */
-/* ========================= */
+/* =========================
+   CURSOR (DESKTOP ONLY)
+   ========================= */
 #cursor {
   position: fixed;
+  top: 0;
+  left: 0;
+
   width: 120px;
   height: 120px;
-  background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+
+  background: radial-gradient(circle, rgba(255,255,255,0.35), transparent);
+
   pointer-events: none;
   border-radius: 50%;
+
   transform: translate(-50%, -50%);
   z-index: 10000;
+
+  mix-blend-mode: screen; /* pro glow effect */
 }
 
-/* ========================= */
-/* OVERLAY */
-/* ========================= */
+/* =========================
+   OVERLAY (FADE EFFECT)
+   ========================= */
 #overlay {
-  position: absolute; /* FIX: not fixed */
+  position: absolute;
   inset: 0;
 
   background: #000;
   opacity: 0;
 
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
   transition: opacity 1s ease;
 
   z-index: 2;
 }
 
-/* ========================= */
-/* BACKGROUND EFFECT */
-/* ========================= */
+/* =========================
+   BACKGROUND EFFECT
+   ========================= */
 #landing-page::before {
   content: "";
   position: absolute;
   inset: 0;
 
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent),
-              radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1), transparent);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent),
+    radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1), transparent);
 
-  animation: bgMove 6s linear infinite;
+  animation: bgMove 8s linear infinite;
 
   z-index: 0;
 }
 
-/* ONLY target landing content */
-#landing-text,
-#cursor {
-  position: relative;
-  z-index: 3;
-}
-
-/* ========================= */
-/* ANIMATION */
-/* ========================= */
+/* =========================
+   ANIMATION
+   ========================= */
 @keyframes bgMove {
   0%   { transform: translate(0, 0); }
-  50%  { transform: translate(-20px, -20px); }
+  50%  { transform: translate(-25px, -25px); }
   100% { transform: translate(0, 0); }
 }
 
-/* ========================= */
-/* MOBILE */
-/* ========================= */
+/* =========================
+   MOBILE OPTIMIZATION
+   ========================= */
 @media (max-width: 768px) {
+
+  #landing-page {
+    padding: 20px;
+  }
+
   #landing-text {
-    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    font-size: clamp(1.6rem, 6vw, 2.3rem);
     line-height: 1.4;
-    padding: 0 12px;
+    padding: 0 10px;
   }
 
   #cursor {
-    display: none;
+    display: none; /* remove heavy effect */
   }
+
+}
+
+/* =========================
+   SMALL DEVICES (EXTRA FIX)
+   ========================= */
+@media (max-width: 480px) {
+
+  #landing-text {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+
+}
 
 
 /* ========================= */
