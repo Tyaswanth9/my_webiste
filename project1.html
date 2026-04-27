@@ -2,137 +2,15 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crowdfunding Data Analysis Dashboard Project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crowdfunding Data Analysis Dashboard Project</title>
 
-<style>
-<!----------3d icons link----------------------->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-	
-/* ========================= */
-/* HERO SLIDER (FADE VERSION) */
-/* ========================= */
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-.hero-slider {
-  position: relative;
-  width: 100%;
-  height: 320px;
-  overflow: hidden;
-  border-radius: 8px;
-}
+  <style>
 
-/* All images stacked */
-.hero-slider img {
-  position: absolute;
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
-}
-
-/* Active image */
-.hero-slider img.active {
-  opacity: 1;
-  z-index: 1;
-}
-
-/* Title */
-.hero-title {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  color: white;
-  background: rgba(0,0,0,0.5);
-  padding: 10px 15px;
-  border-radius: 5px;
-}
-
-/* Arrows */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 30px;
-  color: white;
-  background: rgba(0,0,0,0.4);
-  padding: 8px;
-  cursor: pointer;
-  display: none;
-}
-
-.arrow.left { left: 10px; }
-.arrow.right { right: 10px; }
-
-.hero-slider:hover .arrow {
-  display: block;
-}
-
-/* Dots */
-.dots {
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
-}
-
-.dot {
-  height: 10px;
-  width: 10px;
-  margin: 3px;
-  display: inline-block;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.5;
-  cursor: pointer;
-}
-
-.dot.active {
-  opacity: 1;
-}
-
-/* ========================= */
-/* NEW 3D HOME ICON */
-/* ========================= */
-
-.home-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 12px;
-  background: #d62828;
-
-  box-shadow:
-    4px 4px 8px rgba(0,0,0,0.4),
-    -2px -2px 6px rgba(255,255,255,0.1);
-
-  transition: all 0.2s ease;
-}
-
-.home-icon i {
-  color: white;
-  font-size: 20px;
-}
-
-/* Hover */
-.home-icon:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    6px 6px 12px rgba(0,0,0,0.5),
-    -3px -3px 8px rgba(255,255,255,0.15);
-}
-
-/* Click */
-.home-icon:active {
-  transform: translateY(2px);
-  box-shadow:
-    inset 3px 3px 6px rgba(0,0,0,0.5),
-    inset -2px -2px 5px rgba(255,255,255,0.1);
-}
 /* ========================= */
 /* GLOBAL STYLE */
 /* ========================= */
@@ -146,24 +24,13 @@
 body {
   background: #eeeeee;
   color: #333;
-  line-height: 1.6;
 }
 
-a {
-  text-decoration: none;
-  color: #d62828;
-}
-
-h1 {
-  color: #d62828;
-}
-
-h2, h3 {
-  color: black;
-}
+a { text-decoration: none; }
 
 /* ========================= */
-/* MODERN STICKY NAVBAR */
+/* NAVBAR */
+/* ========================= */
 nav {
   position: sticky;
   top: 0;
@@ -172,609 +39,255 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 12px 8%;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-nav .back-icon {
-  font-size: 20px;
-  color: white;
-  font-weight: bold;
-  margin-right: 20px;
-}
-
-nav .nav-links {
+.nav-links {
   display: flex;
   gap: 12px;
-  flex-wrap: wrap;
 }
 
-nav .nav-links a {
+.nav-links a {
   color: white;
-  font-weight: 500;
   padding: 6px 12px;
-  border-radius: 5px;
-  transition: background 0.3s;
 }
 
-nav .nav-links a:hover {
-  background: rgba(255,255,255,0.2);
+/* 3D HOME ICON */
+.home-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #d62828;
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.4);
 }
 
-/* ========================= */
-/* PAGE TITLE */
-.page-title {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.page-title h1 {
-  font-size: 28px;
-  color: #d62828;
-  font-weight: bold;
+.home-icon i {
+  color: white;
 }
 
 /* ========================= */
-/* CONTAINER */
+/* HERO SLIDER */
+/* ========================= */
+.hero-slider {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+}
+
+.hero-slider img {
+  position: absolute;
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  opacity: 0;
+  transition: 0.8s;
+}
+
+.hero-slider img.active {
+  opacity: 1;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+/* ========================= */
+/* CONTENT */
+/* ========================= */
 .container {
   padding: 50px 10%;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  margin-top: 30px;
+  background: white;
+  margin: 20px;
 }
 
-/* ========================= */
-/* SECTIONS */
 section {
   margin-bottom: 40px;
 }
 
-section h2 {
-  margin-bottom: 20px;
-  font-size: 28px;
-}
-
-section p, section ul, section ol {
-  margin-bottom: 15px;
-}
-
-ul, ol {
-  padding-left: 20px;
+h2 {
+  margin-bottom: 10px;
 }
 
 /* ========================= */
-/* DASHBOARD IMAGE */
+/* IMAGES */
+/* ========================= */
 .dashboard-image {
+  width: 80%;
   display: block;
-  max-width: 80%;
   margin: 20px auto;
-  border-radius: 5px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.dashboard-image:hover {
-  transform: scale(1.05);
 }
 
 /* ========================= */
-/* FOOTER */
-footer {
-  background: #d62828;
-  color: white;
-  text-align: center;
-  padding: 25px 10%;
-  margin-top: 40px;
-}
-
+/* PPT SLIDER */
 /* ========================= */
-/* RESPONSIVE */
-@media (max-width:1024px){
-  .page-title h1 { font-size: 24px; }
-}
-
-@media (max-width:768px){
-  nav {
-    flex-direction: row;
-    gap: 10px;
-  }
-  nav .nav-links {
-    justify-content: flex-start;
-    gap: 8px;
-  }
-  .page-title h1 { font-size: 20px; }
-}
-
-/* ========================= */
-/* PREMIUM PPT SLIDER */
-/* ========================= */
-
-.ppt-premium {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.ppt-title {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
 .ppt-container {
   position: relative;
   max-width: 900px;
   margin: auto;
-  overflow: hidden;
-  border-radius: 12px;
 }
 
-/* Slides */
 .ppt-slide {
-  position: absolute;
-  width: 100%;
-  opacity: 0;
-  transform: scale(1.05);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.ppt-slide img {
-  width: 100%;
-  border-radius: 12px;
+  display: none;
 }
 
 .ppt-slide.active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 1;
+  display: block;
 }
 
-/* Caption */
-.ppt-caption {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 5px;
-}
-
-/* Arrows */
 .ppt-btn {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  font-size: 30px;
   color: white;
-  background: rgba(0,0,0,0.4);
-  padding: 8px;
+  font-size: 30px;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s;
 }
 
 .ppt-btn.left { left: 10px; }
 .ppt-btn.right { right: 10px; }
 
-.ppt-container:hover .ppt-btn {
-  opacity: 1;
-}
-
-/* Dots */
-.ppt-dots {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.ppt-dot {
-  height: 10px;
-  width: 10px;
-  margin: 5px;
-  display: inline-block;
-  background: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.ppt-dot.active {
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+footer {
   background: #d62828;
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
-	
-</style>
+
+  </style>
 </head>
 
 <body>
 
-<!-- ========================= -->
 <!-- NAVBAR -->
 <nav>
-	<!------ home icon with white text------------>
-  <a href="index.html" class="home-icon" title="Home">
-  <i class="fa-solid fa-house"></i>
-</a>
+  <a href="index.html" class="home-icon">
+    <i class="fa-solid fa-house"></i>
+  </a>
+
   <div class="nav-links">
     <a href="#excel">Excel</a>
     <a href="#powerbi">Power BI</a>
     <a href="#tableau">Tableau</a>
     <a href="#sql">SQL</a>
-    <a href="https://github.com/Tyaswanth9/Crowd-funding-project.git">Git hub</a>
+    <a href="https://github.com/Tyaswanth9/Crowd-funding-project.git">GitHub</a>
   </div>
 </nav>
 
-<!-- ========================= -->
-<!-- PAGE TITLE -->
-<div class="page-title">
-  <h1>Crowdfunding Data Analysis Project</h1>
-</div>
-<!-------------- silder Images ------------------->
-	<div class="hero-slider" id="slider">
-
-  <!-- Images -->
+<!-- HERO SLIDER -->
+<div class="hero-slider" id="slider">
   <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/modelingp.png" class="active">
   <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardE.png">
-  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
 
-  <!-- Title -->
-  <div class="hero-title">
-    <h1>Crowdfunding Data Analysis</h1>
-  </div>
-
-  <!-- Arrows -->
   <div class="arrow left" onclick="prevSlide()">❮</div>
   <div class="arrow right" onclick="nextSlide()">❯</div>
-
-  <!-- Dots -->
-  <div class="dots" id="dots"></div>
-
 </div>
-<!-- ========================= -->
-<!-- BODY -->
+
+<!-- CONTENT -->
 <div class="container">
 
-<section id="overview">
+<section>
   <h2>Overview</h2>
-  <p>Crowdfunding is a way of raising money where many people contribute small amounts to support a project, idea, or business, usually done online.</p>
-  <h3>Types of Crowdfunding:</h3>
-  <ul>
-    <li>Reward-based: Backers receive rewards.</li>
-    <li>Equity-based: Backers get shares or equity.</li>
-    <li>Donation-based: No return expected.</li>
-    <li>Loan-based: Money is repaid with interest.</li>
-  </ul>
-</section>
-
-<section id="tools">
-  <h2>Tools Used</h2>
-  <ul>
-    <li>Microsoft Excel</li>
-    <li>Power BI</li>
-    <li>Tableau</li>
-    <li>MySQL</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Data & Cleaning Process</h2>
-  <p><strong>Data Sources:</strong> 4 Excel files: category, location, creator, project</p>
-  <p><strong>Data Cleaning Steps (Power Query):</strong></p>
-  <ul>
-    <li>Imported all files</li>
-    <li>Removed duplicates</li>
-    <li>Sorted and cleaned columns</li>
-    <li>Formatted dates and text properly</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Data Modeling</h2>
-  <p>Created relationships between datasets to prepare a data model for analysis.</p>
-  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/modelingp.png" class="dashboard-image" alt="Crowdfunding Data Model">
-</section>
-
-<section>
-  <h2>Key Insights</h2>
-  <ul>
-    <li>Total Projects: 366,000</li>
-    <li>Total Backers: 366,000</li>
-    <li>Total Amount Raised: $16,041M</li>
-    <li>Average Project Duration: 79 days</li>
-    <li>Projects by Outcome: 169</li>
-  </ul>
+  <p>Crowdfunding is a way of raising money where many people contribute small amounts.</p>
 </section>
 
 <section id="excel">
   <h2>Excel Dashboard</h2>
-  <ul>
-    <li>Created calendar table using date/time functions</li>
-    <li>Applied formulas like SUM, COUNT, AVERAGE, SUMIF, IF</li>
-    <li>Built KPIs and charts for analysis</li>
-  </ul>
-  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardE.png" class="dashboard-image" alt="Crowdfunding Excel Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardE.png" class="dashboard-image">
 </section>
 
 <section id="powerbi">
   <h2>Power BI Dashboard</h2>
-  <ul>
-    <li>Imported Excel files into Power BI using Power Query</li>
-    <li>Used DAX functions: COUNT, SUM, DIVIDE, etc.</li>
-    <li>Converted epoch dates to readable dates</li>
-    <li>Created calculated columns and custom KPIs</li>
-    <li>Designed interactive visuals and dashboards</li>
-  </ul>
-  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardp.png" class="dashboard-image" alt="Crowdfunding Power BI Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardp.png" class="dashboard-image">
 </section>
 
 <section id="tableau">
   <h2>Tableau Dashboard</h2>
-  <ul>
-    <li>Converted CSV files to Excel</li>
-    <li>Imported all data into Tableau</li>
-    <li>Built relationships between data sources</li>
-    <li>Created measures using LOD expressions</li>
-    <li>Developed interactive dashboards</li>
-  </ul>
-  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardT.png" class="dashboard-image" alt="Crowdfunding Tableau Dashboard">
+  <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardT.png" class="dashboard-image">
 </section>
 
 <section id="sql">
-  <h2>SQL Analysis (MySQL)</h2>
-  <p>Functions Used: FROM_UNIXTIME(), DATE(), YEAR(), MONTHNAME(), QUARTER(), WEEKDAY(), DAYNAME(), CASE, CONCAT(), COUNT(), DISTINCT, SUM(), ROUND(), AVG(), DATEDIFF(), GROUP BY, ORDER BY, WHERE, subqueries</p>
-  <p>Sample Queries:</p>
-  <ul>
-    <li>Total number of projects: <code>SELECT COUNT(projectid) AS total_projects FROM projects;</code></li>
-    <li>Projects per year: <code>SELECT YEAR(FROM_UNIXTIME(created_at)) AS year, COUNT(*) AS total FROM projects GROUP BY year;</code></li>
-    <li>Projects per month: <code>SELECT MONTH(FROM_UNIXTIME(created_at)) AS month, COUNT(*) AS total FROM projects GROUP BY month;</code></li>
-    <li>Epoch dates converted to human-readable and calendar table creation included</li>
-	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1090).png" class="dashboard-image" alt="sql_image">
-	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1091).png" class="dashboard-image" alt="sql_image">
-
-	<img src="https:https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1093).png" class="dashboard-image" alt="sql_image">
-
-	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1094).png" class="dashboard-image" alt="sql_image">
-
-	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1095).png" class="dashboard-image" alt="sql_image">
-
-	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1096).png" class="dashboard-image" alt="sql_image">
-
-	<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1097).png" class="dashboard-image" alt="sql_image">
-
-  </ul>
+  <h2>SQL Analysis</h2>
+  <p>Used COUNT, SUM, GROUP BY, etc.</p>
 </section>
 
+<a href="https://github.com/Tyaswanth9/Crowd-funding-project.git">View Full Project</a>
+
+</div>
+
+<!-- PPT SLIDER -->
 <section>
-  <h2>Conclusion</h2>
-  <ul>
-    <li>High percentage of projects were successful overall</li>
-    <li>2015 had the highest total amount raised</li>
-    <li>Average duration of projects reduced in 2015</li>
-    <li>Film & Video top successful category every year</li>
-    <li>Design was second-most successful</li>
-    <li>Failed projects slightly outnumbered successful ones in most years</li>
-  </ul>
-</section>
+  <h2 style="text-align:center;">Project Presentation</h2>
 
-<section>
-  <h2>Reflection</h2>
-  <p>During this project, I improved my skills in:</p>
-  <ul>
-    <li>Excel: Formulas, dashboards, calendar tables</li>
-    <li>Power BI: DAX, Power Query, data modeling, interactive visuals</li>
-    <li>Tableau: LOD expressions, data connections, dashboards</li>
-    <li>MySQL: Querying, filtering, data aggregation</li>
-  </ul>
-  <p>This project helped me understand end-to-end data handling and dashboard creation.</p>
-</section>
-	<a href="https://github.com/Tyaswanth9/Crowd-funding-project.git" > View Full Project on github</a>
-</div> <!-- END CONTAINER -->
-
-	
-<!-- ========================= -->
-<!-- PREMIUM PPT SLIDER -->
-<!-- ========================= -->
-<section class="ppt-premium">
-
-  <h2 class="ppt-title">Project Presentation</h2>
-
-  <div class="ppt-container" id="pptPremium">
-
+  <div class="ppt-container">
     <div class="ppt-slide active">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71">
-      <div class="ppt-caption">Overview of Crowdfunding Data</div>
+      <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/modelingp.png">
     </div>
 
     <div class="ppt-slide">
-      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0">
-      <div class="ppt-caption">Dashboard Insights</div>
+      <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardE.png">
     </div>
 
-    <div class="ppt-slide">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-      <div class="ppt-caption">Final Analysis & Results</div>
-    </div>
-
-    <!-- Arrows -->
     <div class="ppt-btn left" onclick="pptPrev()">❮</div>
     <div class="ppt-btn right" onclick="pptNext()">❯</div>
-
-    <!-- Dots -->
-    <div class="ppt-dots" id="pptPremiumDots"></div>
-
   </div>
-
 </section>
+
+<!-- FOOTER -->
 <footer>
-  @2026 Data Analyst Portfolio 
-</footer>
+  © 2026 Data Analyst Portfolio
 </footer>
 
+<!-- JAVASCRIPT -->
 <script>
-<!------- image slider below the title name ----------------->
-	
+
+/* HERO SLIDER */
 let slides = document.querySelectorAll(".hero-slider img");
-let dotsContainer = document.getElementById("dots");
-let index = 0;
-let interval;
+let i = 0;
 
-/* Create dots */
-slides.forEach((_, i) => {
-  let dot = document.createElement("span");
-  dot.classList.add("dot");
-  dot.onclick = () => showSlide(i);
-  dotsContainer.appendChild(dot);
-});
-
-let dots = document.querySelectorAll(".dot");
-
-/* Show slide */
-function showSlide(i) {
-  slides.forEach(s => s.classList.remove("active"));
-  dots.forEach(d => d.classList.remove("active"));
-
-  slides[i].classList.add("active");
-  dots[i].classList.add("active");
-
-  index = i;
-}
-
-/* Next / Prev */
 function nextSlide() {
-  index = (index + 1) % slides.length;
-  showSlide(index);
+  slides[i].classList.remove("active");
+  i = (i + 1) % slides.length;
+  slides[i].classList.add("active");
 }
 
 function prevSlide() {
-  index = (index - 1 + slides.length) % slides.length;
-  showSlide(index);
+  slides[i].classList.remove("active");
+  i = (i - 1 + slides.length) % slides.length;
+  slides[i].classList.add("active");
 }
 
-/* Auto play */
-function startSlider() {
-  interval = setInterval(nextSlide, 2000);
-}
+setInterval(nextSlide, 2000);
 
-function stopSlider() {
-  clearInterval(interval);
-}
-
-/* Init */
-showSlide(0);
-startSlider();
-
-/* Hover pause */
-let slider = document.getElementById("slider");
-slider.addEventListener("mouseenter", stopSlider);
-slider.addEventListener("mouseleave", startSlider);
-
-
-
-
-/* ========================= */
-/* MOBILE SWIPE SUPPORT */
-/* ========================= */
-
-let startX = 0;
-let endX = 0;
-
-slider.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-});
-
-slider.addEventListener("touchend", (e) => {
-  endX = e.changedTouches[0].clientX;
-  handleSwipe();
-});
-
-function handleSwipe() {
-  let diff = startX - endX;
-
-  if (diff > 50) {
-    nextSlide(); // swipe left
-  } else if (diff < -50) {
-    prevSlide(); // swipe right
-  }
-}
-
-<script>
+/* PPT SLIDER */
 let pptSlides = document.querySelectorAll(".ppt-slide");
-let pptDotsContainer = document.getElementById("pptPremiumDots");
-let pptIndex = 0;
-let pptInterval;
+let j = 0;
 
-/* Create dots */
-pptSlides.forEach((_, i) => {
-  let dot = document.createElement("span");
-  dot.classList.add("ppt-dot");
-  dot.onclick = () => pptShow(i);
-  pptDotsContainer.appendChild(dot);
-});
-
-let pptDots = document.querySelectorAll(".ppt-dot");
-
-/* Show slide */
-function pptShow(i) {
-  pptSlides.forEach(s => s.classList.remove("active"));
-  pptDots.forEach(d => d.classList.remove("active"));
-
-  pptSlides[i].classList.add("active");
-  pptDots[i].classList.add("active");
-
-  pptIndex = i;
-}
-
-/* Next/Prev */
 function pptNext() {
-  pptIndex = (pptIndex + 1) % pptSlides.length;
-  pptShow(pptIndex);
+  pptSlides[j].classList.remove("active");
+  j = (j + 1) % pptSlides.length;
+  pptSlides[j].classList.add("active");
 }
 
 function pptPrev() {
-  pptIndex = (pptIndex - 1 + pptSlides.length) % pptSlides.length;
-  pptShow(pptIndex);
+  pptSlides[j].classList.remove("active");
+  j = (j - 1 + pptSlides.length) % pptSlides.length;
+  pptSlides[j].classList.add("active");
 }
 
-/* Auto play */
-function startPPT() {
-  pptInterval = setInterval(pptNext, 2000);
-}
+setInterval(pptNext, 2000);
 
-function stopPPT() {
-  clearInterval(pptInterval);
-}
-
-/* Init */
-pptShow(0);
-startPPT();
-
-/* Hover pause */
-let ppt = document.getElementById("pptPremium");
-
-ppt.addEventListener("mouseenter", stopPPT);
-ppt.addEventListener("mouseleave", startPPT);
-
-/* Keyboard support */
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") pptNext();
-  if (e.key === "ArrowLeft") pptPrev();
-});
-
-/* Mobile swipe */
-let startX = 0;
-
-ppt.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
-
-ppt.addEventListener("touchend", e => {
-  let endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) pptNext();
-  if (endX - startX > 50) pptPrev();
-});
-</script>	
 </script>
 
-</body>
-</html>
 </body>
 </html>
