@@ -510,24 +510,25 @@ footer {
   }
 
 /* =========================================================
-   LANDING PAGE (FIXED FINAL)
+   LANDING PAGE (SEPARATE CSS)
    ========================================================= */
 
-body.landing-active {
+/* LOCK SCROLL DURING LANDING */
+body {
   overflow: hidden;
 }
 
+/* MAIN CONTAINER */
 #landing-page {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
 
   width: 100vw;
   height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  display: grid;
+  place-items: center;
 
   background: linear-gradient(135deg, #ff2a2a, #b30000);
 
@@ -535,12 +536,21 @@ body.landing-active {
   overflow: hidden;
 }
 
+/* TEXT */
 #landing-text {
   text-align: center;
   color: #fff;
   font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 2px;
+
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #ff4d4d,
+    0 0 20px #ff1a1a,
+    0 0 30px #ff0000;
 }
 
+/* CURSOR */
 #cursor {
   position: fixed;
   width: 120px;
@@ -552,6 +562,7 @@ body.landing-active {
   z-index: 10000;
 }
 
+/* OVERLAY */
 #overlay {
   position: absolute;
   inset: 0;
@@ -560,64 +571,32 @@ body.landing-active {
   transition: opacity 0.6s ease;
 }
 
-@media (max-width: 768px) {
-  #cursor {
-    display: none;
-  }
-}
-/* =========================
-   GLOW TEXT EFFECT
-   ========================= */
-#landing-text span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(40px);
-
-  color: #fff;
-
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #ff4d4d,
-    0 0 20px #ff1a1a,
-    0 0 40px #ff0000;
-
-  animation: riseGlow 0.6s forwards;
-}
-
-@keyframes riseGlow {
+/* LETTER ANIMATION */
+@keyframes rise {
   to {
     opacity: 1;
     transform: translateY(0);
-
-    text-shadow:
-      0 0 10px #fff,
-      0 0 20px #ff4d4d,
-      0 0 40px #ff1a1a,
-      0 0 60px #ff0000;
   }
 }
 
-/* =========================
-   FIREWORK PARTICLES
-   ========================= */
+/* FIREWORK */
 .firework {
-  position: fixed;
+  position: absolute;
   width: 4px;
   height: 4px;
   background: white;
   border-radius: 50%;
-  pointer-events: none;
-
   animation: explode 1s ease-out forwards;
 }
 
 @keyframes explode {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.5) translate(var(--dx), var(--dy));
-    opacity: 0;
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1.5) translate(var(--dx), var(--dy)); opacity: 0; }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  #cursor {
+    display: none;
   }
 }
