@@ -465,7 +465,6 @@ footer {
 
   text-decoration: none;
   color: #ffffff;
-
   transition: all 0.3s ease;
 }
 
@@ -473,7 +472,7 @@ footer {
 .footer-icons img {
   width: 16px;
   height: 16px;
-   color: #ffffff;
+  filter: invert(1) brightness(2);   
 }
 
 /* Hover Effects */
