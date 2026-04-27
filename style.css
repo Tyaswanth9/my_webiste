@@ -648,21 +648,11 @@ footer {
   .footer-icons a {
     justify-content: center;
   }
+   
 <!====== icon background color white=======>
-.footer-icons img {
+   
   .footer-icons img {
-  width: 16px;
-  height: 16px;
-
+  
   background-color: #ffffff;
-
-  -webkit-mask-size: cover;
-  -webkit-mask-repeat: no-repeat;
-
-  mask-size: cover;
-  mask-repeat: no-repeat;
-}
-
-}
 
 }
