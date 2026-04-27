@@ -1,75 +1,83 @@
 /* =========================================================
-   LANDING PAGE 3D PARTICLES (RESPONSIVE)
+   LANDING PAGE (CENTER + TIMING FIX)
    ========================================================= */
 
-/* =========================
-   DEVICE DETECTION
-   ========================= */
-const isMobile = window.innerWidth <= 768;
-const isTablet = window.innerWidth <= 1024;
+document.addEventListener("DOMContentLoaded", function () {
 
-/* =========================
-   PERFORMANCE SETTINGS
-   ========================= */
-const particleCount = isMobile ? 8 : isTablet ? 14 : 24;
-const depthRange   = isMobile ? 80 : isTablet ? 150 : 260;
-const fireSpeed    = isMobile ? 700 : isTablet ? 500 : 350;
+  const isMobile = window.innerWidth <= 768;
 
-/* =========================
-   FIREWORK FUNCTION
-   ========================= */
-function createFirework() {
+  const container = document.getElementById("landing-text");
+  const cursor = document.getElementById("cursor");
+  const overlay = document.getElementById("overlay");
+  const landingPage = document.getElementById("landing-page");
 
-  const x = Math.random() * window.innerWidth;
-  const y = Math.random() * window.innerHeight * 0.6;
+  if (!container) return;
 
-  for (let i = 0; i < particleCount; i++) {
+  /* TEXT LINES */
+  const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
 
-    const fw = document.createElement("div");
-    fw.className = "firework";
+  let delay = 0;
 
-    fw.style.left = x + "px";
-    fw.style.top  = y + "px";
+  lines.forEach(line => {
 
-    /* ANGLE + DISTANCE */
-    const angle = Math.random() * 2 * Math.PI;
-    const distance = 50 + Math.random() * 80;
+    const div = document.createElement("div");
 
-    const dx = distance * Math.cos(angle);
-    const dy = distance * Math.sin(angle);
+    line.split("").forEach(char => {
 
-    fw.style.setProperty("--dx", dx + "px");
-    fw.style.setProperty("--dy", dy + "px");
+      const span = document.createElement("span");
 
-    /* 3D DEPTH */
-    const dz = (Math.random() * depthRange - depthRange / 2);
-    fw.style.setProperty("--dz", dz + "px");
+      span.innerText = char;
 
-    document.body.appendChild(fw);
+      span.style.display = "inline-block";
+      span.style.opacity = 0;
+      span.style.transform = "translateY(40px)";
+      span.style.color = "#fff";
 
-    /* REMOVE PARTICLE */
-    setTimeout(() => {
-      fw.remove();
-    }, 1000);
-  }
-}
+      span.style.animation = "rise 0.6s forwards";
+      span.style.animationDelay = delay + "s";
 
-/* =========================
-   START ANIMATION
-   ========================= */
-const fireworkInterval = setInterval(createFirework, fireSpeed);
+      delay += isMobile ? 0.04 : 0.07;
 
-/* =========================
-   CURSOR EFFECT (DESKTOP)
-   ========================= */
-const cursor = document.getElementById("cursor");
+      div.appendChild(span);
 
-if (!isMobile && cursor) {
-  document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top  = e.clientY + "px";
+    });
+
+    container.appendChild(div);
+
   });
-}
+
+  /* KEYFRAMES */
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  /* CURSOR FOLLOW */
+  if (!isMobile && cursor) {
+    document.addEventListener("mousemove", e => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+  }
+
+  /* EXIT TIMING (PROFESSIONAL) */
+  setTimeout(() => {
+
+    if (overlay) overlay.style.opacity = 1;
+
+    setTimeout(() => {
+      if (landingPage) landingPage.style.display = "none";
+    }, 600);
+
+  }, 1800); //  PERFECT TIME (1.8s)
+
+});
   
 /* ========================= */
 /* PROJECT CLICK LOADER */
