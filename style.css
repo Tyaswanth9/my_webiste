@@ -647,7 +647,7 @@ footer {
 
   .footer-icons a {
     justify-content: center;
-      color: #ffffff;
+     filter: brightness(0) invert(1);
   }
 
 }
