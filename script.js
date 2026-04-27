@@ -1,27 +1,19 @@
+
 document.addEventListener("DOMContentLoaded", () => {
 
-/* =========================
-   ELEMENTS
-   ========================= */
 const landingPage = document.getElementById("landing-page");
 const overlay = document.getElementById("overlay");
 const container = document.getElementById("landing-text");
 const cursor = document.getElementById("cursor");
 
-/* safety check */
-if (!landingPage || !container) return;
-
-/* =========================
-   TEXT CONTENT
-   ========================= */
 const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
 let index = 0;
-
-container.innerHTML = "";
 
 /* =========================
    TEXT ANIMATION
    ========================= */
+container.innerHTML = "";
+
 lines.forEach(line => {
   const div = document.createElement("div");
 
@@ -29,6 +21,10 @@ lines.forEach(line => {
     const span = document.createElement("span");
 
     span.innerText = char;
+    span.style.display = "inline-block";
+    span.style.opacity = 0;
+    span.style.transform = "translateY(40px)";
+    span.style.animation = "rise 0.6s forwards";
     span.style.animationDelay = (index * 0.08) + "s";
 
     div.appendChild(span);
@@ -39,27 +35,41 @@ lines.forEach(line => {
 });
 
 /* =========================
-   FIREWORK FUNCTION
+   KEYFRAME
+   ========================= */
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff4d4d;
+  }
+}
+`;
+document.head.appendChild(style);
+
+/* =========================
+   FIREWORKS
    ========================= */
 function createFirework() {
-
-  const count = window.innerWidth < 768 ? 8 : 15;
+  const count = 12;
 
   const x = Math.random() * window.innerWidth;
   const y = Math.random() * window.innerHeight * 0.5;
 
   for (let i = 0; i < count; i++) {
     const fw = document.createElement("div");
-
     fw.className = "firework";
+
     fw.style.left = x + "px";
     fw.style.top = y + "px";
 
-    const angle = Math.random() * 2 * Math.PI;
-    const distance = 40 + Math.random() * 50;
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 50 + Math.random() * 50;
 
-    fw.style.setProperty("--dx", distance * Math.cos(angle) + "px");
-    fw.style.setProperty("--dy", distance * Math.sin(angle) + "px");
+    fw.style.setProperty("--dx", Math.cos(angle) * distance + "px");
+    fw.style.setProperty("--dy", Math.sin(angle) * distance + "px");
 
     document.body.appendChild(fw);
 
@@ -67,13 +77,12 @@ function createFirework() {
   }
 }
 
-/* FIREWORK LOOP */
 const fireworkInterval = setInterval(createFirework, 400);
 
 /* =========================
-   CURSOR GLOW (DESKTOP ONLY)
+   CURSOR
    ========================= */
-if (window.innerWidth > 768 && cursor) {
+if (cursor) {
   document.addEventListener("mousemove", e => {
     cursor.style.left = e.clientX + "px";
     cursor.style.top = e.clientY + "px";
@@ -81,41 +90,33 @@ if (window.innerWidth > 768 && cursor) {
 }
 
 /* =========================
-   EXIT LANDING PAGE
+   EXIT LANDING
    ========================= */
-const displayTime = 2300;
-
 setTimeout(() => {
 
   clearInterval(fireworkInterval);
 
-  if (overlay) overlay.style.opacity = "1";
+  overlay.style.opacity = "1";
 
   setTimeout(() => {
 
-    /* FIX: disable interaction BEFORE fade */
     landingPage.style.pointerEvents = "none";
-
     landingPage.style.opacity = "0";
-    landingPage.style.transition = "opacity 0.5s ease";
+    landingPage.style.transition = "0.6s ease";
 
     setTimeout(() => {
-
       landingPage.style.display = "none";
 
-      /* FIX: properly restore scroll */
       document.body.classList.remove("landing-active");
       document.body.style.overflow = "";
 
-    }, 500);
+    }, 600);
 
   }, 500);
 
-}, displayTime);
+}, 3000);
 
 });
-
-
 /* =========================================
    TYPEWRITER EFFECT (LOOP) (name and skills)
    ========================================= */
