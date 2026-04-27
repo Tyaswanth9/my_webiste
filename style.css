@@ -671,19 +671,9 @@ nav .logo {
     justify-content: center;
   }
 }
+<!----- footer design-------------->
   /* Footer */
-  .footer-icons {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-left,
-  .footer-center,
-  .footer-right {
-    align-items: center;
-  }
-
-/* =========================================================
+  /* =========================================================
    MOBILE FIX (MIN 2 COLUMNS)
    ========================================================= */
 @media (max-width: 768px) {
