@@ -510,25 +510,26 @@ footer {
   }
 
 /* =========================================================
-   LANDING PAGE (SEPARATE CSS)
+   LANDING PAGE (FIXED)
    ========================================================= */
 
 /* LOCK SCROLL DURING LANDING */
-body {
+body.landing-active {
   overflow: hidden;
 }
 
 /* MAIN CONTAINER */
 #landing-page {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
 
   width: 100vw;
   height: 100vh;
 
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   background: linear-gradient(135deg, #ff2a2a, #b30000);
 
@@ -594,9 +595,13 @@ body {
   100% { transform: scale(1.5) translate(var(--dx), var(--dy)); opacity: 0; }
 }
 
-/* MOBILE */
+/* =========================================================
+   MOBILE FIX
+   ========================================================= */
 @media (max-width: 768px) {
+
   #cursor {
     display: none;
   }
+
 }
