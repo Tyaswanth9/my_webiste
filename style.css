@@ -473,6 +473,7 @@ footer {
 .footer-icons img {
   width: 16px;
   height: 16px;
+   color: #ffffff;
 }
 
 /* Hover Effects */
@@ -486,6 +487,28 @@ footer {
   font-size: 13px;
   opacity: 0.9;
 }
+
+/* =========================================================
+   MOBILE FIX (MIN 2 COLUMNS)
+   ========================================================= */
+@media (max-width: 768px) {
+
+  .footer-icons {
+    grid-template-columns: repeat(2, 1fr); /*  2 columns */
+    gap: 20px;
+    text-align: center;
+    
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    align-items: center; /* center all items */
+  }
+
+  .footer-icons a {
+    justify-content: center;
+  }
 
 
 /* =========================================================
@@ -627,31 +650,9 @@ footer {
 /* Footer design section */
 /* ========================= */
   /* Footer */
-  /* =========================================================
-   MOBILE FIX (MIN 2 COLUMNS)
-   ========================================================= */
-@media (max-width: 768px) {
-
-  .footer-icons {
-    grid-template-columns: repeat(2, 1fr); /*  2 columns */
-    gap: 20px;
-    text-align: center;
-    
-  }
-
-  .footer-left,
-  .footer-center,
-  .footer-right {
-    align-items: center; /* center all items */
-  }
-
-  .footer-icons a {
-    justify-content: center;
-  }
+  
    
 <!====== icon background color white=======>
    
-  .footer-icons img {
-  filter: invert(1);
-}
+  
 
