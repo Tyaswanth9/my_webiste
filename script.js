@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 /* =========================
    ELEMENTS
    ========================= */
@@ -5,6 +7,9 @@ const landingPage = document.getElementById("landing-page");
 const overlay = document.getElementById("overlay");
 const container = document.getElementById("landing-text");
 const cursor = document.getElementById("cursor");
+
+/* safety check */
+if (!landingPage || !container) return;
 
 /* =========================
    TEXT CONTENT
@@ -15,7 +20,7 @@ let index = 0;
 container.innerHTML = "";
 
 /* =========================
-   TEXT ANIMATION (GLOW)
+   TEXT ANIMATION
    ========================= */
 lines.forEach(line => {
   const div = document.createElement("div");
@@ -88,20 +93,27 @@ setTimeout(() => {
 
   setTimeout(() => {
 
+    /* FIX: disable interaction BEFORE fade */
+    landingPage.style.pointerEvents = "none";
+
     landingPage.style.opacity = "0";
     landingPage.style.transition = "opacity 0.5s ease";
 
     setTimeout(() => {
+
       landingPage.style.display = "none";
 
-      // restore scroll
-      document.body.style.overflow = "auto";
+      /* FIX: properly restore scroll */
+      document.body.classList.remove("landing-active");
+      document.body.style.overflow = "";
 
     }, 500);
 
   }, 500);
 
 }, displayTime);
+
+});
 
 
 /* =========================================
