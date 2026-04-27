@@ -652,7 +652,6 @@ footer {
 <!====== icon background color white=======>
    
   .footer-icons img {
-  
-  background-color: #ffffff;
-
+  filter: invert(1);
 }
+
