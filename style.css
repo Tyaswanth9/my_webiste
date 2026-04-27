@@ -509,23 +509,26 @@ footer {
     justify-content: center;
   }
 
-
 /* =========================================================
-   LANDING PAGE (RESPONSIVE + CENTER FIX)
+   LANDING PAGE (FINAL PRO VERSION - WINDOWS FIXED)
    ========================================================= */
 
+/* LOCK SCROLL DURING LANDING */
+body {
+  overflow: hidden;
+}
+
+/* MAIN LANDING CONTAINER */
 #landing-page {
   position: fixed;
   top: 0;
   left: 0;
 
-  width: 100%;
-  height: 100vh; /* FIX for Windows */
+  width: 100vw;
+  height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  display: grid;              /* 🔥 PRO TIP */
+  place-items: center;        /* 🔥 PERFECT CENTER */
 
   text-align: center;
 
@@ -535,16 +538,21 @@ footer {
   z-index: 9999;
 }
 
-/* TEXT */
+/* TEXT CONTAINER */
 #landing-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 90vw;
+
   font-size: clamp(2rem, 5vw, 3rem);
   color: #ffffff;
   letter-spacing: 2px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* FIX CENTER */
-  justify-content: center;
+  margin: 0 auto;
 
   text-shadow:
     0 0 5px #fff,
@@ -553,7 +561,7 @@ footer {
     0 0 30px #ff0000;
 }
 
-/* CURSOR */
+/* CURSOR GLOW */
 #cursor {
   position: fixed;
   width: 120px;
@@ -565,41 +573,21 @@ footer {
   z-index: 10000;
 }
 
-/* OVERLAY */
+/* OVERLAY FADE */
 #overlay {
   position: absolute;
   inset: 0;
   background: #000;
   opacity: 0;
   transition: opacity 0.6s ease;
-  z-index: 2;
 }
 
-/* BACKGROUND EFFECT */
-#landing-page::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent),
-              radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1), transparent);
-
-  animation: bgMove 6s linear infinite;
-  z-index: 0;
-}
-
-/* KEEP TEXT ABOVE */
-#landing-text,
-#cursor {
-  position: relative;
-  z-index: 3;
-}
-
-/* ANIMATION */
-@keyframes bgMove {
-  0%   { transform: translate(0, 0); }
-  50%  { transform: translate(-20px, -20px); }
-  100% { transform: translate(0, 0); }
+/* LETTER ANIMATION */
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* MOBILE FIX */
