@@ -1,5 +1,5 @@
 /* =========================================================
-   LANDING PAGE (CENTER + TIMING FIX)
+   LANDING PAGE (FINAL WORKING VERSION)
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -27,11 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const span = document.createElement("span");
 
       span.innerText = char;
-
       span.style.display = "inline-block";
       span.style.opacity = 0;
       span.style.transform = "translateY(40px)";
-      span.style.color = "#fff";
 
       span.style.animation = "rise 0.6s forwards";
       span.style.animationDelay = delay + "s";
@@ -46,19 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
-  /* KEYFRAMES */
-  const style = document.createElement("style");
-  style.innerHTML = `
-    @keyframes rise {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  `;
-  document.head.appendChild(style);
-
-  /* CURSOR FOLLOW */
+  /* CURSOR FOLLOW (DESKTOP ONLY) */
   if (!isMobile && cursor) {
     document.addEventListener("mousemove", e => {
       cursor.style.left = e.clientX + "px";
@@ -66,16 +52,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* EXIT TIMING (PROFESSIONAL) */
+  /* EXIT AFTER 1.8s (PRO TIMING) */
   setTimeout(() => {
 
     if (overlay) overlay.style.opacity = 1;
 
     setTimeout(() => {
       if (landingPage) landingPage.style.display = "none";
+
+      /*  IMPORTANT: ENABLE SCROLL AGAIN */
+      document.body.style.overflow = "auto";
+
     }, 600);
 
-  }, 1800); //  PERFECT TIME (1.8s)
+  }, 1800);
 
 });
   
@@ -157,7 +147,7 @@ function startTypingLoop() {
         titleElement.innerHTML = "";
         skillsElement.innerHTML = "";
 
-        startTypingLoop(); // 🔁 LOOP AGAIN
+        startTypingLoop(); //  LOOP AGAIN
 
       }, pauseDuration);
 
