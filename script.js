@@ -331,26 +331,16 @@ if (statsSection) {
    SKILLS ANIMATION (SCROLL REVEAL) (between the skills and project section)
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+/* =========================================================
+   SPHERE TOUCH CONTROL (MOBILE FRIENDLY)
+   ========================================================= */
 
-  const skillCards = document.querySelectorAll(".skill-card");
+const sphere = document.querySelector(".sphere");
 
-  /* INTERSECTION OBSERVER FOR SCROLL EFFECT */
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+let rotateX = 10;
+let rotateY = 0;
 
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      }
-
-    });
-  }, {
-    threshold: 0.2
-  });
-
-  /* OBSERVE EACH CARD */
-  skillCards.forEach(card => {
-    observer.observe(card);
-  });
-
+document.addEventListener("mousemove", (e) => {
+  rotateY = (e.clientX / window.innerWidth) * 360;
+  sphere.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
 });
