@@ -226,69 +226,69 @@ window.addEventListener("load", () => {
    COUNTER + SCROLL ANIMATION (STATS SECTION)
    ========================================================= */
 
+/* =========================================
+   COUNTER + SCROLL ANIMATION (RUN ON SCROLL)
+   ========================================= */
+
 const counters = document.querySelectorAll(".counter");
 const boxes = document.querySelectorAll(".stat-box");
 
-let isVisible = false;
-let loopTimeout;
+let hasAnimated = false;
 
-/* RUN ANIMATION */
-function runAnimation() {
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
 
-  boxes.forEach((box, i) => {
+    if (entry.isIntersecting && !hasAnimated) {
 
-    setTimeout(() => {
-      box.classList.add("show");
-    }, i * 150);
-  });
+      hasAnimated = true;
 
-  counters.forEach(counter => {
+      // SHOW BOXES
+      boxes.forEach((box, i) => {
+        setTimeout(() => {
+          box.classList.add("show");
+        }, i * 200);
+      });
 
-    const target = +counter.getAttribute("data-target");
-    const duration = +counter.getAttribute("data-speed");
+      // COUNTING
+      counters.forEach(counter => {
 
-    let start = 0;
-    const increment = target / duration;
+        const target = +counter.getAttribute("data-target");
+        const speed = +counter.getAttribute("data-speed");
 
-    function updateCount() {
+        let count = 0;
 
-      start += increment;
+        const update = () => {
+          const increment = target / speed;
 
-      if (start < target) {
+          if (count < target) {
+            count += increment;
+            counter.innerText = Math.ceil(count);
+            setTimeout(update, 30);
+          } else {
+            counter.innerText = target + "+";
+          }
+        };
 
-        counter.innerText = Math.ceil(start);
-        requestAnimationFrame(updateCount);
-
-      } else {
-
-        counter.innerText = target + "+";
-      }
+        update();
+      });
     }
 
-    updateCount();
+    // RESET WHEN LEAVING
+    if (!entry.isIntersecting) {
+
+      hasAnimated = false;
+
+      counters.forEach(counter => {
+        counter.innerText = "0";
+      });
+
+      boxes.forEach(box => {
+        box.classList.remove("show");
+      });
+
+    }
+
   });
+}, { threshold: 0.5 });
 
-  /* LOOP RESET */
-  loopTimeout = setTimeout(() => {
-
-    if (!isVisible) return;
-
-    resetAnimation();
-    runAnimation();
-
-  }, 2500);
-}
-
-/* RESET ANIMATION */
-function resetAnimation() {
-
-  counters.forEach(counter => {
-    counter.innerText = "0";
-  });
-
-  boxes.forEach(box => {
-    box.classList.remove("show");
-  });
-}
-
-
+observer.observe(document.getElementById("stats"));
