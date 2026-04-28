@@ -342,4 +342,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+/* ============================================
+   SCROLL ANIMATION (LOOP)
+============================================ */
+
+const cards = document.querySelectorAll(".skills3d-card");
+
+function showOnScroll() {
+  const triggerBottom = window.innerHeight * 0.85;
+
+  cards.forEach(card => {
+    const cardTop = card.getBoundingClientRect().top;
+
+    if (cardTop < triggerBottom) {
+      card.classList.add("show");
+    } else {
+      card.classList.remove("show"); // loop animation
+    }
+  });
+}
+
+window.addEventListener("scroll", showOnScroll);
+
+
+/* ============================================
+   MOUSE MOVE FLOAT EFFECT
+============================================ */
+
+document.addEventListener("mousemove", (e) => {
+  const x = (window.innerWidth / 2 - e.clientX) / 25;
+  const y = (window.innerHeight / 2 - e.clientY) / 25;
+
+  cards.forEach(card => {
+    card.style.transform = translate(${x}px, ${y}px);
+  });
+});
+
+
+
 
