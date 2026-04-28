@@ -286,6 +286,32 @@ section h2 {
   }
 }
 
+/* =========================================================
+   EXPERIENCE SECTION
+   ========================================================= */
+.exp-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.exp-card {
+  background: var(--card);
+  padding: 25px;
+  border-radius: 10px;
+
+  text-align: center;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+.exp-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+
 
 /* =========================================================
    SKILLS SECTION
