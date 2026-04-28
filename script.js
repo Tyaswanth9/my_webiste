@@ -227,7 +227,7 @@ window.addEventListener("load", () => {
    ========================================================= */
 
 /* =========================================
-   COUNTER + SCROLL ANIMATION (RUN ON SCROLL)
+   COUNTER + SCROLL ANIMATION (IMPROVED)
    ========================================= */
 
 const counters = document.querySelectorAll(".counter");
@@ -235,45 +235,50 @@ const boxes = document.querySelectorAll(".stat-box");
 
 let hasAnimated = false;
 
-const observer = new IntersectionObserver(entries => {
+/* =========================================
+   INTERSECTION OBSERVER
+   ========================================= */
+const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
 
+    /* RUN ONLY ONCE WHEN ENTER */
     if (entry.isIntersecting && !hasAnimated) {
 
       hasAnimated = true;
 
-      // SHOW BOXES
+      /* SHOW BOX ANIMATION (STAGGER EFFECT) */
       boxes.forEach((box, i) => {
         setTimeout(() => {
           box.classList.add("show");
-        }, i * 200);
+        }, i * 150);
       });
 
-      // COUNTING
+      /* START COUNTING */
       counters.forEach(counter => {
 
         const target = +counter.getAttribute("data-target");
-        const speed = +counter.getAttribute("data-speed");
+        const duration = +counter.getAttribute("data-speed"); // total steps
 
-        let count = 0;
+        let start = 0;
+        const increment = target / duration;
 
-        const update = () => {
-          const increment = target / speed;
+        /* SMOOTH COUNT USING requestAnimationFrame */
+        const updateCount = () => {
+          start += increment;
 
-          if (count < target) {
-            count += increment;
-            counter.innerText = Math.ceil(count);
-            setTimeout(update, 30);
+          if (start < target) {
+            counter.innerText = Math.ceil(start);
+            requestAnimationFrame(updateCount);
           } else {
             counter.innerText = target + "+";
           }
         };
 
-        update();
+        updateCount();
       });
     }
 
-    // RESET WHEN LEAVING
+    /* RESET WHEN LEAVING VIEW */
     if (!entry.isIntersecting) {
 
       hasAnimated = false;
@@ -285,10 +290,18 @@ const observer = new IntersectionObserver(entries => {
       boxes.forEach(box => {
         box.classList.remove("show");
       });
-
     }
 
   });
-}, { threshold: 0.5 });
+}, {
+  threshold: 0.5
+});
 
-observer.observe(document.getElementById("stats"));
+/* =========================================
+   START OBSERVER
+   ========================================= */
+const statsSection = document.getElementById("stats");
+
+if (statsSection) {
+  observer.observe(statsSection);
+}
