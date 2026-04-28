@@ -1,4 +1,4 @@
-/* ==========================================================
+/* =========================================================
    THEME VARIABLES
    ========================================================= */
 :root {
@@ -18,7 +18,6 @@
   }
 }
 
-
 /* =========================================================
    GLOBAL RESET
    ========================================================= */
@@ -34,7 +33,6 @@ body {
   overflow-x: hidden;
 }
 
-
 /* =========================================================
    BODY
    ========================================================= */
@@ -45,7 +43,6 @@ body {
   scroll-behavior: smooth;
 }
 
-
 /* =========================================================
    GLOBAL IMAGE SETTINGS
    ========================================================= */
@@ -55,12 +52,11 @@ img {
   display: block;
 }
 
-
 /* =========================================================
-   NAVBAR
+   NAVBAR (FIXED FOR ALL DEVICES)
    ========================================================= */
 nav {
-   color: #ffffff;
+  color: #ffffff;
   position: fixed;
   top: 0;
   width: 100%;
@@ -68,7 +64,7 @@ nav {
 
   display: flex;
   justify-content: space-between;
-  align-items: left;
+  align-items: center; /* FIXED */
 
   padding: 12px 6%;
   z-index: 1000;
@@ -94,10 +90,9 @@ nav {
   color: #ffffff;
   text-decoration: none;
   transition: 0.3s ease;
-   
 }
 
-<!----- links hover effects---->
+/* Hover effect */
 .nav-links a:hover {
   opacity: 0.8;
 }
@@ -126,9 +121,7 @@ nav {
   color: var(--primary);
 }
 
-/* =========================
-   TYPEWRITER CURSOR
-   ========================= */
+/* Typewriter cursor */
 .typing-cursor::after {
   content: "|";
   margin-left: 5px;
@@ -136,29 +129,26 @@ nav {
 }
 
 @keyframes blink {
-  0%   { opacity: 1; }
-  50%  { opacity: 0; }
+  0% { opacity: 1; }
+  50% { opacity: 0; }
   100% { opacity: 1; }
 }
 
 /* =========================================================
    PROFILE IMAGE
    ========================================================= */
-
-/* Wrapper to center image */
 .profile-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 50px;
 }
 
-/* Circular Profile Image */
 .profile-img {
   width: 250px;
   height: 250px;
 
-  border-radius: 50%;   /* Perfect circle */
-  object-fit: cover;    /* Prevent distortion */
+  border-radius: 50%;
+  object-fit: cover;
 
   border: 3px solid var(--primary);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -166,12 +156,10 @@ nav {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover Effect */
 .profile-img:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
-
 
 /* =========================================================
    COMMON SECTION STYLING
@@ -180,14 +168,12 @@ section {
   padding: 90px 8%;
 }
 
-/* Section Heading */
 section h2 {
   text-align: center;
   margin-bottom: 40px;
   font-size: 30px;
   color: var(--primary);
 }
-
 
 /* =========================================================
    SUMMARY SECTION
@@ -199,16 +185,9 @@ section h2 {
   line-height: 1.6;
 }
 
-/* ========================= */
-/* STATS SECTION */ (text animation projects and expriance)
-/* ========================= */
 /* =========================================================
-   STATS SECTION (FINAL RESPONSIVE)
+   STATS SECTION
    ========================================================= */
-
-/* ========================= */
-/* STATS SECTION */
-/* ========================= */
 #stats {
   background: var(--card);
   padding: 60px 10%;
@@ -225,14 +204,13 @@ section h2 {
 /* BOX */
 .stat-box {
   padding: 25px;
-  border-right: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 
   opacity: 0;
   transform: translateY(30px);
   transition: 0.6s ease;
 }
 
-/* REMOVE BORDER */
 .stat-box:last-child {
   border-right: none;
 }
@@ -269,7 +247,7 @@ section h2 {
 
   .stat-box {
     border-right: none;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .stat-box:last-child {
@@ -302,7 +280,6 @@ section h2 {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-
 /* =========================================================
    SKILLS SECTION
    ========================================================= */
@@ -327,7 +304,6 @@ section h2 {
   transform: translateY(-5px);
   border-bottom: 3px solid var(--primary);
 }
-
 
 /* =========================================================
    PROJECTS SECTION
@@ -357,14 +333,12 @@ section h2 {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* Project Image */
 .project-card img {
   width: 100%;
   height: 170px;
   object-fit: cover;
 }
 
-/* Project Content */
 .project-content {
   padding: 15px;
   text-align: center;
@@ -380,7 +354,6 @@ section h2 {
   margin-bottom: 10px;
 }
 
-/* Skills Tags */
 .project-skills {
   display: flex;
   flex-wrap: wrap;
@@ -396,7 +369,6 @@ section h2 {
   font-size: 12px;
   border-radius: 4px;
 }
-
 
 /* =========================================================
    PAGE LOADER
@@ -425,7 +397,6 @@ section h2 {
   pointer-events: all;
 }
 
-
 /* =========================================================
    FOOTER
    ========================================================= */
@@ -435,7 +406,6 @@ footer {
   padding: 25px 10%;
 }
 
-/* Footer Layout */
 .footer-icons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -443,7 +413,6 @@ footer {
   margin-bottom: 20px;
 }
 
-/* Left / Center / Right */
 .footer-left,
 .footer-center,
 .footer-right {
@@ -456,30 +425,25 @@ footer {
 .footer-center { align-items: center; }
 .footer-right { align-items: flex-end; }
 
-/* Footer Links */
 .footer-icons a {
   display: flex;
   align-items: center;
   gap: 8px;
-
   text-decoration: none;
   color: #ffffff;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
-/* Icons */
-.footer-icons img {
-  width: 16px;
-  height: 16px;
-  filter: invert(1) brightness(2);   
-}
-
-/* Hover Effects */
 .footer-icons a:hover {
   transform: translateY(-3px);
 }
 
-/* Copyright */
+.footer-icons img {
+  width: 16px;
+  height: 16px;
+  filter: invert(1);
+}
+
 .footer-copy {
   text-align: center;
   font-size: 13px;
@@ -487,31 +451,8 @@ footer {
 }
 
 /* =========================================================
-   MOBILE FIX (MIN 2 COLUMNS)
+   LANDING PAGE (FIXED FOR ALL DEVICES)
    ========================================================= */
-@media (max-width: 768px) {
-
-  .footer-icons {
-    grid-template-columns: repeat(2, 1fr); /*  2 columns */
-    gap: 20px;
-    text-align: center;
-    
-  }
-
-  .footer-left,
-  .footer-center,
-  .footer-right {
-    align-items: center; /* center all items */
-  }
-
-  .footer-icons a {
-    justify-content: center;
-  }
-
-
-/* ========================= */
-/* LANDING PAGE (PRO VERSION) */
-/* ========================= */
 #landing-page {
   position: fixed;
   inset: 0;
@@ -525,37 +466,20 @@ footer {
 
   text-align: center;
 
-  /* Smooth fade-in */
   animation: landingFade 1s ease forwards;
-
-  /* Slight upward visual balance */
-  transform: translateY(-30px);
 
   z-index: 9999;
 }
 
-/* ========================= */
-/* TEXT ANIMATION */
-/* ========================= */
 #landing-text {
   font-size: 3rem;
   letter-spacing: 2px;
   color: #ffffff;
 
-  /* Glow effect */
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #ff4d4d,
-    0 0 20px #ff1a1a,
-    0 0 30px #ff0000;
-
-  /* Smooth appearance */
-  animation: textFadeUp 1.2s ease forwards;
+  text-shadow: 0 0 10px #ff4d4d;
 }
 
-/* ========================= */
-/* CURSOR GLOW (if used) */
-/* ========================= */
+/* CURSOR */
 #cursor {
   position: fixed;
   width: 120px;
@@ -563,108 +487,71 @@ footer {
 
   background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
 
-  pointer-events: none;
   border-radius: 50%;
+  pointer-events: none;
 
   transform: translate(-50%, -50%);
-
   z-index: 10000;
 }
 
-/* ========================= */
-/* OVERLAY FADE */
-/* ========================= */
+/* OVERLAY FIXED */
 #overlay {
   position: fixed;
   inset: 0;
 
   background: #000;
+
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 
-  backdrop-filter: blur(8px);
-
-  transition: opacity 1s ease;
-
+  transition: 1s ease;
   z-index: 10001;
 }
 
-/* ========================= */
-/* BACKGROUND ANIMATION */
-/* ========================= */
-#landing-page::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent),
-              radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1), transparent);
-
-  animation: bgMove 6s linear infinite;
-
-  z-index: 0;
+#overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
-/* Keep content above effect */
-#landing-page * {
-  position: relative;
-  z-index: 1;
+/* FIREWORK */
+.firework {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+
+  animation: explode 1s ease-out forwards;
+  pointer-events: none;
+  z-index: 9999;
 }
 
-/* ========================= */
 /* KEYFRAMES */
-/* ========================= */
-
-/* Page Fade */
 @keyframes landingFade {
-  from {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes explode {
+  to {
+    transform: translate(var(--dx), var(--dy));
     opacity: 0;
   }
-  to {
-    opacity: 1;
-  }
 }
 
-/* Text Slide + Fade */
-@keyframes textFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Background Movement */
-@keyframes bgMove {
-  0% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(-20px, -20px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-/* ========================= */
-/* MOBILE OPTIMIZATION */
-/* ========================= */
+/* MOBILE */
 @media (max-width: 768px) {
 
   #landing-text {
     font-size: 1.8rem;
-    line-height: 1.4;
   }
 
   #cursor {
-    display: none; /* disable glow on mobile */
+    display: none;
   }
 
-  #landing-page {
-    transform: translateY(-10px);
-    padding: 20px;
+  .stats-container {
+    grid-template-columns: 1fr;
   }
 }
