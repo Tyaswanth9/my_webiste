@@ -167,53 +167,132 @@ footer {
 /* CUSTOM IMAGE SLIDER  after title the project*/ 
 /* ========================= */
 
-/* ========================= */
-/* ADVANCED SLIDER UI EFFECT */
-/* ========================= */
+/* =========================================================
+   FINAL PROFESSIONAL IMAGE SLIDER (16:9 + RESPONSIVE)
+   NO HTML CHANGES REQUIRED
+   ========================================================= */
 
-/* FRAME WITH GLOW */
+/* MAIN SLIDER CONTAINER */
 .slider-container {
-  border: 3px solid transparent;
-  background: linear-gradient(#000, #000) padding-box,
-              linear-gradient(135deg, #ff4d4d, #d62828, #ff7b00) border-box;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  width: 100%;
+  max-width: 900px;
+
+  /* PERFECT 16:9 RATIO */
+  aspect-ratio: 16 / 9;
+
+  margin: 50px auto;
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 16px;
+
+  /* CLEAN BACKGROUND */
+  background: #000;
+
+  /* DEPTH + PREMIUM LOOK */
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(255,255,255,0.05);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* HOVER LIFT EFFECT */
-.slider-container:hover {
-  transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+/* SLIDER TRACK */
+.slider-track {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
 }
 
-/* IMAGE SMOOTH ZOOM */
+/* IMAGE SLIDES */
 .slide {
-  transition: transform 0.6s ease;
+  min-width: 100%;
+  height: 100%;
+
+  /* IMPORTANT: KEEP ALL IMAGES SAME LOOK */
+  object-fit: cover;        /* fills frame */
+  object-position: center;  /* center image */
+
+  transition: transform 0.5s ease;
 }
 
+/* HOVER ZOOM EFFECT */
 .slider-container:hover .slide {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
-/* GLASS OVERLAY */
-.slider-container::after {
+/* SOFT BORDER FRAME */
+.slider-container::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(255,255,255,0.05),
-    rgba(255,255,255,0.15),
-    rgba(255,255,255,0.05)
-  );
+  border-radius: 16px;
+  border: 2px solid rgba(255,255,255,0.08);
   pointer-events: none;
 }
 
-/* DOTS IMPROVED */
+/* =========================
+   ARROW BUTTONS
+   ========================= */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 6px;
+
+  opacity: 0;
+  transition: 0.3s;
+}
+
+/* LEFT */
+.prev {
+  left: 10px;
+}
+
+/* RIGHT */
+.next {
+  right: 10px;
+}
+
+/* SHOW ON HOVER */
+.slider-container:hover .slider-btn {
+  opacity: 1;
+}
+
+/* BUTTON HOVER EFFECT */
+.slider-btn:hover {
+  background: #d62828;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* =========================
+   DOTS
+   ========================= */
+.dots-container {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
+}
+
 .dot {
+  display: inline-block;
   width: 12px;
   height: 12px;
-  transition: all 0.3s ease;
+  margin: 5px;
+  background: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .dot.active {
@@ -222,32 +301,34 @@ footer {
   box-shadow: 0 0 10px #d62828;
 }
 
-/* BUTTON HOVER */
-.slider-btn:hover {
-  background: #d62828;
-  transform: translateY(-50%) scale(1.1);
-}
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
 
-/* ========================= */
-/* RESPONSIVE DESIGN */
-/* ========================= */
-
+/* TABLET */
 @media (max-width: 768px) {
   .slider-container {
-    height: 250px;
+    max-width: 95%;
   }
 
   .slider-btn {
-    padding: 8px 10px;
     font-size: 18px;
+    padding: 8px 10px;
   }
 }
 
+/* MOBILE */
 @media (max-width: 480px) {
   .slider-container {
-    height: 200px;
+    border-radius: 10px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
   }
 }
+
 	
 </style>
 </head>
