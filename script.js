@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const progress = loader.querySelector(".loader-progress");
       const percent = loader.querySelector(".loader-percent");
 
-      const speed = 18; // ~1.8 sec
+      const speed = 12; // ~1.2 sec
 
       const interval = setInterval(() => {
 
