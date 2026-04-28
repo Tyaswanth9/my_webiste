@@ -406,20 +406,25 @@ section h2 {
 /* =========================================================
    PAGE LOADER
    ========================================================= */
-/* LOADER UI */
-#page-loader {
+/* =========================
+   CLICK LOADER (PROJECT ONLY)
+   ========================= */
+#click-loader {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.95);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 15px;
+
   z-index: 99999;
   color: white;
 }
 
+/* PROGRESS BAR */
 .loader-bar {
   width: 220px;
   height: 4px;
@@ -434,6 +439,7 @@ section h2 {
   background: white;
 }
 
+/* TEXT */
 .loader-text {
   font-size: 18px;
 }
