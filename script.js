@@ -226,82 +226,48 @@ window.addEventListener("load", () => {
    COUNTER + SCROLL ANIMATION (STATS SECTION)
    ========================================================= */
 
-/* =========================================
-   COUNTER + SCROLL ANIMATION (IMPROVED)
-   ========================================= */
-
 const counters = document.querySelectorAll(".counter");
-const boxes = document.querySelectorAll(".stat-box");
 
-let hasAnimated = false;
+function animateCounter(counter) {
+  const target = +counter.getAttribute("data-target");
 
-/* =========================================
-   INTERSECTION OBSERVER
-   ========================================= */
+  let current = 0;
+  const duration = 1200;
+  const startTime = performance.now();
+
+  function update(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+
+    current = Math.floor(progress * target);
+    counter.innerText = current;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      counter.innerText = target + "+";
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+/* SCROLL LOOP */
+const statsSection = document.getElementById("stats");
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-
-    /* RUN ONLY ONCE WHEN ENTER */
-    if (entry.isIntersecting && !hasAnimated) {
-
-      hasAnimated = true;
-
-      /* SHOW BOX ANIMATION (STAGGER EFFECT) */
-      boxes.forEach((box, i) => {
-        setTimeout(() => {
-          box.classList.add("show");
-        }, i * 150);
-      });
-
-      /* START COUNTING */
-      counters.forEach(counter => {
-
-        const target = +counter.getAttribute("data-target");
-        const duration = +counter.getAttribute("data-speed"); // total steps
-
-        let start = 0;
-        const increment = target / duration;
-
-        /* SMOOTH COUNT USING requestAnimationFrame */
-        const updateCount = () => {
-          start += increment;
-
-          if (start < target) {
-            counter.innerText = Math.ceil(start);
-            requestAnimationFrame(updateCount);
-          } else {
-            counter.innerText = target + "+";
-          }
-        };
-
-        updateCount();
-      });
-    }
-
-    /* RESET WHEN LEAVING VIEW */
-    if (!entry.isIntersecting) {
-
-      hasAnimated = false;
+    if (entry.isIntersecting) {
 
       counters.forEach(counter => {
         counter.innerText = "0";
       });
 
-      boxes.forEach(box => {
-        box.classList.remove("show");
+      counters.forEach(counter => {
+        animateCounter(counter);
       });
+
     }
-
   });
-}, {
-  threshold: 0.5
-});
+}, { threshold: 0.5 });
 
-/* =========================================
-   START OBSERVER
-   ========================================= */
-const statsSection = document.getElementById("stats");
-
-if (statsSection) {
-  observer.observe(statsSection);
-}
+observer.observe(statsSection);
