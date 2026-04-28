@@ -43,7 +43,7 @@ body {
 }
 
 /* =========================================================
-   IMAGE GLOBAL
+   GLOBAL IMAGE SETTINGS
    ========================================================= */
 img {
   max-width: 100%;
@@ -55,6 +55,7 @@ img {
    NAVBAR
    ========================================================= */
 nav {
+  color: #ffffff;
   position: fixed;
   top: 0;
   width: 100%;
@@ -66,10 +67,12 @@ nav {
 
   padding: 12px 6%;
   z-index: 1000;
+
+  flex-wrap: wrap;
 }
 
 .logo {
-  color: #fff;
+  color: #ffffff;
   font-size: 20px;
   font-weight: bold;
 }
@@ -77,15 +80,16 @@ nav {
 .nav-links {
   display: flex;
   gap: 18px;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
 }
 
 /* =========================================================
-   HERO
+   HERO SECTION
    ========================================================= */
 #home {
   height: 100vh;
@@ -99,10 +103,17 @@ nav {
 /* =========================================================
    PROFILE IMAGE
    ========================================================= */
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
 .profile-img {
   width: 250px;
   height: 250px;
   border-radius: 50%;
+  object-fit: cover;
   border: 3px solid var(--primary);
 }
 
@@ -156,6 +167,38 @@ section h2 {
 }
 
 /* =========================================================
+   EXPERIENCE
+   ========================================================= */
+.exp-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.exp-card {
+  background: var(--card);
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* =========================================================
+   SKILLS
+   ========================================================= */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background: var(--card);
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+/* =========================================================
    PROJECTS
    ========================================================= */
 .projects-container {
@@ -174,6 +217,20 @@ section h2 {
 }
 
 /* =========================================================
+   PAGE LOADER
+   ========================================================= */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* =========================================================
    FOOTER
    ========================================================= */
 footer {
@@ -182,47 +239,10 @@ footer {
   padding: 25px 10%;
 }
 
-/* =========================================================
-   PAGE LOADER (FIXED)
-   ========================================================= */
-#page-loader {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  color: #fff;
-
-  display: flex;
-  justify-content: center;
+.footer-icons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-
-  z-index: 99999;
-
-  opacity: 1;
-  visibility: visible;
-  transition: 0.6s ease;
-}
-
-/* Loader Hidden */
-#page-loader.hide {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* Spinner */
-.loader-spinner {
-  width: 60px;
-  height: 60px;
-  border: 5px solid #fff;
-  border-top: 5px solid var(--primary);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /* =========================================================
