@@ -1,16 +1,14 @@
 /* =========================================================
-   PORTFOLIO JS (FINAL OLD VERSION + LOADER FIX)
+   PORTFOLIO JAVASCRIPT
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   const landingPage = document.getElementById("landing-page");
-  const cursor = document.getElementById("cursor");
+  const overlay = document.getElementById("overlay");
   const container = document.getElementById("landing-text");
+  const cursor = document.getElementById("cursor");
 
-  /* =========================================================
-     LANDING TEXT
-     ========================================================= */
   const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
   let index = 0;
 
@@ -39,9 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* =========================================================
-     RISE ANIMATION
-     ========================================================= */
   if (!document.getElementById("rise-style")) {
 
     const style = document.createElement("style");
@@ -59,9 +54,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(style);
   }
 
-  /* =========================================================
-     CURSOR EFFECT
-     ========================================================= */
+  function createFirework() {
+    const fw = document.createElement("div");
+    fw.className = "firework";
+    document.body.appendChild(fw);
+    setTimeout(() => fw.remove(), 1000);
+  }
+
+  const fireworkInterval = setInterval(createFirework, 400);
+
   if (cursor) {
     document.addEventListener("mousemove", (e) => {
       cursor.style.left = e.clientX + "px";
@@ -69,10 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* =========================================================
-     LANDING EXIT
-     ========================================================= */
   setTimeout(() => {
+    clearInterval(fireworkInterval);
 
     if (landingPage) {
       landingPage.style.display = "none";
@@ -83,19 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================================================
-   PAGE LOADER (FIXED)
-   ========================================================= */
-window.addEventListener("load", () => {
-
-  const loader = document.getElementById("page-loader");
-
-  if (loader) {
-    loader.classList.add("hide");
-  }
-});
-
-/* =========================================================
-   TYPEWRITER
+   TYPEWRITER EFFECT
    ========================================================= */
 
 const titleText = "Data Analyst";
@@ -127,7 +114,7 @@ window.addEventListener("load", () => {
 });
 
 /* =========================================================
-   COUNTER ANIMATION
+   COUNTER
    ========================================================= */
 
 const counters = document.querySelectorAll(".counter");
