@@ -407,7 +407,7 @@ section h2 {
    PAGE LOADER
    ========================================================= */
 /* =========================
-   CLICK LOADER (PROJECT ONLY)
+   CLICK LOADER (SAFE)
    ========================= */
 #click-loader {
   position: fixed;
@@ -424,7 +424,6 @@ section h2 {
   color: white;
 }
 
-/* PROGRESS BAR */
 .loader-bar {
   width: 220px;
   height: 4px;
@@ -439,7 +438,6 @@ section h2 {
   background: white;
 }
 
-/* TEXT */
 .loader-text {
   font-size: 18px;
 }
