@@ -1,33 +1,31 @@
 /* =========================================================
-   PORTFOLIO JS (FIXED STRUCTURE)
+   PORTFOLIO JAVASCRIPT (PRODUCTION FIXED VERSION)
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================
-     ELEMENTS
-  ========================= */
   const landingPage = document.getElementById("landing-page");
   const overlay = document.getElementById("overlay");
   const container = document.getElementById("landing-text");
   const cursor = document.getElementById("cursor");
 
-  /* =========================
-     TYPE LANDING TEXT
-  ========================= */
   const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
   let index = 0;
 
   if (container) {
+
     container.innerHTML = "";
 
     lines.forEach(line => {
+
       const div = document.createElement("div");
 
       line.split("").forEach(char => {
+
         const span = document.createElement("span");
 
         span.innerText = char;
+        span.style.display = "inline-block";
         span.style.opacity = "0";
         span.style.transform = "translateY(40px)";
         span.style.animation = "rise 0.6s forwards";
@@ -41,12 +39,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* =========================
-     FIREWORKS
-  ========================= */
+  if (!document.getElementById("rise-style")) {
+
+    const style = document.createElement("style");
+
+    style.id = "rise-style";
+    style.innerHTML = `
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
   function createFirework() {
+
     const fw = document.createElement("div");
     fw.className = "firework";
+
     document.body.appendChild(fw);
 
     setTimeout(() => fw.remove(), 1000);
@@ -54,20 +68,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const fireworkInterval = setInterval(createFirework, 400);
 
-  /* =========================
-     CURSOR
-  ========================= */
   if (cursor) {
+
     document.addEventListener("mousemove", (e) => {
       cursor.style.left = e.clientX + "px";
       cursor.style.top = e.clientY + "px";
     });
   }
 
-  /* =========================
-     LANDING EXIT
-  ========================= */
   setTimeout(() => {
+
     clearInterval(fireworkInterval);
 
     if (landingPage) {
@@ -78,35 +88,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-/* =========================================================
-   STATS ANIMATION (SAFE)
-   ========================================================= */
-window.addEventListener("load", () => {
+/* TYPEWRITER */
+const titleText = "Data Analyst";
+const skillsText = "SQL • Power BI • Excel • Tableau";
 
-  const counters = document.querySelectorAll(".counter");
-  const boxes = document.querySelectorAll(".stat-box");
+const titleElement = document.getElementById("typing-title");
+const skillsElement = document.getElementById("typing-skills");
 
-  function runAnimation() {
-    boxes.forEach((box, i) => {
-      setTimeout(() => box.classList.add("show"), i * 150);
-    });
+function typeText(element, text) {
 
-    counters.forEach(counter => {
-      const target = +counter.dataset.target;
-      let count = 0;
+  if (!element) return;
 
-      const update = () => {
-        count++;
-        counter.innerText = count;
+  let i = 0;
 
-        if (count < target) {
-          requestAnimationFrame(update);
-        }
-      };
+  function typing() {
 
-      update();
-    });
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 100);
+    }
   }
 
-  runAnimation();
+  typing();
+}
+
+window.addEventListener("load", () => {
+  typeText(titleElement, titleText);
+  typeText(skillsElement, skillsText);
+});
+
+/* COUNTER */
+const counters = document.querySelectorAll(".counter");
+
+counters.forEach(counter => {
+
+  const target = +counter.dataset.target;
+  let count = 0;
+
+  function update() {
+
+    if (count < target) {
+      count++;
+      counter.innerText = count;
+      setTimeout(update, 20);
+    }
+  }
+
+  update();
 });
