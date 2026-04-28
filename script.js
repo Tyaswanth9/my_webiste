@@ -291,34 +291,4 @@ function resetAnimation() {
   });
 }
 
-/* =========================================================
-   SKILLS ANIMATION SECTION JS
-   (NO CONFLICT WITH EXISTING SECTIONS)
-========================================================= */
 
-const skillsAnimationCards = document.querySelectorAll("#skills-animation .skill-card");
-
-const skillsAnimationObserver = new IntersectionObserver((entries) => {
-
-  entries.forEach((entry, index) => {
-
-    if (entry.isIntersecting) {
-
-      setTimeout(() => {
-        entry.target.classList.add("show");
-      }, index * 120);
-
-    } else {
-      entry.target.classList.remove("show");
-    }
-
-  });
-
-}, {
-  threshold: 0.2
-});
-
-/* OBSERVE SKILLS ANIMATION CARDS */
-skillsAnimationCards.forEach(card => {
-  skillsAnimationObserver.observe(card);
-});
