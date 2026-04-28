@@ -406,29 +406,45 @@ section h2 {
 /* =========================================================
    PAGE LOADER
    ========================================================= */
+/* =========================
+   LOADER PROGRESS BAR + %
+   ========================= */
+
 #page-loader {
-  position: fixed;
-  inset: 0;
+  flex-direction: column;
+  gap: 18px;
+}
 
-  background: rgba(0, 0, 0, 0.9);
+/* TEXT */
+.loader-text {
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+/* PROGRESS BAR CONTAINER */
+.loader-bar {
+  width: 220px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* PROGRESS FILL */
+.loader-progress {
+  height: 100%;
+  width: 0%;
+  background: #ffffff;
+  transition: width 0.2s linear;
+}
+
+/* PERCENT TEXT */
+.loader-percent {
+  font-size: 14px;
   color: #ffffff;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  z-index: 9999;
-
-  opacity: 0;
-  pointer-events: none;
-
-  transition: opacity 0.3s ease;
+  letter-spacing: 1px;
 }
 
-#page-loader.active {
-  opacity: 1;
-  pointer-events: all;
-}
 
 /* =========================================================
    FOOTER
