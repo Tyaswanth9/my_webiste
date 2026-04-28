@@ -277,16 +277,20 @@ observer.observe(statsSection);
 /* =========================
    LOADER WITH PROGRESS + %
    ========================= */
+<script>
 /* =========================
-   SHOW LOADER ON PROJECT CLICK
+   LOADER ONLY ON PROJECT CLICK
    ========================= */
 
 document.querySelectorAll(".project-card").forEach(card => {
 
   card.addEventListener("click", function (e) {
 
+    e.preventDefault(); // stop direct open
+
+    /* CREATE LOADER */
     const loader = document.createElement("div");
-    loader.id = "page-loader";
+    loader.id = "click-loader";
 
     loader.innerHTML = `
       <div class="loader-text">Loading...</div>
@@ -298,6 +302,7 @@ document.querySelectorAll(".project-card").forEach(card => {
 
     document.body.appendChild(loader);
 
+    /* LOCK SCROLL */
     document.body.style.overflow = "hidden";
 
     let width = 0;
@@ -314,14 +319,13 @@ document.querySelectorAll(".project-card").forEach(card => {
       if (width >= 100) {
         clearInterval(interval);
 
-        /* AFTER LOADER → GO TO PAGE */
+        /* GO TO PROJECT PAGE */
         window.location.href = card.getAttribute("href");
       }
 
-    }, 15); // ~1.5s fast professional
-
-    e.preventDefault(); // stop instant navigation
+    }, 18); // ~1.8 seconds
 
   });
 
 });
+</script>
