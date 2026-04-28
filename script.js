@@ -271,3 +271,62 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 observer.observe(statsSection);
+
+
+
+/* =========================
+   LOADER WITH PROGRESS + %
+   ========================= */
+
+(function () {
+
+  const loader = document.getElementById("page-loader");
+  if (!loader) return;
+
+  /* CREATE ELEMENTS */
+  const bar = document.createElement("div");
+  bar.className = "loader-bar";
+
+  const progress = document.createElement("div");
+  progress.className = "loader-progress";
+
+  const percent = document.createElement("div");
+  percent.className = "loader-percent";
+  percent.innerText = "0%";
+
+  bar.appendChild(progress);
+  loader.appendChild(bar);
+  loader.appendChild(percent);
+
+  /* SHOW LOADER */
+  loader.classList.add("active");
+  document.body.style.overflow = "hidden";
+
+  let width = 0;
+
+  /* PROGRESS LOOP */
+  const interval = setInterval(() => {
+
+    width++;
+
+    progress.style.width = width + "%";
+    percent.innerText = width + "%";
+
+    if (width >= 100) {
+      clearInterval(interval);
+
+      /* HIDE LOADER */
+      setTimeout(() => {
+        loader.classList.remove("active");
+        document.body.style.overflow = "auto";
+
+        setTimeout(() => {
+          loader.style.display = "none";
+        }, 300);
+
+      }, 200);
+    }
+
+  }, 18); // ≈ 1.8 seconds total
+
+})();
