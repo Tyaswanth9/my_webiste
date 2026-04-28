@@ -593,3 +593,121 @@ footer {
     white-space: nowrap; /* PREVENT BREAK LIKE "Linked in" */
   }
 }
+
+/* =========================================================
+   SKILLS SECTION DESIGN (skills animation b/w the skill and project section)
+   ========================================================= */
+
+.skills-section {
+  width: 100%;
+  padding: 80px 10%;
+  background: #ffffff;
+  text-align: center;
+}
+
+/* TITLE */
+.skills-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  color: #2b2b2b;
+  letter-spacing: 1px;
+}
+
+/* CONTAINER GRID */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-items: center;
+}
+
+/* SKILL CARD */
+.skill-card {
+  width: 180px;
+  padding: 20px;
+  border-radius: 20px;
+  background: #f9f9f9;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+  cursor: pointer;
+
+  /* animation initial state */
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* HOVER EFFECT */
+.skill-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* CIRCLE ICON HOLDER */
+.skill-circle {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: inset 5px 5px 10px rgba(0,0,0,0.1),
+              inset -5px -5px 10px rgba(255,255,255,0.7);
+
+  animation: floatIcon 4s ease-in-out infinite;
+}
+
+/* ICON INSIDE */
+.skill-circle img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+/* TEXT */
+.skill-card p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* FLOAT ANIMATION */
+@keyframes floatIcon {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+/* =========================================================
+   ANIMATION ON SCROLL (ACTIVE CLASS)
+   ========================================================= */
+.skill-card.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: 0.6s ease;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+/* TABLET */
+@media (max-width: 992px) {
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-card {
+    width: 80%;
+  }
+}
