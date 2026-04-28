@@ -510,142 +510,162 @@ footer {
   }
 
 
-/* =========================
-   RESET (BROWSER SAFE)
-   ========================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* =========================
-   BODY LOCK
-   ========================= */
-body.landing-active {
-  overflow: hidden;
-}
-
-/* =========================
-   LANDING PAGE WRAPPER
-   ========================= */
+/* ========================= */
+/* LANDING PAGE (PRO VERSION) */
+/* ========================= */
 #landing-page {
   position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  /* fallback for older browsers */
-  height: 100vh;
-
-  /* center using safest method (not flex-only dependency) */
-  display: table;
+  inset: 0;
 
   background: linear-gradient(135deg, #ff2a2a, #b30000);
 
-  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   text-align: center;
-  overflow: hidden;
+
+  /* Smooth fade-in */
+  animation: landingFade 1s ease forwards;
+
+  /* Slight upward visual balance */
+  transform: translateY(-30px);
+
+  z-index: 9999;
 }
 
-/* =========================
-   CENTER CONTENT (TABLE METHOD)
-   ========================= */
+/* ========================= */
+/* TEXT ANIMATION */
+/* ========================= */
 #landing-text {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-
-  width: 100%;
-
-  color: #fff;
-
-  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-size: 3rem;
   letter-spacing: 2px;
+  color: #ffffff;
 
-  padding: 20px;
-
+  /* Glow effect */
   text-shadow:
     0 0 5px #fff,
     0 0 10px #ff4d4d,
     0 0 20px #ff1a1a,
     0 0 30px #ff0000;
+
+  /* Smooth appearance */
+  animation: textFadeUp 1.2s ease forwards;
 }
 
-/* =========================
-   CURSOR (DESKTOP ONLY)
-   ========================= */
+/* ========================= */
+/* CURSOR GLOW (if used) */
+/* ========================= */
 #cursor {
   position: fixed;
   width: 120px;
   height: 120px;
 
-  background: radial-gradient(circle, rgba(255,255,255,0.5), transparent);
-  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
 
   pointer-events: none;
+  border-radius: 50%;
 
   transform: translate(-50%, -50%);
 
-  z-index: 100000;
+  z-index: 10000;
 }
 
-/* =========================
-   OVERLAY FIX (CROSS BROWSER SAFE)
-   ========================= */
+/* ========================= */
+/* OVERLAY FADE */
+/* ========================= */
 #overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
+  inset: 0;
 
   background: #000;
-
   opacity: 0;
 
-  pointer-events: none;
+  backdrop-filter: blur(8px);
 
-  transition: opacity 0.6s ease;
+  transition: opacity 1s ease;
+
+  z-index: 10001;
 }
 
-/* =========================
-   FIREWORK (SAFE ANIMATION)
-   ========================= */
-.firework {
+/* ========================= */
+/* BACKGROUND ANIMATION */
+/* ========================= */
+#landing-page::before {
+  content: "";
   position: absolute;
+  inset: 0;
 
-  width: 4px;
-  height: 4px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent),
+              radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1), transparent);
 
-  background: #fff;
-  border-radius: 50%;
+  animation: bgMove 6s linear infinite;
 
-  animation: explode 1s ease-out forwards;
+  z-index: 0;
 }
 
-/* safer transform animation (works in older browsers too) */
-@keyframes explode {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
+/* Keep content above effect */
+#landing-page * {
+  position: relative;
+  z-index: 1;
+}
 
-  100% {
-    transform: scale(1.5);
+/* ========================= */
+/* KEYFRAMES */
+/* ========================= */
+
+/* Page Fade */
+@keyframes landingFade {
+  from {
     opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
 }
 
-/* =========================
-   MOBILE FIX
-   ========================= */
+/* Text Slide + Fade */
+@keyframes textFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Background Movement */
+@keyframes bgMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-20px, -20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* ========================= */
+/* MOBILE OPTIMIZATION */
+/* ========================= */
 @media (max-width: 768px) {
+
+  #landing-text {
+    font-size: 1.8rem;
+    line-height: 1.4;
+  }
+
   #cursor {
-    display: none;
+    display: none; /* disable glow on mobile */
+  }
+
+  #landing-page {
+    transform: translateY(-10px);
+    padding: 20px;
   }
 }
