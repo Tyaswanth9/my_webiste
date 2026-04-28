@@ -1,19 +1,20 @@
 /* =========================================================
-   PORTFOLIO JAVASCRIPT (PRODUCTION FIXED VERSION)
+   PORTFOLIO JS (FINAL OLD VERSION + LOADER FIX)
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   const landingPage = document.getElementById("landing-page");
-  const overlay = document.getElementById("overlay");
-  const container = document.getElementById("landing-text");
   const cursor = document.getElementById("cursor");
+  const container = document.getElementById("landing-text");
 
+  /* =========================================================
+     LANDING TEXT
+     ========================================================= */
   const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
   let index = 0;
 
   if (container) {
-
     container.innerHTML = "";
 
     lines.forEach(line => {
@@ -25,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const span = document.createElement("span");
 
         span.innerText = char;
-        span.style.display = "inline-block";
         span.style.opacity = "0";
         span.style.transform = "translateY(40px)";
         span.style.animation = "rise 0.6s forwards";
@@ -39,6 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* =========================================================
+     RISE ANIMATION
+     ========================================================= */
   if (!document.getElementById("rise-style")) {
 
     const style = document.createElement("style");
@@ -56,29 +59,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(style);
   }
 
-  function createFirework() {
-
-    const fw = document.createElement("div");
-    fw.className = "firework";
-
-    document.body.appendChild(fw);
-
-    setTimeout(() => fw.remove(), 1000);
-  }
-
-  const fireworkInterval = setInterval(createFirework, 400);
-
+  /* =========================================================
+     CURSOR EFFECT
+     ========================================================= */
   if (cursor) {
-
     document.addEventListener("mousemove", (e) => {
       cursor.style.left = e.clientX + "px";
       cursor.style.top = e.clientY + "px";
     });
   }
 
+  /* =========================================================
+     LANDING EXIT
+     ========================================================= */
   setTimeout(() => {
-
-    clearInterval(fireworkInterval);
 
     if (landingPage) {
       landingPage.style.display = "none";
@@ -88,7 +82,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-/* TYPEWRITER */
+/* =========================================================
+   PAGE LOADER (FIXED)
+   ========================================================= */
+window.addEventListener("load", () => {
+
+  const loader = document.getElementById("page-loader");
+
+  if (loader) {
+    loader.classList.add("hide");
+  }
+});
+
+/* =========================================================
+   TYPEWRITER
+   ========================================================= */
+
 const titleText = "Data Analyst";
 const skillsText = "SQL • Power BI • Excel • Tableau";
 
@@ -102,7 +111,6 @@ function typeText(element, text) {
   let i = 0;
 
   function typing() {
-
     if (i < text.length) {
       element.innerHTML += text.charAt(i);
       i++;
@@ -118,7 +126,10 @@ window.addEventListener("load", () => {
   typeText(skillsElement, skillsText);
 });
 
-/* COUNTER */
+/* =========================================================
+   COUNTER ANIMATION
+   ========================================================= */
+
 const counters = document.querySelectorAll(".counter");
 
 counters.forEach(counter => {
@@ -127,7 +138,6 @@ counters.forEach(counter => {
   let count = 0;
 
   function update() {
-
     if (count < target) {
       count++;
       counter.innerText = count;
