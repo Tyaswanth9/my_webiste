@@ -1,155 +1,194 @@
+/* =========================================================
+   PORTFOLIO JAVASCRIPT (PRODUCTION FIXED VERSION)
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-const landingPage = document.getElementById("landing-page");
-const overlay = document.getElementById("overlay");
-const container = document.getElementById("landing-text");
-const cursor = document.getElementById("cursor");
+  /* =========================================================
+     ELEMENT REFERENCES
+     ========================================================= */
+  const landingPage = document.getElementById("landing-page");
+  const overlay = document.getElementById("overlay");
+  const container = document.getElementById("landing-text");
+  const cursor = document.getElementById("cursor");
 
-const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
-let index = 0;
+  /* =========================================================
+     LANDING TEXT CONTENT
+     ========================================================= */
+  const lines = ["WELCOME", "TO", "MY PORTFOLIO"];
+  let index = 0;
 
-/* =========================
-   TEXT ANIMATION
-   ========================= */
-container.innerHTML = "";
+  /* =========================================================
+     TEXT ANIMATION (LANDING PAGE)
+     ========================================================= */
+  if (container) {
 
-lines.forEach(line => {
-  const div = document.createElement("div");
+    container.innerHTML = "";
 
-  line.split("").forEach(char => {
-    const span = document.createElement("span");
+    lines.forEach(line => {
 
-    span.innerText = char;
-    span.style.display = "inline-block";
-    span.style.opacity = 0;
-    span.style.transform = "translateY(40px)";
-    span.style.animation = "rise 0.6s forwards";
-    span.style.animationDelay = (index * 0.08) + "s";
+      const div = document.createElement("div");
 
-    div.appendChild(span);
-    index++;
-  });
+      line.split("").forEach(char => {
 
-  container.appendChild(div);
-});
+        const span = document.createElement("span");
 
-/* =========================
-   KEYFRAME
-   ========================= */
-const style = document.createElement("style");
-style.innerHTML = `
-@keyframes rise {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    text-shadow: 0 0 5px #fff, 0 0 10px #ff4d4d;
+        span.innerText = char;
+        span.style.display = "inline-block";
+        span.style.opacity = "0";
+        span.style.transform = "translateY(40px)";
+        span.style.animation = "rise 0.6s forwards";
+        span.style.animationDelay = (index * 0.08) + "s";
+
+        div.appendChild(span);
+        index++;
+      });
+
+      container.appendChild(div);
+    });
   }
-}
-`;
-document.head.appendChild(style);
 
-/* =========================
-   FIREWORKS
-   ========================= */
-function createFirework() {
-  const count = 12;
+  /* =========================================================
+     SAFE KEYFRAME INJECTION (PREVENT DUPLICATE)
+     ========================================================= */
+  if (!document.getElementById("rise-style")) {
 
-  const x = Math.random() * window.innerWidth;
-  const y = Math.random() * window.innerHeight * 0.5;
+    const style = document.createElement("style");
 
-  for (let i = 0; i < count; i++) {
-    const fw = document.createElement("div");
-    fw.className = "firework";
+    style.id = "rise-style";
+    style.innerHTML = `
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+          text-shadow: 0 0 5px #fff, 0 0 10px #ff4d4d;
+        }
+      }
+    `;
 
-    fw.style.left = x + "px";
-    fw.style.top = y + "px";
-
-    const angle = Math.random() * Math.PI * 2;
-    const distance = 50 + Math.random() * 50;
-
-    fw.style.setProperty("--dx", Math.cos(angle) * distance + "px");
-    fw.style.setProperty("--dy", Math.sin(angle) * distance + "px");
-
-    document.body.appendChild(fw);
-
-    setTimeout(() => fw.remove(), 1000);
+    document.head.appendChild(style);
   }
-}
 
-const fireworkInterval = setInterval(createFirework, 400);
+  /* =========================================================
+     FIREWORK SYSTEM
+     ========================================================= */
+  function createFirework() {
 
-/* =========================
-   CURSOR
-   ========================= */
-if (cursor) {
-  document.addEventListener("mousemove", e => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-  });
-}
+    const count = 12;
 
-/* =========================
-   EXIT LANDING
-   ========================= */
-setTimeout(() => {
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight * 0.5;
 
-  clearInterval(fireworkInterval);
+    for (let i = 0; i < count; i++) {
 
-  overlay.style.opacity = "1";
+      const fw = document.createElement("div");
+      fw.className = "firework";
 
+      fw.style.left = x + "px";
+      fw.style.top = y + "px";
+
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 50 + Math.random() * 50;
+
+      fw.style.setProperty("--dx", Math.cos(angle) * distance + "px");
+      fw.style.setProperty("--dy", Math.sin(angle) * distance + "px");
+
+      document.body.appendChild(fw);
+
+      setTimeout(() => fw.remove(), 1000);
+    }
+  }
+
+  /* FIREWORK LOOP */
+  const fireworkInterval = setInterval(createFirework, 400);
+
+  /* =========================================================
+     CURSOR EFFECT (DESKTOP ONLY)
+     ========================================================= */
+  if (cursor) {
+
+    document.addEventListener("mousemove", (e) => {
+
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+  }
+
+  /* =========================================================
+     LANDING EXIT CONTROL
+     ========================================================= */
   setTimeout(() => {
 
-    landingPage.style.pointerEvents = "none";
-    landingPage.style.opacity = "0";
-    landingPage.style.transition = "0.6s ease";
+    clearInterval(fireworkInterval);
+
+    /* SHOW OVERLAY FADE */
+    if (overlay) {
+      overlay.classList.add("active");
+    }
 
     setTimeout(() => {
-      landingPage.style.display = "none";
 
-      document.body.classList.remove("landing-active");
-      document.body.style.overflow = "";
+      if (landingPage) {
 
-    }, 600);
+        landingPage.style.opacity = "0";
+        landingPage.style.transition = "0.6s ease";
+        landingPage.style.pointerEvents = "none";
 
-  }, 500);
+        setTimeout(() => {
 
-}, 3000);
+          landingPage.style.display = "none";
+
+          document.body.classList.remove("landing-active");
+          document.body.style.overflow = "";
+
+          if (overlay) {
+            overlay.classList.remove("active");
+          }
+
+        }, 600);
+      }
+
+    }, 500);
+
+  }, 3000);
 
 });
-/* =========================================
-   TYPEWRITER EFFECT (LOOP) (name and skills)
-   ========================================= */
 
-// TEXT CONTENT
+/* =========================================================
+   TYPEWRITER EFFECT (NAME + SKILLS LOOP)
+   ========================================================= */
+
 const titleText = "Data Analyst";
 const skillsText = "SQL • Power BI • Excel • Tableau • Data Visualization";
 
-// TARGET ELEMENTS
 const titleElement = document.getElementById("typing-title");
 const skillsElement = document.getElementById("typing-skills");
 
-// SPEED CONTROL
-const totalDuration = 2500; // typing time
-const pauseDuration = 2500; // pause before restart
+const totalDuration = 2500;
+const pauseDuration = 2500;
 
-// CALCULATE SPEED PER LETTER
 const titleSpeed = totalDuration / titleText.length;
 const skillsSpeed = totalDuration / skillsText.length;
 
-/* =========================================
-   TYPE FUNCTION
-   ========================================= */
+/* TYPE FUNCTION */
 function typeText(element, text, speed, callback) {
+
+  if (!element) return;
+
   let index = 0;
   element.innerHTML = "";
 
   function type() {
+
     if (index < text.length) {
+
       element.innerHTML += text.charAt(index);
       index++;
+
       setTimeout(type, speed);
+
     } else {
+
       if (callback) callback();
     }
   }
@@ -157,42 +196,35 @@ function typeText(element, text, speed, callback) {
   type();
 }
 
-/* =========================================
-   LOOP FUNCTION
-   ========================================= */
+/* LOOP FUNCTION */
 function startTypingLoop() {
 
-  // TYPE TITLE FIRST
   typeText(titleElement, titleText, titleSpeed, () => {
 
-    // THEN TYPE SKILLS
     typeText(skillsElement, skillsText, skillsSpeed, () => {
 
-      // WAIT → CLEAR → RESTART
       setTimeout(() => {
-        titleElement.innerHTML = "";
-        skillsElement.innerHTML = "";
 
-        startTypingLoop(); //  LOOP AGAIN
+        if (titleElement) titleElement.innerHTML = "";
+        if (skillsElement) skillsElement.innerHTML = "";
+
+        startTypingLoop();
 
       }, pauseDuration);
 
     });
 
   });
-
 }
 
-/* =========================================
-   START AFTER PAGE LOAD
-   ========================================= */
+/* START TYPEWRITER ON LOAD */
 window.addEventListener("load", () => {
   startTypingLoop();
 });
 
-/* =========================================
-   COUNTER + SCROLL ANIMATION (RUN ON SCROLL) (this is project and expriance count between the summary and expriance section)
-   ========================================= */
+/* =========================================================
+   COUNTER + SCROLL ANIMATION (STATS SECTION)
+   ========================================================= */
 
 const counters = document.querySelectorAll(".counter");
 const boxes = document.querySelectorAll(".stat-box");
@@ -200,19 +232,16 @@ const boxes = document.querySelectorAll(".stat-box");
 let isVisible = false;
 let loopTimeout;
 
-/* =========================================
-   FUNCTION TO RUN ANIMATION
-   ========================================= */
+/* RUN ANIMATION */
 function runAnimation() {
 
-  /* SHOW BOXES (STAGGER) */
   boxes.forEach((box, i) => {
+
     setTimeout(() => {
       box.classList.add("show");
     }, i * 150);
   });
 
-  /* COUNTING */
   counters.forEach(counter => {
 
     const target = +counter.getAttribute("data-target");
@@ -221,22 +250,27 @@ function runAnimation() {
     let start = 0;
     const increment = target / duration;
 
-    const updateCount = () => {
+    function updateCount() {
+
       start += increment;
 
       if (start < target) {
+
         counter.innerText = Math.ceil(start);
         requestAnimationFrame(updateCount);
+
       } else {
+
         counter.innerText = target + "+";
       }
-    };
+    }
 
     updateCount();
   });
 
-  /* AFTER FINISH → WAIT 2.5s → RESET & RESTART */
+  /* LOOP RESET */
   loopTimeout = setTimeout(() => {
+
     if (!isVisible) return;
 
     resetAnimation();
@@ -245,10 +279,9 @@ function runAnimation() {
   }, 2500);
 }
 
-/* =========================================
-   RESET FUNCTION
-   ========================================= */
+/* RESET ANIMATION */
 function resetAnimation() {
+
   counters.forEach(counter => {
     counter.innerText = "0";
   });
@@ -258,18 +291,22 @@ function resetAnimation() {
   });
 }
 
-/* =========================================
-   INTERSECTION OBSERVER
-   ========================================= */
+/* =========================================================
+   INTERSECTION OBSERVER (SCROLL DETECTION)
+   ========================================================= */
 const observer = new IntersectionObserver((entries) => {
+
   entries.forEach(entry => {
 
     if (entry.isIntersecting) {
+
       if (!isVisible) {
         isVisible = true;
         runAnimation();
       }
+
     } else {
+
       isVisible = false;
 
       clearTimeout(loopTimeout);
@@ -277,16 +314,14 @@ const observer = new IntersectionObserver((entries) => {
     }
 
   });
+
 }, {
-  threshold: 0.5
+  threshold: 0.2
 });
 
-/* =========================================
-   START OBSERVER
-   ========================================= */
+/* OBSERVE STATS SECTION */
 const statsSection = document.getElementById("stats");
 
 if (statsSection) {
   observer.observe(statsSection);
 }
-
