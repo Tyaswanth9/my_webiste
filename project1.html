@@ -167,94 +167,88 @@ footer {
 /* CUSTOM IMAGE SLIDER  after title the project*/ 
 /* ========================= */
 
-.custom-slider {
-  width: 100%;
-  max-width: 700px;
-  margin: 30px auto;
-  text-align: center;
+/* ========================= */
+/* ADVANCED SLIDER UI EFFECT */
+/* ========================= */
+
+/* FRAME WITH GLOW */
+.slider-container {
+  border: 3px solid transparent;
+  background: linear-gradient(#000, #000) padding-box,
+              linear-gradient(135deg, #ff4d4d, #d62828, #ff7b00) border-box;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* FRAME */
-.slider-frame {
-  position: relative;
-  width: 100%;
-  height: 350px; /* FIXED SIZE */
-  overflow: hidden;
-  border-radius: 10px;
+/* HOVER LIFT EFFECT */
+.slider-container:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* SLIDES CONTAINER */
-.slides {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-/* IMAGE STYLE */
+/* IMAGE SMOOTH ZOOM */
 .slide {
+  transition: transform 0.6s ease;
+}
+
+.slider-container:hover .slide {
+  transform: scale(1.05);
+}
+
+/* GLASS OVERLAY */
+.slider-container::after {
+  content: "";
   position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* SAME SIZE FIT */
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.05)
+  );
+  pointer-events: none;
 }
 
-/* ACTIVE IMAGE */
-.slide.active {
-  opacity: 1;
-}
-
-/* ARROWS */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 28px;
-  background: rgba(0,0,0,0.4);
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 50%;
-  display: none; /* HIDE DEFAULT */
-}
-
-/* LEFT */
-.arrow.left {
-  left: 10px;
-}
-
-/* RIGHT */
-.arrow.right {
-  right: 10px;
-}
-
-/* SHOW ARROWS ON HOVER */
-.slider-frame:hover .arrow {
-  display: block;
-}
-
-/* DOTS */
-.dots {
-  margin-top: 12px;
-}
-
-/* DOT STYLE */
+/* DOTS IMPROVED */
 .dot {
-  height: 10px;
-  width: 10px;
-  margin: 5px;
-  display: inline-block;
-  border-radius: 50%;
-  background: #bbb;
-  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  transition: all 0.3s ease;
 }
 
-/* ACTIVE DOT */
 .dot.active {
-  background: #d62828;
+  background: #fff;
+  transform: scale(1.3);
+  box-shadow: 0 0 10px #d62828;
 }
+
+/* BUTTON HOVER */
+.slider-btn:hover {
+  background: #d62828;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* ========================= */
+/* RESPONSIVE DESIGN */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .slider-container {
+    height: 250px;
+  }
+
+  .slider-btn {
+    padding: 8px 10px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-container {
+    height: 200px;
+  }
+}
+	
 </style>
 </head>
 
@@ -282,37 +276,42 @@ footer {
 <!-- ========================= -->
 <!-- NEW IMAGE SLIDER SECTION -->
 <!-- ========================= -->
-<div class="custom-slider" id="customSlider">
+<!-- ========================= -->
+<!-- NEW IMAGE SLIDER SECTION -->
+<section id="project-gallery">
 
-  <!-- SLIDER FRAME -->
-  <div class="slider-frame">
+  <h2>Project Gallery</h2>
+
+  <div class="slider-container" id="sliderContainer">
 
     <!-- SLIDES -->
-    <div class="slides">
+    <div class="slider-track" id="sliderTrack">
 
-      <!-- MAX 7 IMAGES -->
-      <img src="img1.jpg" class="slide active" alt="image1">
-      <img src="img2.jpg" class="slide" alt="image2">
-      <img src="img3.jpg" class="slide" alt="image3">
-      <img src="img4.jpg" class="slide" alt="image4">
-      <img src="img5.jpg" class="slide" alt="image5">
-      <img src="img6.jpg" class="slide" alt="image6">
-      <img src="img7.jpg" class="slide" alt="image7">
+      <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/modelingp.png" class="slide" alt="Project Image 1">
+      <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardp.png" class="slide" alt="Project Image 2">
+      <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardT.png" class="slide" alt="Project Image 3">
+      <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/dashboardE.png" class="slide" alt="Project Image 4">
+      <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1090).png" class="slide" alt="Project Image 5">
+      <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1091).png" class="slide" alt="Project Image 6">
+      <img src="https:https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1093).png" class="slide" alt="Project Image 7">
+	 <img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1094).png" class="slide" alt="Project Image 1"> 
+		<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1095).png" class="slide" alt="Project Image 1"> 
+		<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1096).png" class="slide" alt="Project Image 1"> 
+		<img src="https://raw.githubusercontent.com/Tyaswanth9/Crowd-funding-project/refs/heads/myself/Screenshot%20(1097).png" class="slide" alt="Project Image 1">
+		
 
     </div>
 
-    <!-- LEFT ARROW -->
-    <button class="arrow left">&#10094;</button>
+    <!-- ARROWS -->
+    <button class="slider-btn prev" id="prevBtn">&#10094;</button>
+    <button class="slider-btn next" id="nextBtn">&#10095;</button>
 
-    <!-- RIGHT ARROW -->
-    <button class="arrow right">&#10095;</button>
+    <!-- DOTS -->
+    <div class="dots-container" id="dotsContainer"></div>
 
   </div>
 
-  <!-- DOTS -->
-  <div class="dots"></div>
-
-</div>
+</section>
 
   
 <!-- ========================= -->
@@ -468,103 +467,148 @@ footer {
 
 
  <script>
-/* ========================= */
-/* IMAGE SLIDER FUNCTION */
-/* ========================= */
+/* =========================================================
+   ADVANCED IMAGE SLIDER - COMPLETE SCRIPT
+   ========================================================= */
 
-const slider = document.getElementById("customSlider");
-const slides = slider.querySelectorAll(".slide");
-const dotsContainer = slider.querySelector(".dots");
-const leftBtn = slider.querySelector(".left");
-const rightBtn = slider.querySelector(".right");
+/* =========================
+   ELEMENT SELECTORS
+   ========================= */
+const track = document.getElementById("sliderTrack");
+const slides = document.querySelectorAll(".slide");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const dotsContainer = document.getElementById("dotsContainer");
+const sliderContainer = document.getElementById("sliderContainer");
 
+/* =========================
+   VARIABLES
+   ========================= */
 let index = 0;
 let interval;
-const delay = 1300; // 1.3 seconds
 
-/* ========================= */
-/* CREATE DOTS */
-/* ========================= */
+/* =========================
+   CREATE DOTS
+   ========================= */
 slides.forEach((_, i) => {
   const dot = document.createElement("span");
+
   dot.classList.add("dot");
 
-  if (i === 0) dot.classList.add("active");
+  /* SET FIRST ACTIVE */
+  if (i === 0) {
+    dot.classList.add("active");
+  }
 
+  /* DOT CLICK EVENT */
   dot.addEventListener("click", () => {
     index = i;
-    showSlide(index);
+    updateSlider();
   });
 
   dotsContainer.appendChild(dot);
 });
 
-const dots = slider.querySelectorAll(".dot");
+/* GET ALL DOTS */
+const dots = document.querySelectorAll(".dot");
 
-/* ========================= */
-/* SHOW SLIDE */
-/* ========================= */
-function showSlide(i) {
+/* =========================
+   UPDATE SLIDER FUNCTION
+   ========================= */
+function updateSlider() {
 
-  slides.forEach(slide => slide.classList.remove("active"));
+  /* MOVE SLIDE */
+  track.style.transform = `translateX(-${index * 100}%)`;
+
+  /* UPDATE DOTS */
   dots.forEach(dot => dot.classList.remove("active"));
-
-  slides[i].classList.add("active");
-  dots[i].classList.add("active");
+  dots[index].classList.add("active");
 }
 
-/* ========================= */
-/* NEXT SLIDE */
-/* ========================= */
+/* =========================
+   NEXT SLIDE
+   ========================= */
 function nextSlide() {
   index = (index + 1) % slides.length;
-  showSlide(index);
+  updateSlider();
 }
 
-/* ========================= */
-/* PREVIOUS SLIDE */
-/* ========================= */
+/* =========================
+   PREVIOUS SLIDE
+   ========================= */
 function prevSlide() {
   index = (index - 1 + slides.length) % slides.length;
-  showSlide(index);
+  updateSlider();
 }
 
-/* ========================= */
-/* AUTO PLAY */
-/* ========================= */
-function startSlider() {
-  interval = setInterval(nextSlide, delay);
+/* =========================
+   AUTO SLIDE (1.3 SEC)
+   ========================= */
+function startAutoSlide() {
+  interval = setInterval(nextSlide, 1300);
 }
 
-/* ========================= */
-/* STOP */
-/* ========================= */
-function stopSlider() {
+/* =========================
+   STOP AUTO SLIDE
+   ========================= */
+function stopAutoSlide() {
   clearInterval(interval);
 }
 
-/* ========================= */
-/* EVENTS */
-/* ========================= */
+/* =========================
+   BUTTON EVENTS
+   ========================= */
+nextBtn.addEventListener("click", nextSlide);
+prevBtn.addEventListener("click", prevSlide);
 
-/* ARROWS */
-rightBtn.addEventListener("click", nextSlide);
-leftBtn.addEventListener("click", prevSlide);
+/* =========================
+   HOVER PAUSE (DESKTOP)
+   ========================= */
+sliderContainer.addEventListener("mouseenter", stopAutoSlide);
+sliderContainer.addEventListener("mouseleave", startAutoSlide);
 
-/* HOVER STOP */
-slider.addEventListener("mouseenter", stopSlider);
+/* =========================
+   MOBILE SWIPE SUPPORT
+   ========================= */
+let startX = 0;
+let endX = 0;
 
-/* RESUME */
-slider.addEventListener("mouseleave", startSlider);
+/* TOUCH START */
+sliderContainer.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+  stopAutoSlide();
+});
 
-/* CLICK STOP */
-slider.addEventListener("mousedown", stopSlider);
+/* TOUCH MOVE */
+sliderContainer.addEventListener("touchmove", (e) => {
+  endX = e.touches[0].clientX;
+});
 
-/* RELEASE START */
-slider.addEventListener("mouseup", startSlider);
+/* TOUCH END */
+sliderContainer.addEventListener("touchend", () => {
 
-/* START INIT */
-startSlider();
+  let diff = startX - endX;
+
+  /* SWIPE LEFT */
+  if (diff > 50) {
+    nextSlide();
+  }
+
+  /* SWIPE RIGHT */
+  else if (diff < -50) {
+    prevSlide();
+  }
+
+  /* RESUME AUTO */
+  startAutoSlide();
+});
+
+/* =========================
+   INITIAL START
+   ========================= */
+startAutoSlide();
+
+
 </script> 
 </body>
 </html>
