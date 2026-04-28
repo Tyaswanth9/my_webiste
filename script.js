@@ -292,25 +292,24 @@ function resetAnimation() {
 }
 
 /* =========================================================
-   INTERSECTION OBSERVER (SCROLL DETECTION)
-   ========================================================= */
-const observer = new IntersectionObserver((entries) => {
+   SKILLS ANIMATION SECTION JS
+   (NO CONFLICT WITH EXISTING SECTIONS)
+========================================================= */
 
-  entries.forEach(entry => {
+const skillsAnimationCards = document.querySelectorAll("#skills-animation .skill-card");
+
+const skillsAnimationObserver = new IntersectionObserver((entries) => {
+
+  entries.forEach((entry, index) => {
 
     if (entry.isIntersecting) {
 
-      if (!isVisible) {
-        isVisible = true;
-        runAnimation();
-      }
+      setTimeout(() => {
+        entry.target.classList.add("show");
+      }, index * 120);
 
     } else {
-
-      isVisible = false;
-
-      clearTimeout(loopTimeout);
-      resetAnimation();
+      entry.target.classList.remove("show");
     }
 
   });
@@ -319,64 +318,7 @@ const observer = new IntersectionObserver((entries) => {
   threshold: 0.2
 });
 
-/* OBSERVE STATS SECTION */
-const statsSection = document.getElementById("stats");
-
-if (statsSection) {
-  observer.observe(statsSection);
-}
-
-
-/* =========================================================
-   SKILLS ANIMATION (SCROLL REVEAL) (between the skills and project section)
-   ========================================================= */
-
-// =========================================================
-// SKILLS SECTION ANIMATION SCRIPT
-// =========================================================
-
-// SELECT ALL SKILL CARDS
-const skills = document.querySelectorAll(".skill-card");
-
-// SCROLL ANIMATION (ON VIEW)
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = "1";
-      entry.target.style.transform = "translateY(0)";
-    }
-  });
-}, {
-  threshold: 0.3
-});
-
-// INITIAL STATE + OBSERVE
-skills.forEach(skill => {
-  skill.style.opacity = "0";
-  skill.style.transform = "translateY(50px)";
-  skill.style.transition = "0.6s ease";
-  observer.observe(skill);
-});
-
-// =========================================================
-// TOUCH / MOUSE 3D TILT EFFECT
-// =========================================================
-
-skills.forEach(card => {
-  card.addEventListener("mousemove", (e) => {
-    let x = e.offsetX;
-    let y = e.offsetY;
-
-    let centerX = card.clientWidth / 2;
-    let centerY = card.clientHeight / 2;
-
-    let rotateX = (y - centerY) / 10;
-    let rotateY = (centerX - x) / 10;
-
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-  });
-
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-  });
+/* OBSERVE SKILLS ANIMATION CARDS */
+skillsAnimationCards.forEach(card => {
+  skillsAnimationObserver.observe(card);
 });
