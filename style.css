@@ -188,105 +188,101 @@ section h2 {
 /* =========================================================
    STATS SECTION
    ========================================================= */
-/* =========================================================
-   STATS SECTION (FINAL RESPONSIVE)
-   ========================================================= */
-
+/* =========================
+   STATS SECTION
+   ========================= */
 #stats {
-  background: var(--card);
-  padding: 60px 10%;
+  background: #eaeaea;
+  padding: 60px 5%;
 }
 
-/* =========================
-   GRID (DESKTOP)
-   ========================= */
 .stats-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   text-align: center;
-  gap: 25px;
+}
+
+/* BOX */
+.stat-box {
+  padding: 40px 20px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+/* DIVIDER */
+.stat-box:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 20%;
+  width: 1px;
+  height: 60%;
+  background: rgba(0,0,0,0.2);
 }
 
 /* =========================
-   BOX
+   3D ICON STYLE
    ========================= */
-.stat-box {
-  padding: 25px;
-  border-radius: 12px;
+.stat-icon i {
+  font-size: 45px;
+  color: #d62828;
 
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
+  display: inline-block;
 
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  transform: perspective(600px) rotateX(20deg) translateZ(20px);
 
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 0.6s ease;
+  text-shadow:
+    0 4px 0 #a61b1b,
+    0 8px 10px rgba(0,0,0,0.3),
+    0 12px 20px rgba(0,0,0,0.2);
+
+  transition: 0.4s ease;
 }
 
-/* SHOW ANIMATION */
-.stat-box.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* HOVER EFFECT */
+.stat-box:hover .stat-icon i {
+  transform: perspective(600px) rotateX(0deg) scale(1.2) translateY(-5px);
 
-/* ICON */
-.stat-icon {
-  font-size: 30px;
-  margin-bottom: 12px;
-  color: var(--primary);
+  text-shadow:
+    0 6px 15px rgba(0,0,0,0.4),
+    0 10px 25px rgba(0,0,0,0.3);
 }
 
 /* NUMBER */
 .stat-box h2 {
-  font-size: 36px;
-  color: var(--primary);
+  font-size: 60px;
+  color: #9a2e00;
+  font-weight: bold;
 }
 
 /* TEXT */
 .stat-box p {
-  margin-top: 8px;
-  font-size: 14px;
+  font-size: 18px;
+  color: #444;
+  margin-top: 10px;
 }
 
-/* HOVER */
-.stat-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
+/* MOBILE */
+@media (max-width: 768px) {
 
-/* =========================
-   TABLET (2 COLUMNS)
-   ========================= */
-@media (max-width: 900px) {
   .stats-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
-}
 
-/* =========================
-   MOBILE (1 COLUMN)
-   ========================= */
-@media (max-width: 600px) {
-  .stats-container {
-    grid-template-columns: 1fr; /* 👈 single column */
-    gap: 18px;
+  .stat-box:not(:last-child)::after {
+    display: none;
   }
 
   .stat-box {
-    padding: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+  }
+
+  .stat-box:last-child {
+    border-bottom: none;
   }
 
   .stat-box h2 {
-    font-size: 28px;
-  }
-
-  .stat-icon {
-    font-size: 24px;
-  }
-
-  .stat-box p {
-    font-size: 13px;
+    font-size: 40px;
   }
 }
 
