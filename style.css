@@ -555,3 +555,41 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   MOBILE NAVBAR FIX (mobile responsive)
+   ========================================================= */
+@media (max-width: 768px) {
+
+  /* NAVBAR MAIN FIX */
+  nav {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 5%;
+    gap: 10px;
+  }
+
+  /* TITLE */
+  .logo {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  /* NAV LINKS FIX */
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+
+    width: 100%;
+  }
+
+  /* EACH LINK */
+  .nav-links a {
+    font-size: 14px;
+    padding: 4px 6px;
+    white-space: nowrap; /* PREVENT BREAK LIKE "Linked in" */
+  }
+}
