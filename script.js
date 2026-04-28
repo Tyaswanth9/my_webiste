@@ -277,14 +277,15 @@ observer.observe(statsSection);
 /* =========================
    LOADER WITH PROGRESS + %
    ========================= */
-
 /* =========================
-   FINAL PAGE LOADER JS
+   PROJECT PAGE LOADER ONLY
    ========================= */
 
 window.addEventListener("DOMContentLoaded", function () {
 
   const loader = document.getElementById("page-loader");
+
+  /* ❌ STOP if loader not present (landing page safe) */
   if (!loader) return;
 
   /* =========================
@@ -304,14 +305,9 @@ window.addEventListener("DOMContentLoaded", function () {
   loader.appendChild(bar);
   loader.appendChild(percent);
 
-  /* =========================
-     LOCK SCROLL
-     ========================= */
+  /* LOCK SCROLL */
   document.body.style.overflow = "hidden";
 
-  /* =========================
-     PROGRESS ANIMATION
-     ========================= */
   let width = 0;
 
   const interval = setInterval(function () {
@@ -324,9 +320,6 @@ window.addEventListener("DOMContentLoaded", function () {
     if (width >= 100) {
       clearInterval(interval);
 
-      /* =========================
-         HIDE LOADER
-         ========================= */
       setTimeout(function () {
 
         loader.classList.add("hide");
@@ -340,6 +333,6 @@ window.addEventListener("DOMContentLoaded", function () {
       }, 200);
     }
 
-  }, 18); // ≈ 1.8 seconds
+  }, 18); // ≈ 1.8 sec
 
 });
