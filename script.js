@@ -325,3 +325,32 @@ const statsSection = document.getElementById("stats");
 if (statsSection) {
   observer.observe(statsSection);
 }
+
+
+/* =========================================================
+   SKILLS ANIMATION (SCROLL REVEAL) (between the skills and project section)
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const skillCards = document.querySelectorAll(".skill-card");
+
+  /* INTERSECTION OBSERVER FOR SCROLL EFFECT */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  /* OBSERVE EACH CARD */
+  skillCards.forEach(card => {
+    observer.observe(card);
+  });
+
+});
