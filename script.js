@@ -278,12 +278,18 @@ observer.observe(statsSection);
    LOADER WITH PROGRESS + %
    ========================= */
 
-(function () {
+/* =========================
+   FINAL PAGE LOADER JS
+   ========================= */
+
+window.addEventListener("DOMContentLoaded", function () {
 
   const loader = document.getElementById("page-loader");
   if (!loader) return;
 
-  /* CREATE ELEMENTS */
+  /* =========================
+     CREATE PROGRESS ELEMENTS
+     ========================= */
   const bar = document.createElement("div");
   bar.className = "loader-bar";
 
@@ -298,14 +304,17 @@ observer.observe(statsSection);
   loader.appendChild(bar);
   loader.appendChild(percent);
 
-  /* SHOW LOADER */
-  loader.classList.add("active");
+  /* =========================
+     LOCK SCROLL
+     ========================= */
   document.body.style.overflow = "hidden";
 
+  /* =========================
+     PROGRESS ANIMATION
+     ========================= */
   let width = 0;
 
-  /* PROGRESS LOOP */
-  const interval = setInterval(() => {
+  const interval = setInterval(function () {
 
     width++;
 
@@ -315,18 +324,22 @@ observer.observe(statsSection);
     if (width >= 100) {
       clearInterval(interval);
 
-      /* HIDE LOADER */
-      setTimeout(() => {
-        loader.classList.remove("active");
+      /* =========================
+         HIDE LOADER
+         ========================= */
+      setTimeout(function () {
+
+        loader.classList.add("hide");
+
         document.body.style.overflow = "auto";
 
-        setTimeout(() => {
+        setTimeout(function () {
           loader.style.display = "none";
-        }, 300);
+        }, 400);
 
       }, 200);
     }
 
-  }, 18); // ≈ 1.8 seconds total
+  }, 18); // ≈ 1.8 seconds
 
-})();
+});
