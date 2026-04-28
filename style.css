@@ -407,21 +407,44 @@ section h2 {
    PAGE LOADER
    ========================================================= */
 /* =========================
-   LOADER PROGRESS BAR + %
+   FINAL PAGE LOADER CSS
    ========================= */
 
 #page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.95);
+  color: #ffffff;
+
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 18px;
+
+  z-index: 99999;
+
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
-/* TEXT */
+/* HIDE STATE */
+#page-loader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* LOADING TEXT */
 .loader-text {
   font-size: 18px;
   letter-spacing: 2px;
 }
 
-/* PROGRESS BAR CONTAINER */
+/* PROGRESS BAR */
 .loader-bar {
   width: 220px;
   height: 4px;
@@ -435,15 +458,14 @@ section h2 {
   height: 100%;
   width: 0%;
   background: #ffffff;
-  transition: width 0.2s linear;
 }
 
 /* PERCENT TEXT */
 .loader-percent {
   font-size: 14px;
   color: #ffffff;
-  letter-spacing: 1px;
 }
+
 
 
 /* =========================================================
