@@ -331,16 +331,52 @@ if (statsSection) {
    SKILLS ANIMATION (SCROLL REVEAL) (between the skills and project section)
    ========================================================= */
 
-/* =========================================================
-   SPHERE TOUCH CONTROL (MOBILE FRIENDLY)
-   ========================================================= */
+// =========================================================
+// SKILLS SECTION ANIMATION SCRIPT
+// =========================================================
 
-const sphere = document.querySelector(".sphere");
+// SELECT ALL SKILL CARDS
+const skills = document.querySelectorAll(".skill-card");
 
-let rotateX = 10;
-let rotateY = 0;
+// SCROLL ANIMATION (ON VIEW)
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = "1";
+      entry.target.style.transform = "translateY(0)";
+    }
+  });
+}, {
+  threshold: 0.3
+});
 
-document.addEventListener("mousemove", (e) => {
-  rotateY = (e.clientX / window.innerWidth) * 360;
-  sphere.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+// INITIAL STATE + OBSERVE
+skills.forEach(skill => {
+  skill.style.opacity = "0";
+  skill.style.transform = "translateY(50px)";
+  skill.style.transition = "0.6s ease";
+  observer.observe(skill);
+});
+
+// =========================================================
+// TOUCH / MOUSE 3D TILT EFFECT
+// =========================================================
+
+skills.forEach(card => {
+  card.addEventListener("mousemove", (e) => {
+    let x = e.offsetX;
+    let y = e.offsetY;
+
+    let centerX = card.clientWidth / 2;
+    let centerY = card.clientHeight / 2;
+
+    let rotateX = (y - centerY) / 10;
+    let rotateY = (centerX - x) / 10;
+
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+  });
 });
