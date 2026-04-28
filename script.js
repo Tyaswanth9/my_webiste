@@ -277,55 +277,66 @@ observer.observe(statsSection);
 /* =========================
    LOADER WITH PROGRESS + %
    ========================= */
-<script>
+
 /* =========================
-   LOADER ONLY ON PROJECT CLICK
+   SAFE CLICK LOADER 
    ========================= */
 
-document.querySelectorAll(".project-card").forEach(card => {
+document.addEventListener("DOMContentLoaded", function () {
 
-  card.addEventListener("click", function (e) {
+  const cards = document.querySelectorAll(".project-card");
 
-    e.preventDefault(); // stop direct open
+  cards.forEach(card => {
 
-    /* CREATE LOADER */
-    const loader = document.createElement("div");
-    loader.id = "click-loader";
+    card.addEventListener("click", function (e) {
 
-    loader.innerHTML = `
-      <div class="loader-text">Loading...</div>
-      <div class="loader-bar">
-        <div class="loader-progress"></div>
-      </div>
-      <div class="loader-percent">0%</div>
-    `;
+      e.preventDefault(); // stop instant redirect
 
-    document.body.appendChild(loader);
+      const url = this.getAttribute("href");
 
-    /* LOCK SCROLL */
-    document.body.style.overflow = "hidden";
+      /* CREATE LOADER */
+      const loader = document.createElement("div");
+      loader.id = "click-loader";
 
-    let width = 0;
+      loader.innerHTML = `
+        <div class="loader-text">Loading...</div>
+        <div class="loader-bar">
+          <div class="loader-progress"></div>
+        </div>
+        <div class="loader-percent">0%</div>
+      `;
 
-    const progress = loader.querySelector(".loader-progress");
-    const percent = loader.querySelector(".loader-percent");
+      document.body.appendChild(loader);
+      document.body.style.overflow = "hidden";
 
-    const interval = setInterval(() => {
+      let progressValue = 0;
 
-      width++;
-      progress.style.width = width + "%";
-      percent.innerText = width + "%";
+      const progress = loader.querySelector(".loader-progress");
+      const percent = loader.querySelector(".loader-percent");
 
-      if (width >= 100) {
-        clearInterval(interval);
+      const speed = 18; // ~1.8 sec
 
-        /* GO TO PROJECT PAGE */
-        window.location.href = card.getAttribute("href");
-      }
+      const interval = setInterval(() => {
 
-    }, 18); // ~1.8 seconds
+        progressValue++;
+
+        progress.style.width = progressValue + "%";
+        percent.innerText = progressValue + "%";
+
+        if (progressValue >= 100) {
+          clearInterval(interval);
+
+          /* SMALL DELAY FOR SMOOTHNESS */
+          setTimeout(() => {
+            window.location.href = url;
+          }, 200);
+        }
+
+      }, speed);
+
+    });
 
   });
 
 });
-</script>
+
