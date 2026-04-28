@@ -278,61 +278,50 @@ observer.observe(statsSection);
    LOADER WITH PROGRESS + %
    ========================= */
 /* =========================
-   PROJECT PAGE LOADER ONLY
+   SHOW LOADER ON PROJECT CLICK
    ========================= */
 
-window.addEventListener("DOMContentLoaded", function () {
+document.querySelectorAll(".project-card").forEach(card => {
 
-  const loader = document.getElementById("page-loader");
+  card.addEventListener("click", function (e) {
 
-  /* ❌ STOP if loader not present (landing page safe) */
-  if (!loader) return;
+    const loader = document.createElement("div");
+    loader.id = "page-loader";
 
-  /* =========================
-     CREATE PROGRESS ELEMENTS
-     ========================= */
-  const bar = document.createElement("div");
-  bar.className = "loader-bar";
+    loader.innerHTML = `
+      <div class="loader-text">Loading...</div>
+      <div class="loader-bar">
+        <div class="loader-progress"></div>
+      </div>
+      <div class="loader-percent">0%</div>
+    `;
 
-  const progress = document.createElement("div");
-  progress.className = "loader-progress";
+    document.body.appendChild(loader);
 
-  const percent = document.createElement("div");
-  percent.className = "loader-percent";
-  percent.innerText = "0%";
+    document.body.style.overflow = "hidden";
 
-  bar.appendChild(progress);
-  loader.appendChild(bar);
-  loader.appendChild(percent);
+    let width = 0;
 
-  /* LOCK SCROLL */
-  document.body.style.overflow = "hidden";
+    const progress = loader.querySelector(".loader-progress");
+    const percent = loader.querySelector(".loader-percent");
 
-  let width = 0;
+    const interval = setInterval(() => {
 
-  const interval = setInterval(function () {
+      width++;
+      progress.style.width = width + "%";
+      percent.innerText = width + "%";
 
-    width++;
+      if (width >= 100) {
+        clearInterval(interval);
 
-    progress.style.width = width + "%";
-    percent.innerText = width + "%";
+        /* AFTER LOADER → GO TO PAGE */
+        window.location.href = card.getAttribute("href");
+      }
 
-    if (width >= 100) {
-      clearInterval(interval);
+    }, 15); // ~1.5s fast professional
 
-      setTimeout(function () {
+    e.preventDefault(); // stop instant navigation
 
-        loader.classList.add("hide");
-
-        document.body.style.overflow = "auto";
-
-        setTimeout(function () {
-          loader.style.display = "none";
-        }, 400);
-
-      }, 200);
-    }
-
-  }, 18); // ≈ 1.8 sec
+  });
 
 });
