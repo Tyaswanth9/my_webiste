@@ -101,7 +101,52 @@ nav {
 .nav-links a:hover {
   opacity: 0.8;
 }
+<!----------------------mobile responsive code---------------------->
+/* =========================================================
+   MOBILE RESPONSIVE
+   ========================================================= */
+@media (max-width: 768px) {
 
+  /* Navbar */
+  nav {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Hero Text */
+  #home h1 {
+    font-size: 30px;
+  }
+
+  #home h2 {
+    font-size: 18px;
+  }
+
+  /* Profile Image */
+  .profile-img {
+    width: 140px;
+    height: 140px;
+  }
+
+  /* Projects */
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer */
+  .footer-icons {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    align-items: center;
+  }
+}
+
+<!--------------------end code mobile respone------------------->
 
 /* =========================================================
    HERO SECTION
