@@ -362,36 +362,46 @@ document.addEventListener("DOMContentLoaded", function () {
 /* 3D SKILLS ANIMATION */
 /* ========================= */
 
-const skillCircles = document.querySelectorAll(".circle-wrap");
+document.addEventListener("DOMContentLoaded", () => {
 
-/* SCROLL EFFECT */
-window.addEventListener("scroll", () => {
-  let scrollY = window.scrollY;
+  const circles = document.querySelectorAll(".circle-wrap");
 
-  skillCircles.forEach((circle, index) => {
-    let speed = (index + 1) * 0.2;
-    circle.style.transform = `rotate(${scrollY * speed}deg)`;
+  /* ========================= */
+  /* SCROLL BASED GLOW EFFECT */
+  /* ========================= */
+  function handleScrollGlow() {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    circles.forEach(circle => {
+      const rect = circle.getBoundingClientRect();
+
+      if (rect.top < triggerBottom && rect.bottom > 0) {
+        circle.classList.add("active");
+      } else {
+        circle.classList.remove("active");
+      }
+    });
+  }
+
+  /* Run on scroll */
+  window.addEventListener("scroll", handleScrollGlow);
+
+  /* Run once on load */
+  handleScrollGlow();
+
+  /* ========================= */
+  /* CLICK PULSE EFFECT */
+  /* ========================= */
+  document.addEventListener("click", () => {
+    circles.forEach(circle => {
+      circle.classList.add("click");
+
+      setTimeout(() => {
+        circle.classList.remove("click");
+      }, 300);
+    });
   });
-});
 
-/* MOUSE MOVE EFFECT */
-document.addEventListener("mousemove", (e) => {
-  let x = e.clientX / window.innerWidth;
-
-  skillCircles.forEach((circle, index) => {
-    let rotate = (x - 0.5) * 20;
-    circle.style.transform = `rotate(${rotate}deg)`;
-  });
-});
-
-/* CLICK BOOST EFFECT */
-document.addEventListener("click", () => {
-  skillCircles.forEach(circle => {
-    circle.style.transform = "scale(1.1)";
-    setTimeout(() => {
-      circle.style.transform = "scale(1)";
-    }, 300);
-  });
 });
 
     
