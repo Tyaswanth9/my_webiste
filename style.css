@@ -663,18 +663,13 @@ footer {
 /* 3D SKILLS SECTION FINAL */
 /* ========================= */
 
+
+
 #skills-pro {
   padding: 100px 20px;
   text-align: center;
 }
 
-.skills-pro-title {
-  font-size: 34px;
-  margin-bottom: 60px;
-  font-weight: 700;
-}
-
-/* GRID */
 .skills-pro-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -685,27 +680,28 @@ footer {
 /* CARD */
 .skill-pro {
   text-align: center;
-  transition: all 0.4s ease;
+  transition: 0.4s ease;
 }
 
-/* CIRCLE BORDER */
+/* PERFECT BORDER CIRCLE */
 .circle-wrap {
-  width: 170px;
-  height: 170px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  border: 2px solid red;
+  border: 2px solid #ccc;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  transition: all 0.4s ease;
+  box-sizing: border-box;
+  transition: 0.4s ease;
 }
 
 /* INNER */
 .circle {
-  width: 130px;
-  height: 130px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background: #fff;
 
@@ -713,49 +709,46 @@ footer {
   align-items: center;
   justify-content: center;
 
-  transition: all 0.4s ease;
+  transition: 0.4s ease;
 }
 
-/* ICON */
+/* ICON (NO DELAY) */
 .circle i {
-  font-size: 48px;
-  color: #333;
-  transition: all 0.4s ease;
+  font-size: 42px;
+  color: #444;
+  transition: transform 0.4s ease, color 0.4s ease;
 }
 
-/* TEXT */
+/* TEXT (0.01s DELAY) */
 .skill-pro p {
-  margin-top: 15px;
+  margin-top: 12px;
   font-weight: 600;
-  font-size: 15px;
   color: #333;
 
-  transform: translateY(10px);
-  opacity: 0.7;
-
-  transition: all 0.4s ease;
+  transition:
+    transform 0.4s ease 0.01s,
+    color 0.4s ease 0.01s,
+    letter-spacing 0.4s ease 0.01s;
 }
 
-/* 🔥 HOVER EFFECT */
-.skill-pro:hover {
-  transform: translateY(-10px);
+/* ACTIVE + HOVER (SYNCED) */
+.skill-pro.active .circle-wrap,
+.skill-pro:hover .circle-wrap {
+  border-color: red;
+  transform: scale(1.1);
 }
 
-.skill-pro:hover .circle {
-  transform: scale(1.05);
-}
-
+.skill-pro.active .circle i,
 .skill-pro:hover .circle i {
-  transform: scale(1.2);
   color: red;
+  transform: scale(1.2);
 }
 
-/* TEXT HOVER MAGIC */
+.skill-pro.active p,
 .skill-pro:hover p {
-  transform: translateY(-5px);
-  opacity: 1;
-  letter-spacing: 1px;
   color: red;
+  transform: translateY(-3px);
+  letter-spacing: 0.5px;
 }
 
 /* MOBILE */
@@ -763,9 +756,7 @@ footer {
   .skills-pro-container {
     grid-template-columns: 1fr;
   }
-}
-
-
+   }
  
 
 
