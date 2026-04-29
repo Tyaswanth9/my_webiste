@@ -497,7 +497,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+/* ========================= */
+/* 3D SKILLS ANIMATION */
+/* ========================= */
 
+const skillCircles = document.querySelectorAll(".circle-wrap");
+
+/* SCROLL EFFECT */
+window.addEventListener("scroll", () => {
+  let scrollY = window.scrollY;
+
+  skillCircles.forEach((circle, index) => {
+    let speed = (index + 1) * 0.2;
+    circle.style.transform = `rotate(${scrollY * speed}deg)`;
+  });
+});
+
+/* MOUSE MOVE EFFECT */
+document.addEventListener("mousemove", (e) => {
+  let x = e.clientX / window.innerWidth;
+
+  skillCircles.forEach((circle, index) => {
+    let rotate = (x - 0.5) * 20;
+    circle.style.transform = `rotate(${rotate}deg)`;
+  });
+});
+
+/* CLICK BOOST EFFECT */
+document.addEventListener("click", () => {
+  skillCircles.forEach(circle => {
+    circle.style.transform = "scale(1.1)";
+    setTimeout(() => {
+      circle.style.transform = "scale(1)";
+    }, 300);
+  });
+});
 
     
 
