@@ -658,6 +658,7 @@ footer {
    (Safe - No conflict with existing code)
 
 ========================================================= */
+
 #skills-pro {
   padding: 80px 20px;
   text-align: center;
@@ -686,32 +687,32 @@ footer {
 /* CIRCLE WRAP */
 .circle-wrap {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   margin: auto;
 }
 
-/* ROTATING RED BORDER */
+/*  OUTER ROTATING RING (TIGHT FIT) */
 .circle-wrap::before {
   content: "";
   position: absolute;
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   border: 3px solid red;
 
   box-shadow:
-    0 0 10px red,
-    0 0 30px red,
-    0 0 60px red;
+    0 0 8px red,
+    0 0 20px red,
+    0 0 40px red;
 
-  animation: rotateCircle 6s linear infinite;
+  animation: rotateCircle 5s linear infinite;
 }
 
-/* INNER CIRCLE */
+/*  INNER CIRCLE (CLOSER TO BORDER) */
 .circle {
-  width: 140px;
-  height: 140px;
+  width: 138px; /* increased */
+  height: 138px; /* increased */
   background: radial-gradient(circle, #ffffff, #e6e6e6);
   border-radius: 50%;
 
@@ -720,15 +721,19 @@ footer {
   justify-content: center;
 
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 6px; /* reduced gap */
+  left: 6px; /* reduced gap */
 
   transition: 0.4s;
+
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.1),
+    0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* ICON */
 .circle i {
-  font-size: 50px;
+  font-size: 48px;
   color: #333;
   transition: 0.4s;
 }
@@ -742,12 +747,12 @@ footer {
 
 /* HOVER EFFECT */
 .skill-pro:hover .circle {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .skill-pro:hover .circle i {
   color: red;
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
 .skill-pro:hover p {
@@ -764,14 +769,12 @@ footer {
   }
 }
 
-/* MOBILE FIX */
+/* MOBILE */
 @media (max-width: 768px) {
   .skills-pro-container {
     grid-template-columns: 1fr;
   }
 }
-
-
 
 
  
