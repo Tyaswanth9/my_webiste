@@ -350,59 +350,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
    ========================= */
 
-/* =========================================================
+const skills = document.querySelectorAll(".skill-pro");
 
-   CORE SKILLS - FULL JS (FINAL)
+function revealSkills() {
+  const trigger = window.innerHeight * 0.85;
 
-========================================================= */
+  skills.forEach(skill => {
+    const top = skill.getBoundingClientRect().top;
 
-
-
-/* ========================= */
-/* 3D SKILLS ANIMATION */
-/* ========================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const circles = document.querySelectorAll(".circle-wrap");
-
-  /* ========================= */
-  /* SCROLL BASED GLOW EFFECT */
-  /* ========================= */
-  function handleScrollGlow() {
-    const triggerBottom = window.innerHeight * 0.85;
-
-    circles.forEach(circle => {
-      const rect = circle.getBoundingClientRect();
-
-      if (rect.top < triggerBottom && rect.bottom > 0) {
-        circle.classList.add("active");
-      } else {
-        circle.classList.remove("active");
-      }
-    });
-  }
-
-  /* Run on scroll */
-  window.addEventListener("scroll", handleScrollGlow);
-
-  /* Run once on load */
-  handleScrollGlow();
-
-  /* ========================= */
-  /* CLICK PULSE EFFECT */
-  /* ========================= */
-  document.addEventListener("click", () => {
-    circles.forEach(circle => {
-      circle.classList.add("click");
-
-      setTimeout(() => {
-        circle.classList.remove("click");
-      }, 300);
-    });
+    if (top < trigger) {
+      skill.classList.add("show");
+    }
   });
+}
 
-});
+window.addEventListener("scroll", revealSkills);
 
-    
-
+/* Run once on load */
+revealSkills();
