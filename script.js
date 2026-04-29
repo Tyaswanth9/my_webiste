@@ -352,19 +352,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const skills = document.querySelectorAll(".skill-pro");
 
-function revealSkills() {
+/* ========================= */
+/* SCROLL TEXT REVEAL */
+/* ========================= */
+
+function reveal() {
   const trigger = window.innerHeight * 0.85;
 
-  skills.forEach(skill => {
+  skills.forEach((skill, i) => {
     const top = skill.getBoundingClientRect().top;
 
     if (top < trigger) {
-      skill.classList.add("show");
+      skill.style.opacity = "1";
+      skill.style.transform = "translateY(0)";
+      skill.style.transitionDelay = `${i * 0.15}s`;
     }
   });
 }
-
-window.addEventListener("scroll", revealSkills);
-
-/* Run once on load */
-revealSkills();
