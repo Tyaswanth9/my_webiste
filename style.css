@@ -647,3 +647,131 @@ footer {
 
 
 
+
+/* =========================
+
+   CORE SKILLS SECTION
+
+   ========================= */
+
+
+#core {
+
+  background: #f2f2f2; /* light silver */
+
+  padding: 60px 20px;
+
+  text-align: center;
+
+}
+
+
+.core-title {
+
+  font-size: 32px;
+
+  margin-bottom: 40px;
+
+}
+
+
+.core-container {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 40px;
+
+  max-width: 900px;
+
+  margin: auto;
+
+}
+
+
+.core-circle {
+
+  width: 170px;
+
+  height: 170px;
+
+  margin: auto;
+
+  border-radius: 50%;
+
+  position: relative;
+
+
+  background: conic-gradient(#ff6b6b 0deg, #ddd 0deg);
+
+  transition: transform 0.3s ease;
+
+}
+
+
+.core-circle-in {
+
+  position: absolute;
+
+  inset: 12px;
+
+  background: rgba(255,255,255,0.7);
+
+  border-radius: 50%;
+
+  backdrop-filter: blur(10px);
+
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+}
+
+
+.core-circle-in img {
+
+  width: 45px;
+
+  margin-bottom: 8px;
+
+}
+
+
+.core-circle-in p {
+
+  font-size: 12px;
+
+  text-align: center;
+
+}
+
+
+.core-circle:hover {
+
+  transform: scale(1.1);
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .core-container {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+
