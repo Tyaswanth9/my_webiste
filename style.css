@@ -683,7 +683,7 @@ footer {
   transition: 0.4s ease;
 }
 
-/* PERFECT BORDER CIRCLE */
+/* CIRCLE BORDER */
 .circle-wrap {
   width: 150px;
   height: 150px;
@@ -709,29 +709,29 @@ footer {
   align-items: center;
   justify-content: center;
 
-  transition: 0.4s ease;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-/* ICON (NO DELAY) */
+/* ICON */
 .circle i {
   font-size: 42px;
   color: #444;
-  transition: transform 0.4s ease, color 0.4s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-/* TEXT (0.01s DELAY) */
+/* TEXT (0.01 DELAY) */
 .skill-pro p {
   margin-top: 12px;
   font-weight: 600;
   color: #333;
 
   transition:
-    transform 0.4s ease 0.01s,
-    color 0.4s ease 0.01s,
-    letter-spacing 0.4s ease 0.01s;
+    transform 0.3s ease 0.01s,
+    color 0.3s ease 0.01s,
+    letter-spacing 0.3s ease 0.01s;
 }
 
-/* ACTIVE + HOVER (SYNCED) */
+/* ACTIVE + HOVER */
 .skill-pro.active .circle-wrap,
 .skill-pro:hover .circle-wrap {
   border-color: red;
@@ -751,13 +751,14 @@ footer {
   letter-spacing: 0.5px;
 }
 
+/* RETURN SMOOTH */
+.circle.reset {
+  transform: translate(0,0) scale(1);
+}
+
 /* MOBILE */
 @media (max-width: 768px) {
   .skills-pro-container {
     grid-template-columns: 1fr;
   }
-   }
- 
-
-
-   
+}
