@@ -671,7 +671,6 @@ footer {
 .skills-pro-title {
   font-size: 32px;
   margin-bottom: 50px;
-  letter-spacing: 2px;
 }
 
 /* GRID */
@@ -685,74 +684,65 @@ footer {
 /* CARD */
 .skill-pro {
   text-align: center;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.6s ease;
 }
 
-/* WRAP */
+/* SCROLL SHOW */
+.skill-pro.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* OUTER WRAP (BORDER ONLY) */
 .circle-wrap {
-  position: relative;
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   margin: auto;
-
-  /* smooth glow transition */
-  transition: filter 0.4s ease, transform 0.3s ease;
-}
-
-/* 🔴 ROTATING BORDER */
-.circle-wrap::before {
-  content: "";
-  position: absolute;
-  width: 150px;
-  height: 150px;
   border-radius: 50%;
-  border: 3px solid red;
-
-  box-shadow:
-    0 0 8px red,
-    0 0 20px red,
-    0 0 40px red;
-
-  animation: rotateBorder 6s linear infinite;
-  z-index: 1;
-}
-
-/* INNER CIRCLE */
-.circle {
-  width: 138px;
-  height: 138px;
-  background: radial-gradient(circle, #ffffff, #e6e6e6);
-  border-radius: 50%;
+  border: 2px solid red;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  position: absolute;
-  top: 6px;
-  left: 6px;
+  animation: rotateBorder 8s linear infinite;
+}
 
-  z-index: 2;
+/* REMOVE OLD EXTRA EFFECTS */
+.circle-wrap::before {
+  display: none;
+}
 
-  box-shadow:
-    inset 0 0 10px rgba(0,0,0,0.1),
-    0 4px 10px rgba(0,0,0,0.1);
+/* INNER CIRCLE */
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ICON */
 .circle i {
-  font-size: 48px;
+  font-size: 40px;
   color: #333;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
 /* TEXT */
 .skill-pro p {
-  margin-top: 15px;
+  margin-top: 12px;
   font-weight: 600;
   transition: 0.3s;
 }
 
-/* HOVER */
+/* HOVER (PRO STYLE) */
 .skill-pro:hover .circle i {
   color: red;
   transform: scale(1.15);
@@ -762,21 +752,10 @@ footer {
   color: red;
 }
 
-/* 🔥 SCROLL GLOW ACTIVE */
-.circle-wrap.active {
-  filter: drop-shadow(0 0 15px red)
-          drop-shadow(0 0 35px red);
-}
-
-/* CLICK EFFECT */
-.circle-wrap.click {
-  transform: scale(1.08);
-}
-
-/* ROTATION */
+/* BORDER ROTATION */
 @keyframes rotateBorder {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* MOBILE */
