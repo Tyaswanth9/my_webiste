@@ -340,114 +340,132 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
+
+
+
 /* =========================
 
    CORE SKILLS ANIMATION
 
    ========================= */
 
+/* =========================================================
 
-const coreCircles = document.querySelectorAll(".core-circle");
+   CORE SKILLS - FULL JS (SAFE VERSION)
 
+   - Scroll Animation (Loop)
 
-/* PROGRESS LOOP */
+   - Mouse Parallax (Lightweight)
 
-function animateProgress(circle) {
+   - GitHub Pages Safe
 
-
-  const target = +circle.getAttribute("data-progress");
-
-  let value = 0;
-
-
-  function update() {
+========================================================= */
 
 
-    value++;
+document.addEventListener("DOMContentLoaded", () => {
 
 
-    circle.style.background =
-
-      `conic-gradient(#ff6b6b ${value * 3.6}deg, #ddd 0deg)`;
+  const skills = document.querySelectorAll(".skill-premium");
 
 
-    if (value < target) {
+  /* =====================================================
 
-      requestAnimationFrame(update);
+     SCROLL REVEAL (LOOP)
 
-    } else {
+  ===================================================== */
 
-      setTimeout(() => {
 
-        value = 0;
+  function revealSkills() {
 
-        update();
+    const triggerPoint = window.innerHeight * 0.85;
 
-      }, 1000);
 
-    }
+    skills.forEach((skill) => {
+
+      const skillTop = skill.getBoundingClientRect().top;
+
+
+      if (skillTop < triggerPoint) {
+
+        skill.classList.add("show");
+
+      } else {
+
+        skill.classList.remove("show"); // loop effect
+
+      }
+
+    });
 
   }
 
 
-  update();
+  /* =====================================================
 
-}
+     PERFORMANCE OPTIMIZATION (THROTTLE)
 
-
-/* SCROLL TRIGGER */
-
-const coreSection = document.getElementById("core");
+  ===================================================== */
 
 
-const observerCore = new IntersectionObserver((entries) => {
+  let ticking = false;
 
-  entries.forEach(entry => {
 
-    if (entry.isIntersecting) {
+  window.addEventListener("scroll", () => {
 
-      coreCircles.forEach(circle => {
+    if (!ticking) {
 
-        animateProgress(circle);
+      window.requestAnimationFrame(() => {
+
+        revealSkills();
+
+        ticking = false;
 
       });
+
+      ticking = true;
 
     }
 
   });
 
-}, { threshold: 0.3 });
+
+  /* =====================================================
+
+     INITIAL LOAD TRIGGER
+
+  ===================================================== */
 
 
-if (coreSection) {
-
-  observerCore.observe(coreSection);
-
-}
+  revealSkills();
 
 
-/* MOUSE EFFECT (DESKTOP ONLY SAFE) */
+  /* =====================================================
 
-if (window.innerWidth > 768) {
+     MOUSE PARALLAX EFFECT (SAFE)
+
+  ===================================================== */
+
 
   document.addEventListener("mousemove", (e) => {
 
+    const x = (window.innerWidth / 2 - e.clientX) / 60;
 
-    const x = e.clientX / window.innerWidth - 0.5;
-
-    const y = e.clientY / window.innerHeight - 0.5;
+    const y = (window.innerHeight / 2 - e.clientY) / 60;
 
 
-    coreCircles.forEach(circle => {
+    skills.forEach((skill) => {
 
-      circle.style.transform =
-
-        `rotateX(${y * 10}deg) rotateY(${x * 10}deg)`;
+      skill.style.transform = `translateY(0px) translate(${x}px, ${y}px)`;
 
     });
 
-
   });
 
-}
+
+});
+
+
+
+    
 
