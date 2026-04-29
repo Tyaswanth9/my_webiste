@@ -660,122 +660,59 @@ footer {
 ========================================================= */
 
 
-#skills-3d-premium {
+#skills-pro {
 
   padding: 100px 20px;
 
   text-align: center;
 
-
-  background: linear-gradient(to bottom, #f5f5f5, #eaeaea);
-
-  position: relative;
-
-  overflow: hidden;
+  background: linear-gradient(to bottom, #f4f4f4, #eaeaea);
 
 }
 
 
-/* subtle background glow */
+/* TITLE */
 
-#skills-3d-premium::before {
-
-  content: "";
-
-  position: absolute;
-
-  width: 400px;
-
-  height: 400px;
-
-  background: radial-gradient(circle, rgba(255,0,0,0.08), transparent 70%);
-
-  top: 20%;
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  filter: blur(80px);
-
-  z-index: 0;
-
-}
-
-
-/* =========================================================
-
-   TITLE
-
-========================================================= */
-
-
-.skills-title {
+.skills-pro-title {
 
   font-size: 40px;
 
   letter-spacing: 6px;
 
-  margin-bottom: 70px;
+  margin-bottom: 60px;
 
-  color: #222;
-
-  position: relative;
-
-  z-index: 2;
+  animation: glowTitle 2s ease-in-out infinite alternate;
 
 }
 
 
-/* underline glow */
+@keyframes glowTitle {
 
-.skills-title::after {
+  from { text-shadow: 0 0 5px red; }
 
-  content: "";
-
-  display: block;
-
-  width: 120px;
-
-  height: 3px;
-
-  margin: 12px auto 0;
-
-  background: linear-gradient(to right, transparent, red, transparent);
+  to { text-shadow: 0 0 20px red; }
 
 }
 
 
-/* =========================================================
+/* GRID */
 
-   GRID LAYOUT
-
-========================================================= */
-
-
-.skills-premium-container {
+.skills-pro-container {
 
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 60px;
+  gap: 50px;
 
-  position: relative;
-
-  z-index: 2;
+  justify-items: center;
 
 }
 
 
-/* =========================================================
+/* CARD */
 
-   CARD
-
-========================================================= */
-
-
-.skill-premium {
+.skill-pro {
 
   display: flex;
 
@@ -783,21 +720,19 @@ footer {
 
   align-items: center;
 
-  gap: 18px;
+  gap: 15px;
 
 
   opacity: 0;
 
   transform: translateY(60px);
 
-  transition: all 0.6s ease;
+  transition: 0.6s ease;
 
 }
 
 
-/* visible state */
-
-.skill-premium.show {
+.skill-pro.show {
 
   opacity: 1;
 
@@ -806,20 +741,69 @@ footer {
 }
 
 
-/* =========================================================
+/* =========================
 
-   3D RING DESIGN
+   ROTATING RING
 
-========================================================= */
+========================= */
 
 
-.ring {
+.circle-wrap {
 
-  width: 150px;
+  position: relative;
 
-  height: 150px;
+  width: 160px;
+
+  height: 160px;
+
+}
+
+
+/* glowing rotating border */
+
+.circle-wrap::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 160px;
+
+  height: 160px;
 
   border-radius: 50%;
+
+  border: 3px solid red;
+
+
+  box-shadow:
+
+    0 0 10px red,
+
+    0 0 25px red,
+
+    0 0 50px red;
+
+
+  animation: rotate 6s linear infinite;
+
+  animation-play-state: paused; /* controlled by JS */
+
+}
+
+
+/* inner circle */
+
+.circle {
+
+  width: 140px;
+
+  height: 140px;
+
+  border-radius: 50%;
+
+
+  background: radial-gradient(circle, #ffffff, #e6e6e6);
 
 
   display: flex;
@@ -829,233 +813,134 @@ footer {
   justify-content: center;
 
 
-  background: radial-gradient(circle at 30% 30%, #ffffff, #e3e3e3);
-
-
   box-shadow:
 
-    0 15px 35px rgba(0,0,0,0.25),
+    0 10px 25px rgba(0,0,0,0.25),
 
-    inset 0 -10px 20px rgba(0,0,0,0.2),
+    inset 0 -10px 20px rgba(0,0,0,0.15),
 
-    inset 0 10px 20px rgba(255,255,255,0.7);
+    inset 0 10px 20px rgba(255,255,255,0.6);
 
-
-  position: relative;
-
-  transition: all 0.4s ease;
-
-}
-
-
-/* outer animated glowing ring */
-
-.ring::before {
-
-  content: "";
 
   position: absolute;
 
-  width: 180px;
+  top: 10px;
 
-  height: 180px;
-
-  border-radius: 50%;
+  left: 10px;
 
 
-  border: 2px solid rgba(255, 0, 0, 0.6);
-
-
-  box-shadow:
-
-    0 0 10px rgba(255,0,0,0.6),
-
-    0 0 25px rgba(255,0,0,0.4),
-
-    0 0 50px rgba(255,0,0,0.2);
-
-
-  animation: rotateRing 8s linear infinite;
+  transition: 0.3s ease;
 
 }
 
 
-/* inner subtle ring */
+/* ICON */
 
-.ring::after {
+.circle img {
 
-  content: "";
+  width: 65px;
 
-  position: absolute;
+  height: 65px;
 
-  width: 130px;
-
-  height: 130px;
-
-  border-radius: 50%;
-
-
-  border: 1px solid rgba(255, 0, 0, 0.3);
+  object-fit: contain;
 
 }
 
 
-/* =========================================================
+/* TEXT */
 
-   ICON STYLE
+.skill-pro p {
 
-========================================================= */
-
-
-.ring i {
-
-  font-size: 52px;
-
-  color: #333;
-
-  z-index: 2;
-
-
-  text-shadow:
-
-    0 2px 4px rgba(0,0,0,0.2);
-
-}
-
-
-/* =========================================================
-
-   HOVER EFFECT (3D LIFT)
-
-========================================================= */
-
-
-.skill-premium:hover .ring {
-
-  transform: translateY(-12px) scale(1.08);
-
-
-  box-shadow:
-
-    0 25px 45px rgba(0,0,0,0.35),
-
-    inset 0 -10px 25px rgba(0,0,0,0.25),
-
-    inset 0 10px 25px rgba(255,255,255,0.8);
-
-}
-
-
-/* glow increase on hover */
-
-.skill-premium:hover .ring::before {
-
-  box-shadow:
-
-    0 0 20px rgba(255,0,0,0.8),
-
-    0 0 40px rgba(255,0,0,0.6),
-
-    0 0 70px rgba(255,0,0,0.4);
-
-}
-
-
-/* =========================================================
-
-   TEXT
-
-========================================================= */
-
-
-.skill-premium p {
-
-  font-size: 16px;
+  font-size: 15px;
 
   font-weight: 500;
 
-  color: #222;
+}
+
+
+/* HOVER */
+
+.skill-pro:hover .circle {
+
+  transform: scale(1.1);
+
+}
+
+
+.skill-pro:hover .circle-wrap::before {
+
+  box-shadow:
+
+    0 0 20px red,
+
+    0 0 40px red,
+
+    0 0 70px red;
+
+}
+
+
+/* ROTATION */
+
+@keyframes rotate {
+
+  from { transform: rotate(0deg); }
+
+  to { transform: rotate(360deg); }
 
 }
 
 
 /* =========================================================
 
-   ANIMATION
+   MOBILE (CENTER PERFECTLY)
 
 ========================================================= */
 
 
-@keyframes rotateRing {
-
-  0% {
-
-    transform: rotate(0deg);
-
-  }
-
-  100% {
-
-    transform: rotate(360deg);
-
-  }
-
-}
+@media (max-width: 768px) {
 
 
-/* =========================================================
+  .skills-pro-container {
 
-   RESPONSIVE
-
-========================================================= */
-
-
-/* tablet */
-
-@media (max-width: 992px) {
-
-  .skills-premium-container {
-
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
 
     gap: 40px;
 
   }
 
-}
 
+  .skill-pro {
 
-/* mobile */
+    align-items: center;
 
-@media (max-width: 768px) {
-
-  .skills-premium-container {
-
-    grid-template-columns: 1fr;
+    text-align: center;
 
   }
 
 
-  .ring {
+  .circle-wrap {
 
-    width: 130px;
-
-    height: 130px;
+    margin: 0 auto;
 
   }
 
 
-  .ring::before {
+  .skills-pro-title {
 
-    width: 155px;
+    font-size: 28px;
 
-    height: 155px;
+    letter-spacing: 3px;
 
   }
+
 
 }
-
-
 
 
   
+
+
+
+
+   
