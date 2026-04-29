@@ -352,20 +352,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const skills = document.querySelectorAll(".skill-pro");
 
-/* ========================= */
-/* SCROLL TEXT REVEAL */
-/* ========================= */
+let current = 0;
 
-function reveal() {
-  const trigger = window.innerHeight * 0.85;
-
-  skills.forEach((skill, i) => {
-    const top = skill.getBoundingClientRect().top;
-
-    if (top < trigger) {
-      skill.style.opacity = "1";
-      skill.style.transform = "translateY(0)";
-      skill.style.transitionDelay = `${i * 0.15}s`;
-    }
-  });
+/* ACTIVATE FUNCTION */
+function activateSkill(index) {
+  skills.forEach(skill => skill.classList.remove("active"));
+  skills[index].classList.add("active");
 }
+
+/* LOOP EVERY 1.2s */
+setInterval(() => {
+  current = (current + 1) % skills.length;
+  activateSkill(current);
+}, 1200);
+
+/* INITIAL */
+activateSkill(current);
