@@ -648,130 +648,414 @@ footer {
 
 
 
-/* =========================
-
-   CORE SKILLS SECTION
-
-   ========================= */
 
 
-#core {
 
-  background: #f2f2f2; /* light silver */
+/* =========================================================
 
-  padding: 60px 20px;
+   PREMIUM 3D CORE SKILLS SECTION
+
+   (Safe - No conflict with existing code)
+
+========================================================= */
+
+
+#skills-3d-premium {
+
+  padding: 100px 20px;
 
   text-align: center;
 
-}
 
+  background: linear-gradient(to bottom, #f5f5f5, #eaeaea);
 
-.core-title {
+  position: relative;
 
-  font-size: 32px;
-
-  margin-bottom: 40px;
+  overflow: hidden;
 
 }
 
 
-.core-container {
+/* subtle background glow */
+
+#skills-3d-premium::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 400px;
+
+  height: 400px;
+
+  background: radial-gradient(circle, rgba(255,0,0,0.08), transparent 70%);
+
+  top: 20%;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  filter: blur(80px);
+
+  z-index: 0;
+
+}
+
+
+/* =========================================================
+
+   TITLE
+
+========================================================= */
+
+
+.skills-title {
+
+  font-size: 40px;
+
+  letter-spacing: 6px;
+
+  margin-bottom: 70px;
+
+  color: #222;
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+
+/* underline glow */
+
+.skills-title::after {
+
+  content: "";
+
+  display: block;
+
+  width: 120px;
+
+  height: 3px;
+
+  margin: 12px auto 0;
+
+  background: linear-gradient(to right, transparent, red, transparent);
+
+}
+
+
+/* =========================================================
+
+   GRID LAYOUT
+
+========================================================= */
+
+
+.skills-premium-container {
 
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 40px;
-
-  max-width: 900px;
-
-  margin: auto;
-
-}
-
-
-.core-circle {
-
-  width: 170px;
-
-  height: 170px;
-
-  margin: auto;
-
-  border-radius: 50%;
+  gap: 60px;
 
   position: relative;
 
-
-  background: conic-gradient(#ff6b6b 0deg, #ddd 0deg);
-
-  transition: transform 0.3s ease;
+  z-index: 2;
 
 }
 
 
-.core-circle-in {
+/* =========================================================
 
-  position: absolute;
+   CARD
 
-  inset: 12px;
+========================================================= */
 
-  background: rgba(255,255,255,0.7);
 
-  border-radius: 50%;
-
-  backdrop-filter: blur(10px);
-
+.skill-premium {
 
   display: flex;
 
   flex-direction: column;
 
-  justify-content: center;
+  align-items: center;
+
+  gap: 18px;
+
+
+  opacity: 0;
+
+  transform: translateY(60px);
+
+  transition: all 0.6s ease;
+
+}
+
+
+/* visible state */
+
+.skill-premium.show {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+
+/* =========================================================
+
+   3D RING DESIGN
+
+========================================================= */
+
+
+.ring {
+
+  width: 150px;
+
+  height: 150px;
+
+  border-radius: 50%;
+
+
+  display: flex;
 
   align-items: center;
 
-
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-
-}
+  justify-content: center;
 
 
-.core-circle-in img {
-
-  width: 45px;
-
-  margin-bottom: 8px;
-
-}
+  background: radial-gradient(circle at 30% 30%, #ffffff, #e3e3e3);
 
 
-.core-circle-in p {
+  box-shadow:
 
-  font-size: 12px;
+    0 15px 35px rgba(0,0,0,0.25),
 
-  text-align: center;
+    inset 0 -10px 20px rgba(0,0,0,0.2),
+
+    inset 0 10px 20px rgba(255,255,255,0.7);
+
+
+  position: relative;
+
+  transition: all 0.4s ease;
 
 }
 
 
-.core-circle:hover {
+/* outer animated glowing ring */
 
-  transform: scale(1.1);
+.ring::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+
+  height: 180px;
+
+  border-radius: 50%;
+
+
+  border: 2px solid rgba(255, 0, 0, 0.6);
+
+
+  box-shadow:
+
+    0 0 10px rgba(255,0,0,0.6),
+
+    0 0 25px rgba(255,0,0,0.4),
+
+    0 0 50px rgba(255,0,0,0.2);
+
+
+  animation: rotateRing 8s linear infinite;
 
 }
 
 
-/* MOBILE */
+/* inner subtle ring */
 
-@media (max-width: 768px) {
+.ring::after {
 
-  .core-container {
+  content: "";
 
-    grid-template-columns: 1fr;
+  position: absolute;
+
+  width: 130px;
+
+  height: 130px;
+
+  border-radius: 50%;
+
+
+  border: 1px solid rgba(255, 0, 0, 0.3);
+
+}
+
+
+/* =========================================================
+
+   ICON STYLE
+
+========================================================= */
+
+
+.ring i {
+
+  font-size: 52px;
+
+  color: #333;
+
+  z-index: 2;
+
+
+  text-shadow:
+
+    0 2px 4px rgba(0,0,0,0.2);
+
+}
+
+
+/* =========================================================
+
+   HOVER EFFECT (3D LIFT)
+
+========================================================= */
+
+
+.skill-premium:hover .ring {
+
+  transform: translateY(-12px) scale(1.08);
+
+
+  box-shadow:
+
+    0 25px 45px rgba(0,0,0,0.35),
+
+    inset 0 -10px 25px rgba(0,0,0,0.25),
+
+    inset 0 10px 25px rgba(255,255,255,0.8);
+
+}
+
+
+/* glow increase on hover */
+
+.skill-premium:hover .ring::before {
+
+  box-shadow:
+
+    0 0 20px rgba(255,0,0,0.8),
+
+    0 0 40px rgba(255,0,0,0.6),
+
+    0 0 70px rgba(255,0,0,0.4);
+
+}
+
+
+/* =========================================================
+
+   TEXT
+
+========================================================= */
+
+
+.skill-premium p {
+
+  font-size: 16px;
+
+  font-weight: 500;
+
+  color: #222;
+
+}
+
+
+/* =========================================================
+
+   ANIMATION
+
+========================================================= */
+
+
+@keyframes rotateRing {
+
+  0% {
+
+    transform: rotate(0deg);
+
+  }
+
+  100% {
+
+    transform: rotate(360deg);
 
   }
 
 }
 
 
+/* =========================================================
+
+   RESPONSIVE
+
+========================================================= */
+
+
+/* tablet */
+
+@media (max-width: 992px) {
+
+  .skills-premium-container {
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 40px;
+
+  }
+
+}
+
+
+/* mobile */
+
+@media (max-width: 768px) {
+
+  .skills-premium-container {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .ring {
+
+    width: 130px;
+
+    height: 130px;
+
+  }
+
+
+  .ring::before {
+
+    width: 155px;
+
+    height: 155px;
+
+  }
+
+}
+
+
+
+
+  
