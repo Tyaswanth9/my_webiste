@@ -721,8 +721,8 @@ footer {
   justify-content: center;
 
   position: absolute;
-  top: 6px; /* reduced gap */
-  left: 6px; /* reduced gap */
+  top: 1px; /* reduced gap */
+  left: 1px; /* reduced gap */
 
   transition: 0.4s;
 
@@ -762,10 +762,10 @@ footer {
 /* ROTATION */
 @keyframes rotateCircle {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(90deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(180deg);
   }
 }
 
