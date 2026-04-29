@@ -354,17 +354,38 @@ const skills = document.querySelectorAll(".skill-pro");
 
 let current = 0;
 
-/* ACTIVATE FUNCTION */
 function activateSkill(index) {
   skills.forEach(skill => skill.classList.remove("active"));
   skills[index].classList.add("active");
 }
 
-/* LOOP EVERY 1.2s */
 setInterval(() => {
   current = (current + 1) % skills.length;
   activateSkill(current);
 }, 1200);
 
-/* INITIAL */
 activateSkill(current);
+
+/* ========================= */
+/* MAGNETIC EFFECT */
+/* ========================= */
+
+skills.forEach(skill => {
+  const circle = skill.querySelector(".circle");
+
+  skill.addEventListener("mousemove", (e) => {
+    const rect = skill.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const moveX = (x - rect.width / 2) / 12;
+    const moveY = (y - rect.height / 2) / 12;
+
+    circle.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+  });
+
+  skill.addEventListener("mouseleave", () => {
+    circle.style.transform = "translate(0,0) scale(1)";
+  });
+});
