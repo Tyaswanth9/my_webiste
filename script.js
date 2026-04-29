@@ -340,5 +340,114 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+/* =========================
 
+   CORE SKILLS ANIMATION
+
+   ========================= */
+
+
+const coreCircles = document.querySelectorAll(".core-circle");
+
+
+/* PROGRESS LOOP */
+
+function animateProgress(circle) {
+
+
+  const target = +circle.getAttribute("data-progress");
+
+  let value = 0;
+
+
+  function update() {
+
+
+    value++;
+
+
+    circle.style.background =
+
+      `conic-gradient(#ff6b6b ${value * 3.6}deg, #ddd 0deg)`;
+
+
+    if (value < target) {
+
+      requestAnimationFrame(update);
+
+    } else {
+
+      setTimeout(() => {
+
+        value = 0;
+
+        update();
+
+      }, 1000);
+
+    }
+
+  }
+
+
+  update();
+
+}
+
+
+/* SCROLL TRIGGER */
+
+const coreSection = document.getElementById("core");
+
+
+const observerCore = new IntersectionObserver((entries) => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+
+      coreCircles.forEach(circle => {
+
+        animateProgress(circle);
+
+      });
+
+    }
+
+  });
+
+}, { threshold: 0.3 });
+
+
+if (coreSection) {
+
+  observerCore.observe(coreSection);
+
+}
+
+
+/* MOUSE EFFECT (DESKTOP ONLY SAFE) */
+
+if (window.innerWidth > 768) {
+
+  document.addEventListener("mousemove", (e) => {
+
+
+    const x = e.clientX / window.innerWidth - 0.5;
+
+    const y = e.clientY / window.innerHeight - 0.5;
+
+
+    coreCircles.forEach(circle => {
+
+      circle.style.transform =
+
+        `rotateX(${y * 10}deg) rotateY(${x * 10}deg)`;
+
+    });
+
+
+  });
+
+}
 
