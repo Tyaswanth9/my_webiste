@@ -352,13 +352,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /* =========================================================
 
-   CORE SKILLS - FULL JS (SAFE VERSION)
-
-   - Scroll Animation (Loop)
-
-   - Mouse Parallax (Lightweight)
-
-   - GitHub Pages Safe
+   CORE SKILLS - FULL JS (FINAL)
 
 ========================================================= */
 
@@ -366,33 +360,46 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", () => {
 
 
-  const skills = document.querySelectorAll(".skill-premium");
+  const skills = document.querySelectorAll(".skill-pro");
+
+  const rings = document.querySelectorAll(".circle-wrap");
 
 
   /* =====================================================
 
-     SCROLL REVEAL (LOOP)
+     SCROLL REVEAL + ROTATION CONTROL
 
   ===================================================== */
 
 
-  function revealSkills() {
+  function revealOnScroll() {
 
-    const triggerPoint = window.innerHeight * 0.85;
-
-
-    skills.forEach((skill) => {
-
-      const skillTop = skill.getBoundingClientRect().top;
+    const trigger = window.innerHeight * 0.85;
 
 
-      if (skillTop < triggerPoint) {
+    skills.forEach((skill, index) => {
+
+      const top = skill.getBoundingClientRect().top;
+
+
+      if (top < trigger) {
 
         skill.classList.add("show");
 
+
+        /* start rotation */
+
+        rings[index].style.animationPlayState = "running";
+
+
       } else {
 
-        skill.classList.remove("show"); // loop effect
+        skill.classList.remove("show");
+
+
+        /* stop rotation */
+
+        rings[index].style.animationPlayState = "paused";
 
       }
 
@@ -403,7 +410,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
 
-     PERFORMANCE OPTIMIZATION (THROTTLE)
+     SMOOTH SCROLL PERFORMANCE
 
   ===================================================== */
 
@@ -417,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       window.requestAnimationFrame(() => {
 
-        revealSkills();
+        revealOnScroll();
 
         ticking = false;
 
@@ -430,37 +437,62 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /* =====================================================
+  /* INITIAL LOAD */
 
-     INITIAL LOAD TRIGGER
-
-  ===================================================== */
-
-
-  revealSkills();
+  revealOnScroll();
 
 
   /* =====================================================
 
-     MOUSE PARALLAX EFFECT (SAFE)
+     CLICK → RESTART ROTATION
 
   ===================================================== */
 
 
-  document.addEventListener("mousemove", (e) => {
+  document.addEventListener("click", () => {
 
-    const x = (window.innerWidth / 2 - e.clientX) / 60;
+    rings.forEach(ring => {
 
-    const y = (window.innerHeight / 2 - e.clientY) / 60;
+      ring.style.animation = "none";
 
+      ring.offsetHeight;
 
-    skills.forEach((skill) => {
-
-      skill.style.transform = `translateY(0px) translate(${x}px, ${y}px)`;
+      ring.style.animation = "rotate 6s linear infinite";
 
     });
 
   });
+
+
+  /* =====================================================
+
+     MOUSE PARALLAX (DISABLED ON MOBILE)
+
+  ===================================================== */
+
+
+  if (window.innerWidth > 768) {
+
+    document.addEventListener("mousemove", (e) => {
+
+
+      const x = (window.innerWidth / 2 - e.clientX) / 60;
+
+      const y = (window.innerHeight / 2 - e.clientY) / 60;
+
+
+      skills.forEach(skill => {
+
+        skill.style.transform =
+
+          `translateY(0px) translate(${x}px, ${y}px)`;
+
+      });
+
+
+    });
+
+  }
 
 
 });
