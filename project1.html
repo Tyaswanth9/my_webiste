@@ -695,28 +695,17 @@ startAutoSlide();
 	 
 /* your existing slider code here */
 
-(function () {
+history.pushState(null, null, location.href);
 
-  const goHome = () => {
-    window.location.replace("index.html");
-  };
+window.addEventListener("popstate", function () {
+  window.location.href = "index.html";
+});
 
-  // Push current page into history stack
-  history.pushState(null, null, location.href);
-
-  // 1. Back button (Chrome, Edge, Firefox)
-  window.addEventListener("popstate", function () {
-    goHome();
-  });
-
-  // 2. Safari + bfcache (Back-forward cache fix)
-  window.addEventListener("pageshow", function (event) {
-    if (event.persisted) {
-      goHome();
-    }
-  });
-
-})();
+window.addEventListener("pageshow", function (event) {
+  if (event.persisted) {
+    window.location.href = "index.html";
+  }
+});
 
 </script> 
 </body>
