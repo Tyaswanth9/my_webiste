@@ -693,13 +693,24 @@ startAutoSlide();
 /* back icon */
 
 	 
-window.addEventListener("load", function () {
-  history.pushState(null, "", location.href);
-});
+(function () {
 
-window.addEventListener("popstate", function () {
-  window.location.replace("index.html");
-});
+  function goHome() {
+    window.location.replace("index.html");
+  }
+
+  // Block back stack
+  history.pushState(null, "", location.href);
+
+  // Back button
+  window.addEventListener("popstate", goHome);
+
+  // Fix GitHub Pages cache restore
+  window.addEventListener("pageshow", function () {
+    history.pushState(null, "", location.href);
+  });
+
+})();
 
 </script> 
 </body>
