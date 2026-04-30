@@ -692,19 +692,17 @@ startAutoSlide();
 
 /* back icon */
 
-	 window.addEventListener("pageshow", function (event) {
-  if (event.persisted) {
-    console.log("Page restored from back button");
+	 
+/* your existing slider code here */
 
-    // RESET SLIDER STATE
-    index = 0;
-    updateSlider();
+/* ADD THIS AT THE VERY END */
+(function () {
+  history.pushState(null, null, location.href);
 
-    // RESTART AUTO SLIDE SAFELY
-    stopAutoSlide();
-    startAutoSlide();
-  }
-});
+  window.addEventListener("popstate", function () {
+    window.location.replace("index.html");
+  });
+})();
 
 
 </script> 
