@@ -555,6 +555,13 @@ footer {
 /* =========================
    ELEMENT SELECTORS
    ========================= */
+/* =========================================================
+   SLIDER + NAVIGATION SCRIPT (GITHUB PAGES READY)
+   ========================================================= */
+
+/* =========================
+   ELEMENTS
+========================= */
 const track = document.getElementById("sliderTrack");
 const slides = document.querySelectorAll(".slide");
 const prevBtn = document.getElementById("prevBtn");
@@ -564,24 +571,19 @@ const sliderContainer = document.getElementById("sliderContainer");
 
 /* =========================
    VARIABLES
-   ========================= */
+========================= */
 let index = 0;
 let interval;
 
 /* =========================
    CREATE DOTS
-   ========================= */
+========================= */
 slides.forEach((_, i) => {
   const dot = document.createElement("span");
-
   dot.classList.add("dot");
 
-  /* SET FIRST ACTIVE */
-  if (i === 0) {
-    dot.classList.add("active");
-  }
+  if (i === 0) dot.classList.add("active");
 
-  /* DOT CLICK EVENT */
   dot.addEventListener("click", () => {
     index = i;
     updateSlider();
@@ -590,114 +592,90 @@ slides.forEach((_, i) => {
   dotsContainer.appendChild(dot);
 });
 
-/* GET ALL DOTS */
 const dots = document.querySelectorAll(".dot");
 
 /* =========================
-   UPDATE SLIDER FUNCTION
-   ========================= */
+   UPDATE SLIDER
+========================= */
 function updateSlider() {
-
-  /* MOVE SLIDE */
   track.style.transform = `translateX(-${index * 100}%)`;
 
-  /* UPDATE DOTS */
   dots.forEach(dot => dot.classList.remove("active"));
   dots[index].classList.add("active");
 }
 
 /* =========================
-   NEXT SLIDE
-   ========================= */
+   NEXT / PREV SLIDE
+========================= */
 function nextSlide() {
   index = (index + 1) % slides.length;
   updateSlider();
 }
 
-/* =========================
-   PREVIOUS SLIDE
-   ========================= */
 function prevSlide() {
   index = (index - 1 + slides.length) % slides.length;
   updateSlider();
 }
 
 /* =========================
-   AUTO SLIDE (1.3 SEC)
-   ========================= */
+   AUTO SLIDE
+========================= */
 function startAutoSlide() {
-  interval = setInterval(nextSlide, 1300);
+  interval = setInterval(nextSlide, 3000);
 }
 
-/* =========================
-   STOP AUTO SLIDE
-   ========================= */
 function stopAutoSlide() {
   clearInterval(interval);
 }
 
 /* =========================
    BUTTON EVENTS
-   ========================= */
+========================= */
 nextBtn.addEventListener("click", nextSlide);
 prevBtn.addEventListener("click", prevSlide);
 
 /* =========================
-   HOVER PAUSE (DESKTOP)
-   ========================= */
+   HOVER PAUSE
+========================= */
 sliderContainer.addEventListener("mouseenter", stopAutoSlide);
 sliderContainer.addEventListener("mouseleave", startAutoSlide);
 
 /* =========================
-   MOBILE SWIPE SUPPORT
-   ========================= */
+   TOUCH SWIPE (MOBILE)
+========================= */
 let startX = 0;
-let endX = 0;
 
-/* TOUCH START */
 sliderContainer.addEventListener("touchstart", (e) => {
   startX = e.touches[0].clientX;
   stopAutoSlide();
 });
 
-/* TOUCH MOVE */
-sliderContainer.addEventListener("touchmove", (e) => {
-  endX = e.touches[0].clientX;
-});
+sliderContainer.addEventListener("touchend", (e) => {
+  let endX = e.changedTouches[0].clientX;
 
-/* TOUCH END */
-sliderContainer.addEventListener("touchend", () => {
-
-  let diff = startX - endX;
-
-  /* SWIPE LEFT */
-  if (diff > 50) {
+  if (startX - endX > 50) {
     nextSlide();
-  }
-
-  /* SWIPE RIGHT */
-  else if (diff < -50) {
+  } else if (startX - endX < -50) {
     prevSlide();
   }
 
-  /* RESUME AUTO */
   startAutoSlide();
 });
 
 /* =========================
-   INITIAL START
-   ========================= */
-startAutoSlide();
+   BACK BUTTON REDIRECT
+   (IMPORTANT FOR GITHUB PAGES)
+========================= */
+history.pushState(null, "", location.href);
 
-
-/* back icon */
-
-	 
-history.pushState(project1.html, "", location.href);
-
-{
-  window.location.replace("index.html");
+window.addEventListener("popstate", function () {
+  window.location.href = "index.html";
 });
+
+/* =========================
+   START SLIDER
+========================= */
+startAutoSlide();
 
 </script> 
 </body>
