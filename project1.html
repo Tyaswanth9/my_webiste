@@ -662,14 +662,17 @@ sliderContainer.addEventListener("touchend", (e) => {
   startAutoSlide();
 });
 
-/* =========================
-   BACK BUTTON REDIRECT
-   (IMPORTANT FOR GITHUB PAGES)
-========================= */
-history.pushState(null, "", location.href);
 
+/* =========================================================
+   BACK BUTTON → INDEX.HTML (FINAL FIX)
+   ========================================================= */
+
+/* Create history entry so back button can be detected */
+window.history.pushState({}, "", window.location.href);
+
+/* When user clicks browser BACK button */
 window.addEventListener("popstate", function () {
-  window.location.href = "index.html";
+  window.location.replace("index.html");
 });
 
 /* =========================
