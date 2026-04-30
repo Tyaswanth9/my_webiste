@@ -693,7 +693,9 @@ startAutoSlide();
 /* back icon */
 
 	 
-window.addEventListener("pageshow", function () {
+history.pushState(null, "", location.href);
+
+window.addEventListener("popstate", function () {
   window.location.replace("index.html");
 });
 
