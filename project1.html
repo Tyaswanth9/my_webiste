@@ -663,22 +663,7 @@ sliderContainer.addEventListener("touchend", (e) => {
 });
 
 
-/* =========================================================
-   BACK BUTTON → INDEX.HTML (FINAL FIX)
-   ========================================================= */
 
-/* Create history entry so back button can be detected */
-window.history.pushState({}, "", window.location.href);
-
-/* When user clicks browser BACK button */
-window.addEventListener("popstate", function () {
-  window.location.replace("index.html");
-});
-
-/* =========================
-   START SLIDER
-========================= */
-startAutoSlide();
 
 </script> 
 </body>
