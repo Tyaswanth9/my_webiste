@@ -690,6 +690,23 @@ sliderContainer.addEventListener("touchend", () => {
 startAutoSlide();
 
 
+/* back icon */
+
+	 window.addEventListener("pageshow", function (event) {
+  if (event.persisted) {
+    console.log("Page restored from back button");
+
+    // RESET SLIDER STATE
+    index = 0;
+    updateSlider();
+
+    // RESTART AUTO SLIDE SAFELY
+    stopAutoSlide();
+    startAutoSlide();
+  }
+});
+
+
 </script> 
 </body>
 </html>
