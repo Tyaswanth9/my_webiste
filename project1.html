@@ -358,6 +358,48 @@ footer {
   }
 }
 
+/* ========================= */
+/* PROJECT PRESENTATION */
+/* ========================= */
+
+.presentation-section {
+  width: 100%;
+  background: #f5f5f5;
+  padding: 20px 0;
+}
+
+.presentation-frame {
+  display: block;
+  width: 90%;
+  max-width: 1200px;
+  height: 700px;
+  margin: 0 auto;
+
+  border: none;
+  border-radius: 15px;
+
+  background: white;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .presentation-frame {
+    width: 95%;
+    height: 500px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .presentation-frame {
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+  }
+}
 	
 </style>
 </head>
@@ -563,6 +605,21 @@ footer {
 </section>
 	<a href="https://github.com/Tyaswanth9/Crowd-funding-project.git" > View Full Project on github</a>
 </div> <!-- END CONTAINER -->
+
+
+<!-- ========================= -->
+<!-- PROJECT PRESENTATION PDF -->
+<!-- ========================= -->
+
+<section class="presentation-section">
+
+  <iframe
+    src="your-presentation.pdf"
+    title="Project Presentation"
+    class="presentation-frame">
+  </iframe>
+
+</section>
 
 <footer>
   @2026 Data Analyst Portfolio 
